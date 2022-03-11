@@ -8,15 +8,15 @@
 
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-// import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Navigation} from './src/screens/navigation';
 
 const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      {/* <GestureHandlerRootView> */}
-      <Navigation />
-      {/* </GestureHandlerRootView> */}
+      <GestureHandlerRootView style={{flex: 1}}>
+        <Navigation />
+      </GestureHandlerRootView>
     </SafeAreaView>
   );
 };
