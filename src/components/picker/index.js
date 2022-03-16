@@ -1,16 +1,24 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import PickerComp from '@react-native-picker/picker';
+import {Picker} from '@react-native-picker/picker';
+import {Colors} from '../../utility/constants';
 
-export default function Picker({selectedValue, onValueChange, data}) {
+export default function PickerComp({
+  selectedValue,
+  onValueChange,
+  data,
+  containerStyle,
+}) {
   return (
-    <PickerComp
+    <Picker
+      style={[{backgroundColor: Colors.white}, containerStyle]}
       selectedValue={selectedValue}
       onValueChange={(itemValue, itemIndex) => onValueChange(itemValue)}>
+      <Picker.Item label="None of below" value="" />
       {data.map((item, ind) => {
-        return <PickerComp.Item label={item.label} value={item.value} />;
+        return <Picker.Item label={item.label} value={item.value} />;
       })}
-    </PickerComp>
+    </Picker>
   );
 }
 

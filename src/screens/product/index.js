@@ -7,8 +7,11 @@ import ProductItem from './Product';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
 import Spacing from '../../components/spacing';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function Product({}) {
+  const t = useLocalization();
+
   return (
     <View style={{flex: 1}}>
       <BackHeader title={'Products'} />

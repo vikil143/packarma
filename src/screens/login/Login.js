@@ -14,41 +14,47 @@ import Button from '../../components/button';
 import commonStyles from '../../utility/commonStyles';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function Login({navigation}) {
+  const t = useLocalization();
+
   return (
     <View style={[commonStyles.container, styles.container]}>
       <View style={{}}>
-        <Text style={[styles.loginAccount]}>Login to your Account</Text>
+        <Text style={[styles.loginAccount]}>{t('login.loginInToAccount')}</Text>
       </View>
       <Spacing />
-      <Text style={[styles.emailId]}>Email ID</Text>
+      <Text style={[styles.emailId]}>{t('common.emailId')}</Text>
       <Spacing size={2} />
       <WhiteTextBox />
       <Spacing />
-      <Text style={[styles.password]}>Password</Text>
+      <Text style={[styles.password]}>{t('common.password')}</Text>
       <Spacing size={2} />
       <WhiteTextBox />
       <Spacing />
       <Button
-        onPress={() => navigation.navigate('MyProfile')}
-        title={'Login'}></Button>
+        onPress={() => navigation.navigate('AcceptQuataion')}
+        title={t('common.login')}></Button>
       <Spacing size={5} />
       <Text
         style={[styles.forgetPassword]}
         onPress={() => navigation.navigate('ForgetPassword')}>
-        Forgot Password?
+        {/* Forgot Password? */}
+        {t('login.forgetPassword')}
       </Text>
       <TakeSpace />
       <Text style={{textAlign: 'center'}}>
-        Don’t have an Account?{' '}
+        {/* Don’t have an Account?{' '} */}
+        {t('login.dontHaveAccount')}
         <Text
           onPress={() => {
             console.log('On Click Login');
             navigation.navigate('Register');
           }}
           style={[styles.registerText]}>
-          Register
+          {/* Register */}
+          {t('common.register')}
         </Text>
       </Text>
       <Spacing size={5} />
@@ -59,7 +65,7 @@ export default function Login({navigation}) {
           source={require('../../../assests/images/packarma_logo.png')}
         />
         <Spacing size={5} />
-        <Text style={[styles.footerLogo]}>PACKARMA</Text>
+        <Text style={[styles.footerLogo]}>{t('common.appNameCaps')}</Text>
       </View>
     </View>
   );

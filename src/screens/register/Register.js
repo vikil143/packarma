@@ -14,6 +14,7 @@ import CheckBox from '../../components/checkbox';
 import Spacing from '../../components/spacing';
 import TakeSpace from '../../components/take_space';
 import WhiteTextBox from '../../components/white_text_box';
+import useLocalization from '../../hooks/useLocalization';
 import Info from '../../svg/Info';
 import commonStyles from '../../utility/commonStyles';
 import {Colors} from '../../utility/constants';
@@ -21,10 +22,11 @@ import typography from '../../utility/typography';
 
 export default function Register({navigation}) {
   const [toolTipVisible, setTooltipVisible] = React.useState(false);
+  const t = useLocalization();
 
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={'Create Account'} />
+      <BackHeader title={t('login.createAccount')} />
       {/* <View style={[styles.header]}>
         <View style={{flex: 1 / 2}}>
           <Image
@@ -52,10 +54,11 @@ export default function Register({navigation}) {
             color: Colors.black,
             fontSize: 14,
           }}>
-          Name*
+          {/* Name* */}
+          {t('common.name')}*
         </Text>
         <Spacing size={5} />
-        <WhiteTextBox placeholder="Enter your name" />
+        <WhiteTextBox placeholder={t('login.enterYourName')} />
 
         <Spacing />
         <Text
@@ -64,7 +67,7 @@ export default function Register({navigation}) {
             color: Colors.black,
             fontSize: 14,
           }}>
-          Mobile Number*
+          {t('common.mobileNumber')}*
         </Text>
         <Spacing size={5} />
         <WhiteTextBox
@@ -88,7 +91,7 @@ export default function Register({navigation}) {
                 }}></View>
             </View>
           }
-          placeholder="Enter Mobile Number"
+          placeholder={t('login.enterMobileNumber')}
         />
         <Spacing />
         <Text
@@ -97,10 +100,10 @@ export default function Register({navigation}) {
             color: Colors.black,
             fontSize: 14,
           }}>
-          Email id*
+          {t('common.emailId')}
         </Text>
         <Spacing size={5} />
-        <WhiteTextBox placeholder="Enter email id" />
+        <WhiteTextBox placeholder={t('login.enterEmailId')} />
         <Spacing />
         <View style={[commonStyles.rowAlignCenter]}>
           <Text
@@ -109,7 +112,7 @@ export default function Register({navigation}) {
               color: Colors.black,
               fontSize: 14,
             }}>
-            Password *
+            {t('common.password')} *
           </Text>
           <Spacing size={2} />
           <View>
@@ -225,14 +228,15 @@ export default function Register({navigation}) {
           </View>
           <Spacing size={5} />
           <Text style={{flex: 1}}>
-            I agree to the Terms and conditions and Privacy Policy.
+            {/* I agree to the Terms and conditions and Privacy Policy. */}
+            {t('login.agreeTermsAndCondition')}
           </Text>
         </View>
         <Spacing />
         <TakeSpace />
         <Button
           onPress={() => navigation.navigate('Verify')}
-          title={'Proceed'}></Button>
+          title={t('common.procced')}></Button>
       </View>
     </View>
   );

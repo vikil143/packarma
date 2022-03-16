@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "625252663438",
+    "project_id": "packarma-72869",
+    "storage_bucket": "packarma-72869.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625252663438:android:ea001c71c91e5af20789df",
+        "android_client_info": {
+          "package_name": "com.packarma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625252663438-ioll0v6fb6a6s8d5t8t8pi04a3kftsk8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.packarma",
+            "certificate_hash": "7c901ae9c7366d19ef4ee6848007deb78bb01f5b"
+          }
+        },
+        {
+          "client_id": "625252663438-cs842k6jluj0k7gfv5ste9msf3b0edlg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9f8MfeR9D15tQp7nU67f4p8xau_EcVfU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625252663438-cs842k6jluj0k7gfv5ste9msf3b0edlg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

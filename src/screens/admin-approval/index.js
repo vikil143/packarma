@@ -5,8 +5,11 @@ import Spacing from '../../components/spacing';
 import typography from '../../utility/typography';
 import Button from '../../components/button';
 import TakeSpace from '../../components/take_space';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function AdminApproval() {
+  const t = useLocalization();
+
   return (
     <View style={[styles.container]}>
       <Spacing size={30} />
@@ -30,12 +33,13 @@ export default function AdminApproval() {
           fontSize: 18,
           color: Colors.black,
         }}>
-        Your onboarding has been completed successfully
+        {/* Your onboarding has been completed successfully */}
+        {t('descriptions.adminApporval')}
       </Text>
       <TakeSpace />
       <View style={{padding: 10}}>
         <Button
-          title={'Login'}
+          title={t('common.login')}
           onPress={() => navigation.navigate('AdminApproval')}></Button>
       </View>
       <Spacing size={10} />

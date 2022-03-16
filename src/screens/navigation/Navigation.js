@@ -14,7 +14,11 @@ import Success from '../success';
 import Subscription from '../subscription';
 import Product from '../product';
 import {PlaceEnquiry, EnquiryDescription} from '../enquiry';
+import {OrderDetails, MyOrder} from '../order';
 import MyProfile from '../my-profile';
+import MyOrders from '../order/MyOrders';
+import {AcceptQuatation} from '../quatation';
+import SelectAddress from '../quatation/SelectAddress';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +42,11 @@ export default function Navigation() {
           component={EnquiryDescription}
         />
         <Stack.Screen name="MyProfile" component={MyProfile} />
+        <Stack.Screen name="OrderDetails" component={OrderDetails} />
+        <Stack.Screen name="MyOrders" component={MyOrders} />
+        <Stack.Screen name="AcceptQuataion" component={AcceptQuatation} />
+        <Stack.Screen name="SelectAddress" component={SelectAddress} />
+        {/* <Stack.Screen name="Success" component={Success} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

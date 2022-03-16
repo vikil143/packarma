@@ -1,4 +1,9 @@
-export default {
+import {StyleSheet} from 'react-native';
+
+export default StyleSheet.create({
+  flexOne: {
+    flex: 1,
+  },
   alightRight: {
     alignItems: 'flex-end',
   },
@@ -37,4 +42,4 @@ export default {
   container: {
     flex: 1,
   },
-};
+});

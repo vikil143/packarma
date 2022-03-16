@@ -4,8 +4,11 @@ import typography from '../../utility/typography';
 import {Colors} from '../../utility/constants';
 import Spacing from '../../components/spacing';
 import commonStyles from '../../utility/commonStyles';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function Subscription() {
+  const t = useLocalization();
+
   return (
     <View style={{flex: 1}}>
       <View style={{padding: 15}}>
@@ -22,7 +25,8 @@ export default function Subscription() {
             color: Colors.black,
             flex: 1,
           }}>
-          Subscriptions
+          {/* Subscriptions */}
+          {t('common.subscription')}
         </Text>
         <View>
           <Image

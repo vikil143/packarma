@@ -10,12 +10,15 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Navigation} from './src/screens/navigation';
+import RootContext from './src/context';
 
 const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <GestureHandlerRootView style={{flex: 1}}>
-        <Navigation />
+        <RootContext>
+          <Navigation />
+        </RootContext>
       </GestureHandlerRootView>
     </SafeAreaView>
   );

@@ -5,7 +5,7 @@ const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 export {SCREEN_WIDTH, SCREEN_HEIGHT};
 export const Colors = {
   black: '#000000',
-  white: '#ffffff',
+  white: '#fff',
   greenColor: '#BBD531',
   redColor: '#EE3F27',
   greyColor: '#E4E4E4',

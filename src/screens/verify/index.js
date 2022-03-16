@@ -7,11 +7,14 @@ import Spacing from '../../components/spacing';
 import Pins from '../../components/otp/Pin';
 import TakeSpace from '../../components/take_space';
 import Button from '../../components/button';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function Verify({navigation}) {
+  const t = useLocalization();
+
   return (
     <View style={[styles.container]}>
-      <BackHeader title={'Verify Mobile Number'} />
+      <BackHeader title={t('common.verify')} />
       <View style={{flex: 1, padding: 15}}>
         <Text
           style={{
@@ -19,7 +22,8 @@ export default function Verify({navigation}) {
             fontSize: 14,
             color: Colors.black,
           }}>
-          We have sent an OTP to the registered mobile Number +91 78XXXXXX45.
+          {/* We have sent an OTP to the registered mobile Number +91 78XXXXXX45. */}
+          {t('login.wehaveSentOTP')}
         </Text>
         <Spacing />
         <View style={{}}>
@@ -32,8 +36,9 @@ export default function Verify({navigation}) {
               color: Colors.black,
               textAlign: 'center',
             }}>
-            Didn’t receive OTP?{' '}
-            <Text style={{color: Colors.black}}>Resend</Text>
+            {/* Didn’t receive OTP?{' '} */}
+            {t('login.didntReceiveOTP')}
+            <Text style={{color: Colors.black}}> {t('common.resend')}</Text>
           </Text>
           <Spacing size={2} />
           <Text
@@ -43,12 +48,13 @@ export default function Verify({navigation}) {
               fontFamily: typography.poppinsRegular,
               fontSize: 12,
             }}>
-            Request OTP again in 25s
+            {/* Request OTP again in 25s */}
+            {t('login.requestOTPagain')}
           </Text>
         </View>
         <TakeSpace />
         <Button
-          title={'Verify'}
+          title={t('common.verify')}
           onPress={() => navigation.navigate('SetPassword')}></Button>
       </View>
     </View>

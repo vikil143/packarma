@@ -5,8 +5,11 @@ import Spacing from '../../components/spacing';
 import typography from '../../utility/typography';
 import TakeSpace from '../../components/take_space';
 import Button from '../../components/button';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function Success({navigation}) {
+  const t = useLocalization();
+
   return (
     <View style={{flex: 1}}>
       <Spacing size={30} />
@@ -31,12 +34,13 @@ export default function Success({navigation}) {
           color: Colors.black,
           paddingHorizontal: 20,
         }}>
-        You have reset your password successfully
+        {/* You have reset your password successfully */}
+        {t('descritpion.successDescription')}
       </Text>
       <TakeSpace />
       <View style={{padding: 10}}>
         <Button
-          title={'Login'}
+          title={t('common.login')}
           onPress={() => navigation.navigate('BottomTabs')}></Button>
       </View>
     </View>

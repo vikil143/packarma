@@ -1,18 +1,28 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import Spacing from '../spacing';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
 
 export default function BackHeader({title}) {
+  const navigation = useNavigation();
   return (
     <View>
       <View style={[styles.header]}>
         <View style={{flex: 1 / 3}}>
-          <Image
-            style={[{width: 30, height: 30}]}
-            source={require('../../../assests/images/back_arrow.png')}
-          />
+          <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+            <Image
+              style={[{width: 30, height: 30}]}
+              source={require('../../../assests/images/back_arrow.png')}
+            />
+          </TouchableWithoutFeedback>
         </View>
         <Spacing size={5} />
         <View style={{flex: 1}}>

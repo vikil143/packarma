@@ -7,11 +7,14 @@ import WhiteTextBox from '../../components/white_text_box';
 import Spacing from '../../components/spacing';
 import TakeSpace from '../../components/take_space';
 import Button from '../../components/button';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function ForgetPassword({navigation}) {
+  const t = useLocalization();
+
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={'Forgot Password'} />
+      <BackHeader title={t('login.forgotPassword')} />
       <View style={{flex: 1, padding: 20}}>
         <Text
           style={{
@@ -19,8 +22,7 @@ export default function ForgetPassword({navigation}) {
             fontSize: 14,
             color: Colors.black,
           }}>
-          Enter the Mobile Number associated with your account and we’ll send
-          you an OTP to verify your account.
+          {t('login.forgetPasswordDescription')}
         </Text>
         <Spacing size={10} />
         <WhiteTextBox
@@ -44,13 +46,13 @@ export default function ForgetPassword({navigation}) {
                 }}></View>
             </View>
           }
-          placeholder="Enter Mobile Number"
+          placeholder={t('login.enterMobileNumber')}
         />
         <TakeSpace />
 
         <Button
           onPress={() => navigation.navigate('Verify')}
-          title={'Proceed'}></Button>
+          title={t('common.procced')}></Button>
       </View>
     </View>
   );

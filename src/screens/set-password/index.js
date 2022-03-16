@@ -5,13 +5,16 @@ import Button from '../../components/button';
 import Spacing from '../../components/spacing';
 import TakeSpace from '../../components/take_space';
 import WhiteTextBox from '../../components/white_text_box';
+import useLocalization from '../../hooks/useLocalization';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
 
 export default function SetPassword({navigation}) {
+  const t = useLocalization();
+
   return (
     <View style={[styles.container]}>
-      <BackHeader title={'Set Password'} />
+      <BackHeader title={t('common.setPassword')} />
       <View style={{flex: 1, padding: 18}}>
         <View>
           <Text
@@ -20,7 +23,8 @@ export default function SetPassword({navigation}) {
               fontSize: 14,
               color: Colors.black,
             }}>
-            New Password
+            {/* New Password */}
+            {t('common.newPassword')}
           </Text>
           <Spacing size={5} />
           <WhiteTextBox action="password" actionStyles={{tintColor: '#ddd'}} />
@@ -33,7 +37,7 @@ export default function SetPassword({navigation}) {
               fontSize: 14,
               color: Colors.black,
             }}>
-            Confirm Password
+            {t('common.confirmPassword')}
           </Text>
           <Spacing size={5} />
           <WhiteTextBox action="password" actionStyles={{tintColor: '#ddd'}} />
@@ -133,7 +137,7 @@ export default function SetPassword({navigation}) {
         </View>
 
         <Button
-          title={'Reset'}
+          title={t('common.reset')}
           onPress={() => navigation.navigate('Success')}></Button>
       </View>
     </View>
