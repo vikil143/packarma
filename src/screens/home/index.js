@@ -84,7 +84,13 @@ export default function HomeScreen() {
                 paddingHorizontal: 10,
               }}>
               <View style={[{}]}>
-                <Text>Food</Text>
+                <Text
+                  style={{
+                    color: Colors.black,
+                    fontFamily: typography.poppinsMedium,
+                  }}>
+                  Food
+                </Text>
                 <Spacing size={5} />
 
                 {activeItem === 0 ? (
@@ -111,7 +117,13 @@ export default function HomeScreen() {
                 )}
               </View>
               <View style={{}}>
-                <Text>Home Care</Text>
+                <Text
+                  style={{
+                    color: Colors.black,
+                    fontFamily: typography.poppinsMedium,
+                  }}>
+                  Home Care
+                </Text>
                 <Spacing size={5} />
                 {activeItem === 1 ? (
                   <View style={{alignItems: 'center'}}>
@@ -136,7 +148,13 @@ export default function HomeScreen() {
                 )}
               </View>
               <View style={{}}>
-                <Text>Personal Care</Text>
+                <Text
+                  style={{
+                    color: Colors.black,
+                    fontFamily: typography.poppinsMedium,
+                  }}>
+                  Personal Care
+                </Text>
                 <Spacing size={5} />
                 {activeItem === 2 ? (
                   <View style={{alignItems: 'center'}}>
@@ -161,7 +179,13 @@ export default function HomeScreen() {
                 )}
               </View>
               <View style={{}}>
-                <Text>Stationery</Text>
+                <Text
+                  style={{
+                    color: Colors.black,
+                    fontFamily: typography.poppinsMedium,
+                  }}>
+                  Stationery
+                </Text>
                 <Spacing size={5} />
                 {activeItem === 3 ? (
                   <View style={{alignItems: 'center'}}>
@@ -188,49 +212,47 @@ export default function HomeScreen() {
             </View>
             {/*  */}
             <View>
-              <Spacing size={10} />
-              <View style={{flexDirection: 'row'}}>
+              <Spacing size={15} />
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 60) / 3}}
+                    style={{width: (SCREEN_WIDTH - 75) / 3}}
                     source={require('../../../assests/images/dairy.png')}
                   />
                 </View>
-                <Spacing size={10} />
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 60) / 3}}
+                    style={{width: (SCREEN_WIDTH - 75) / 3}}
                     source={require('../../../assests/images/dairy.png')}
                   />
                 </View>
-                <Spacing size={10} />
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 60) / 3}}
+                    style={{width: (SCREEN_WIDTH - 75) / 3}}
                     source={require('../../../assests/images/dairy.png')}
                   />
                 </View>
               </View>
 
               <Spacing size={10} />
-              <View style={{flexDirection: 'row'}}>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 60) / 3}}
+                    style={{width: (SCREEN_WIDTH - 75) / 3}}
                     source={require('../../../assests/images/dairy.png')}
                   />
                 </View>
-                <Spacing size={10} />
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 60) / 3}}
+                    style={{width: (SCREEN_WIDTH - 75) / 3}}
                     source={require('../../../assests/images/dairy.png')}
                   />
                 </View>
-                <Spacing size={10} />
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 60) / 3}}
+                    style={{width: (SCREEN_WIDTH - 75) / 3}}
                     source={require('../../../assests/images/dairy.png')}
                   />
                 </View>
@@ -249,7 +271,7 @@ export default function HomeScreen() {
                 }}>
                 <QuestionMark />
                 <Spacing size={5} />
-                <Text>Place Enquiry</Text>
+                <Text style={{}}>Place Enquiry</Text>
               </View>
               <View
                 style={{
@@ -260,7 +282,7 @@ export default function HomeScreen() {
                 }}>
                 <QuationsIcon />
                 <Spacing size={5} />
-                <Text>Get Quotations</Text>
+                <Text style={{color: Colors.black}}>Get Quotations</Text>
               </View>
               <View
                 style={{
@@ -271,7 +293,7 @@ export default function HomeScreen() {
                 }}>
                 <PlaceIcon />
                 <Spacing size={5} />
-                <Text>Get Quotations</Text>
+                <Text style={{color: Colors.black}}>Place Order</Text>
               </View>
             </View>
 
@@ -307,11 +329,17 @@ export default function HomeScreen() {
             style={{padding: 10, flexDirection: 'row', alignItems: 'flex-end'}}>
             <View>
               <Text
-                style={{fontSize: 18, fontFamily: typography.poppinsMedium}}>
+                style={{
+                  fontSize: 18,
+                  fontFamily: typography.poppinsMedium,
+                  color: Colors.black,
+                }}>
                 Need Support ?
               </Text>
               <Spacing size={2} />
-              <Text>Fill out the form and we will connect with you.</Text>
+              <Text style={{color: Colors.black}}>
+                Fill out the form and we will connect with you.
+              </Text>
             </View>
             <Spacing size={10} />
             <View style={{}}>

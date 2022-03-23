@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import Label from '../../components/label';
 import {Colors} from '../../utility/constants';
@@ -73,7 +74,10 @@ export default function SelectAddress({navigation}) {
         <View style={{flex: 1}} />
 
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate('Success')}>
+          onPress={() => {
+            crashlytics().log('NAVIGATE TO SUCCESS SCREEN...');
+            navigation.navigate('Success');
+          }}>
           <View
             style={{
               backgroundColor: Colors.brownColor,

@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import typography from '../../utility/typography';
 import {Colors} from '../../utility/constants';
@@ -14,7 +15,7 @@ export default function Verify({navigation}) {
 
   return (
     <View style={[styles.container]}>
-      <BackHeader title={t('common.verify')} />
+      <BackHeader title={t('descriptions.verifyMobileNumber')} />
       <View style={{flex: 1, padding: 15}}>
         <Text
           style={{
@@ -55,7 +56,10 @@ export default function Verify({navigation}) {
         <TakeSpace />
         <Button
           title={t('common.verify')}
-          onPress={() => navigation.navigate('SetPassword')}></Button>
+          onPress={() => {
+            crashlytics().log('NAVIGATE TO SET PASSWORD....');
+            navigation.navigate('SetPassword');
+          }}></Button>
       </View>
     </View>
   );

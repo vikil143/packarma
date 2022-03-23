@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View, StatusBar} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Navigation} from './src/screens/navigation';
 import RootContext from './src/context';
@@ -15,6 +15,7 @@ import RootContext from './src/context';
 const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
+      <StatusBar backgroundColor={'#fff'} barStyle="dark-content" />
       <GestureHandlerRootView style={{flex: 1}}>
         <RootContext>
           <Navigation />

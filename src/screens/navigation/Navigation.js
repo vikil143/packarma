@@ -19,6 +19,7 @@ import MyProfile from '../my-profile';
 import MyOrders from '../order/MyOrders';
 import {AcceptQuatation} from '../quatation';
 import SelectAddress from '../quatation/SelectAddress';
+import SplashScreen from '../splash';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerMode: false}}>
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Verify" component={Verify} />

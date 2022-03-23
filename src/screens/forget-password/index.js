@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import typography from '../../utility/typography';
 import {Colors} from '../../utility/constants';
@@ -51,7 +52,10 @@ export default function ForgetPassword({navigation}) {
         <TakeSpace />
 
         <Button
-          onPress={() => navigation.navigate('Verify')}
+          onPress={() => {
+            navigation.navigate('Verify');
+            crashlytics().log('NAVIGATE TO VERIFY SCREEN....');
+          }}
           title={t('common.procced')}></Button>
       </View>
     </View>

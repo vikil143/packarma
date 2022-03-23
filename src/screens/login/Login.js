@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
+import crashlytics from '@react-native-firebase/crashlytics';
 import Spacing from '../../components/spacing';
 import TakeSpace from '../../components/take_space';
 import WhiteTextBox from '../../components/white_text_box';
@@ -34,22 +35,29 @@ export default function Login({navigation}) {
       <WhiteTextBox />
       <Spacing />
       <Button
-        onPress={() => navigation.navigate('AcceptQuataion')}
+        onPress={() => {
+          crashlytics().log('On Click my orders');
+          navigation.navigate('BottomTabs');
+        }}
         title={t('common.login')}></Button>
       <Spacing size={5} />
       <Text
         style={[styles.forgetPassword]}
-        onPress={() => navigation.navigate('ForgetPassword')}>
+        onPress={() => {
+          crashlytics().log('Navigate to Forgot Password....');
+          navigation.navigate('ForgetPassword');
+        }}>
         {/* Forgot Password? */}
         {t('login.forgetPassword')}
       </Text>
       <TakeSpace />
-      <Text style={{textAlign: 'center'}}>
+      <Text style={{textAlign: 'center', color: Colors.black}}>
         {/* Don’t have an Account?{' '} */}
         {t('login.dontHaveAccount')}
         <Text
           onPress={() => {
             console.log('On Click Login');
+            crashlytics().log('Navigate to Register done...');
             navigation.navigate('Register');
           }}
           style={[styles.registerText]}>
@@ -72,7 +80,11 @@ export default function Login({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  footerLogo: {fontFamily: typography.poppinsRegular, fontSize: 14},
+  footerLogo: {
+    fontFamily: typography.poppinsRegular,
+    fontSize: 14,
+    color: Colors.black,
+  },
   footerImage: {tintColor: '#707070', width: 21, height: 26},
   text: {
     flexDirection: 'row',

@@ -4,13 +4,15 @@ import BackHeader from '../../components/back-header';
 import Spacing from '../../components/spacing';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function MyOrders({}) {
+  const t = useLocalization();
   const [tabNumber, setTabNumber] = React.useState(0);
 
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={'My Orders'} />
+      <BackHeader title={t('common.myOrders')} />
       <Spacing size={10} />
       <View style={{flex: 1}}>
         {/*  */}
@@ -127,6 +129,7 @@ export default function MyOrders({}) {
                       textAlign: 'right',
                       fontFamily: typography.poppinsRegular,
                       fontSize: 12,
+                      color: Colors.black,
                     }}>
                     15-03-22 10:12 AM
                   </Text>
@@ -197,6 +200,7 @@ export default function MyOrders({}) {
                       textAlign: 'right',
                       fontFamily: typography.poppinsRegular,
                       fontSize: 12,
+                      color: Colors.black,
                     }}>
                     15-03-22 10:12 AM
                   </Text>

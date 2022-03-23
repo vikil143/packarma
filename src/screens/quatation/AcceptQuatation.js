@@ -6,6 +6,7 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import Spacing from '../../components/spacing';
 import typography from '../../utility/typography';
@@ -63,7 +64,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -71,6 +72,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Food
                   </Text>
@@ -90,7 +92,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -98,6 +100,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Dried & dehydrated Products
                   </Text>
@@ -117,7 +120,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -125,6 +128,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     200 Kg
                   </Text>
@@ -144,7 +148,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -152,6 +156,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     180 Days
                   </Text>
@@ -172,7 +177,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -180,6 +185,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Relative humidity
                   </Text>
@@ -200,7 +206,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -208,6 +214,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     German
                   </Text>
@@ -228,7 +235,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -236,6 +243,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Solid
                   </Text>
@@ -256,7 +264,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -264,6 +272,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Primary
                   </Text>
@@ -532,7 +541,10 @@ export default function AcceptQuatation({navigation}) {
           <View style={[commonStyles.flexOne]} />
 
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('SelectAddress')}>
+            onPress={() => {
+              crashlytics().log('NAVIGATE TO SELECT ADDRESS SCRREN...');
+              navigation.navigate('SelectAddress');
+            }}>
             <View
               style={{
                 backgroundColor: Colors.brownColor,

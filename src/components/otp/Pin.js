@@ -26,7 +26,9 @@ export default function Pins({pin, setPin}) {
       {new Array(NO_OF_OTP).fill(0).map((_, ind) => {
         return (
           <View style={[styles.pin]} key={ind}>
-            <Text style={[]}>{ind < pin.length ? pin[ind] : ''}</Text>
+            <Text style={[styles.pinColor]}>
+              {ind < pin.length ? pin[ind] : ''}
+            </Text>
           </View>
         );
       })}
@@ -44,6 +46,9 @@ export default function Pins({pin, setPin}) {
 }
 
 const styles = StyleSheet.create({
+  pinColor: {
+    color: Colors.black,
+  },
   pin: {
     width: (SCREEN_WIDTH - 100) / 4,
     height: (SCREEN_WIDTH - 100) / 4,

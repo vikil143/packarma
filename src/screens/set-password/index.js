@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import Button from '../../components/button';
 import Spacing from '../../components/spacing';
@@ -138,7 +139,10 @@ export default function SetPassword({navigation}) {
 
         <Button
           title={t('common.reset')}
-          onPress={() => navigation.navigate('Success')}></Button>
+          onPress={() => {
+            crashlytics().log('NAVIGATE TO SUCCESS....');
+            navigation.navigate('Success');
+          }}></Button>
       </View>
     </View>
   );

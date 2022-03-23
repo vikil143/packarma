@@ -7,6 +7,7 @@ import {
   Image,
 } from 'react-native';
 import React, {useState} from 'react';
+import useLocalization from '../../hooks/useLocalization';
 import BackHeader from '../../components/back-header';
 import DownArrow from '../../svg/DownArrow';
 import UpArrow from '../../svg/UpArrow';
@@ -22,9 +23,11 @@ export default function EnquiryDescription() {
   const [collapuse, setCollapuse] = useState(true);
   const [toolTipVisible, setTooltipVisible] = useState(false);
   const [nextTooltip, setNextTooltip] = useState(false);
+  const t = useLocalization();
+
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={'Enquiry Description'} />
+      <BackHeader title={t('common.enquiryDescription')} />
       <View style={{flex: 1}}>
         <ScrollView>
           {/* Collapuse View */}
@@ -43,6 +46,7 @@ export default function EnquiryDescription() {
                   fontSize: 16,
                   flex: 1,
                   paddingHorizontal: 10,
+                  color: Colors.black,
                 }}>
                 Product Details
               </Text>
@@ -73,6 +77,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Food
                   </Text>
@@ -92,7 +97,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -100,6 +105,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Dried & dehydrated Products
                   </Text>
@@ -119,7 +125,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -127,6 +133,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     200 Kg
                   </Text>
@@ -146,7 +153,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -154,6 +161,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     180 Days
                   </Text>
@@ -174,7 +182,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -182,6 +190,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Relative humidity
                   </Text>
@@ -202,7 +211,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -210,6 +219,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     German
                   </Text>
@@ -230,7 +240,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -238,6 +248,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Solid
                   </Text>
@@ -258,7 +269,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -266,6 +277,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Primary
                   </Text>
@@ -286,7 +298,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -294,6 +306,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Gamma/E-beam Sterilisation
                   </Text>
@@ -314,7 +327,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -322,6 +335,7 @@ export default function EnquiryDescription() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     401107
                   </Text>
@@ -376,6 +390,7 @@ export default function EnquiryDescription() {
                         style={{
                           fontFamily: typography.poppinsMedium,
                           fontSize: 14,
+                          color: Colors.black,
                         }}>
                         Properties :
                       </Text>
@@ -394,9 +409,9 @@ export default function EnquiryDescription() {
                           }}
                         />
                         <Spacing size={5} />
-                        <Text style={{flex: 1}}>
+                        <Text style={{flex: 1, color: Colors.black}}>
                           Water vapor transmission rate (WVTR) :{' '}
-                          <Text>g/m2/24 hr</Text>
+                          <Text style={{color: Colors.black}}>g/m2/24 hr</Text>
                         </Text>
                       </View>
 
@@ -415,9 +430,9 @@ export default function EnquiryDescription() {
                           }}
                         />
                         <Spacing size={5} />
-                        <Text style={{flex: 1}}>
+                        <Text style={{flex: 1, color: Colors.black}}>
                           Oxygen transmission rate (OTR) :{' '}
-                          <Text>cc/m2/24 hr</Text>
+                          <Text style={{color: Colors.black}}>cc/m2/24 hr</Text>
                         </Text>
                       </View>
                       <Spacing size={5} />
@@ -435,7 +450,7 @@ export default function EnquiryDescription() {
                           }}
                         />
                         <Spacing size={5} />
-                        <Text style={{flex: 1}}>
+                        <Text style={{flex: 1, color: Colors.black}}>
                           Coefficient of friction (COF) :0.00-1.00
                         </Text>
                       </View>
@@ -455,9 +470,9 @@ export default function EnquiryDescription() {
                           }}
                         />
                         <Spacing size={5} />
-                        <Text>
+                        <Text style={{color: Colors.black}}>
                           Seal Initiation Temperature (SIT):{' '}
-                          <Text>5N/24mm</Text>
+                          <Text style={{color: Colors.black}}>5N/24mm</Text>
                         </Text>
                       </View>
                       <Spacing size={5} />
@@ -564,9 +579,9 @@ export default function EnquiryDescription() {
                           }}
                         />
                         <Spacing size={5} />
-                        <Text style={{flex: 1}}>
+                        <Text style={{flex: 1, color: Colors.black}}>
                           Water vapor transmission rate (WVTR) :{' '}
-                          <Text>g/m2/24 hr</Text>
+                          <Text style={{color: Colors.black}}>g/m2/24 hr</Text>
                         </Text>
                       </View>
 
@@ -585,9 +600,9 @@ export default function EnquiryDescription() {
                           }}
                         />
                         <Spacing size={5} />
-                        <Text style={{flex: 1}}>
+                        <Text style={{flex: 1, color: Colors.black}}>
                           Oxygen transmission rate (OTR) :{' '}
-                          <Text>cc/m2/24 hr</Text>
+                          <Text style={{color: Colors.black}}>cc/m2/24 hr</Text>
                         </Text>
                       </View>
                       <Spacing size={5} />
@@ -605,7 +620,7 @@ export default function EnquiryDescription() {
                           }}
                         />
                         <Spacing size={5} />
-                        <Text style={{flex: 1}}>
+                        <Text style={{flex: 1, color: Colors.black}}>
                           Coefficient of friction (COF) :0.00-1.00
                         </Text>
                       </View>
@@ -625,9 +640,9 @@ export default function EnquiryDescription() {
                           }}
                         />
                         <Spacing size={5} />
-                        <Text>
+                        <Text style={{color: Colors.black}}>
                           Seal Initiation Temperature (SIT):{' '}
-                          <Text>5N/24mm</Text>
+                          <Text style={{color: Colors.black}}>5N/24mm</Text>
                         </Text>
                       </View>
                       <Spacing size={5} />

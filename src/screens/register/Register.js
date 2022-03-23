@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableWithoutFeedback,
 } from 'react-native';
+import crashlytics from '@react-native-firebase/crashlytics';
 import Tooltip from 'react-native-walkthrough-tooltip';
 import BackHeader from '../../components/back-header';
 import Button from '../../components/button';
@@ -127,6 +128,7 @@ export default function Register({navigation}) {
                     style={{
                       fontFamily: typography.poppinsMedium,
                       fontSize: 14,
+                      color: Colors.black,
                     }}>
                     Password Policy :
                   </Text>
@@ -145,7 +147,10 @@ export default function Register({navigation}) {
                       }}
                     />
                     <Spacing size={5} />
-                    <Text>
+                    <Text
+                      style={{
+                        color: Colors.black,
+                      }}>
                       Length of the password should be atleast 8 character.
                     </Text>
                   </View>
@@ -165,7 +170,7 @@ export default function Register({navigation}) {
                       }}
                     />
                     <Spacing size={5} />
-                    <Text>
+                    <Text style={{color: Colors.black}}>
                       Password should contain atleast 1 Capital letter and 1
                       small letter.
                     </Text>
@@ -185,7 +190,9 @@ export default function Register({navigation}) {
                       }}
                     />
                     <Spacing size={5} />
-                    <Text>Password should contain a special character.</Text>
+                    <Text style={{color: Colors.black}}>
+                      Password should contain a special character.
+                    </Text>
                   </View>
                   <Spacing size={5} />
 
@@ -203,7 +210,9 @@ export default function Register({navigation}) {
                       }}
                     />
                     <Spacing size={5} />
-                    <Text>Password should contain a number.</Text>
+                    <Text style={{color: Colors.black}}>
+                      Password should contain a number.
+                    </Text>
                   </View>
                   <Spacing size={5} />
                 </View>
@@ -227,7 +236,7 @@ export default function Register({navigation}) {
             <CheckBox />
           </View>
           <Spacing size={5} />
-          <Text style={{flex: 1}}>
+          <Text style={{flex: 1, color: Colors.black}}>
             {/* I agree to the Terms and conditions and Privacy Policy. */}
             {t('login.agreeTermsAndCondition')}
           </Text>
@@ -235,7 +244,10 @@ export default function Register({navigation}) {
         <Spacing />
         <TakeSpace />
         <Button
-          onPress={() => navigation.navigate('Verify')}
+          onPress={() => {
+            crashlytics().log('NAVIGATE TO VERIFY SCREEN...');
+            navigation.navigate('Verify');
+          }}
           title={t('common.procced')}></Button>
       </View>
     </View>

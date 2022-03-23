@@ -17,6 +17,13 @@ export default {
     confirmPassword: 'Confirm Password',
     reset: 'Reset',
     subscription: 'Subscription',
+    enquiryDescription: 'Enquiry Description',
+    myProfile: 'My Profile',
+    edit: 'Edit',
+    logout: 'Logout',
+    orderDetails: 'Order Details',
+    cancelOrder: 'Cancel Order',
+    myOrders: 'My Orders',
   },
   login: {
     loginInToAccount: 'Login to your Account',
@@ -40,5 +47,6 @@ export default {
   descriptions: {
     adminApporval: 'Your onboarding has been completed successfully',
     successDescription: 'You have reset your password successfully',
+    verifyMobileNumber: 'Verify Mobile Number',
   },
 };

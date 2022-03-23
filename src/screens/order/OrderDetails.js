@@ -17,9 +17,10 @@ import {LocalizationContext} from '../../context/Localization';
 import UpArrow from '../../svg/UpArrow';
 import DownArrow from '../../svg/DownArrow';
 import Info from '../../svg/Info';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function OrderDetails() {
-  const {t} = useContext(LocalizationContext);
+  const t = useLocalization();
   const [collapusePD, setCollapusePD] = useState(false);
   const [collapusePS, setCollapusePS] = useState(false);
   const [collapuseVD, setCollapuseVD] = useState(false);
@@ -29,7 +30,7 @@ export default function OrderDetails() {
 
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={'Order Details'} />
+      <BackHeader title={t('common.orderDetails')} />
       <BottomSheet show={bottomSheet} hide={() => setBottomSheet(false)}>
         <View
           style={[
@@ -48,6 +49,7 @@ export default function OrderDetails() {
                   textAlign: 'center',
                   fontSize: 18,
                   fontFamily: typography.poppinsMedium,
+                  color: Colors.black,
                 },
               ]}>
               Rate us
@@ -69,7 +71,7 @@ export default function OrderDetails() {
               borderRadius: 10,
               height: 150,
             }}>
-            <Text>Write your feedback here…</Text>
+            <Text style={{color: Colors.black}}>Write your feedback here…</Text>
           </View>
           <Spacing size={10} />
 
@@ -112,7 +114,11 @@ export default function OrderDetails() {
                   source={require('../../../assests/icons/rupee.png')}
                 />
                 <Text
-                  style={{fontSize: 14, fontFamily: typography.poppinsMedium}}>
+                  style={{
+                    fontSize: 14,
+                    fontFamily: typography.poppinsMedium,
+                    color: Colors.black,
+                  }}>
                   11600
                 </Text>
               </View>
@@ -857,7 +863,8 @@ export default function OrderDetails() {
                     fontFamily: typography.poppinsRegular,
                     textAlign: 'center',
                   }}>
-                  Cancel Order
+                  {t('common.cancelOrder')}
+                  {/* Cancel Order */}
                 </Text>
               </View>
             </TouchableWithoutFeedback>

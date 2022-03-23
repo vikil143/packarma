@@ -14,11 +14,14 @@ import Help from '../../svg/my-profile-icons/Help';
 import Terms from '../../svg/my-profile-icons/Terms';
 import Privacy from '../../svg/my-profile-icons/Privacy';
 import commonStyles from '../../utility/commonStyles';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function MyProfile() {
+  const t = useLocalization();
+
   return (
     <View style={{flex: 1, backgroundColor: '#F4F4F4'}}>
-      <BackHeader title={'My Profile'} />
+      <BackHeader title={t('common.myProfile')} />
       <ScrollView>
         <View
           style={{
@@ -55,10 +58,20 @@ export default function MyProfile() {
               }}>
               Rakesh Shetty
             </Text>
-            <Text style={{fontSize: 14, fontFamily: typography.poppinsRegular}}>
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: typography.poppinsRegular,
+                color: Colors.black,
+              }}>
               Rakesh.s@gmail.com
             </Text>
-            <Text style={{fontSize: 14, fontFamily: typography.poppinsRegular}}>
+            <Text
+              style={{
+                fontSize: 14,
+                fontFamily: typography.poppinsRegular,
+                color: Colors.black,
+              }}>
               +91 9876765432
             </Text>
           </View>
@@ -68,7 +81,8 @@ export default function MyProfile() {
               fontFamily: typography.poppinsRegular,
               fontSize: 14,
             }}>
-            Edit
+            {/* Edit */}
+            {t('common.edit')}
           </Text>
         </View>
 
@@ -107,7 +121,8 @@ export default function MyProfile() {
                 fontSize: 16,
                 color: Colors.black,
               }}>
-              Logout
+              {t('common.logout')}
+              {/* Logout */}
             </Text>
           </View>
           <Spacing size={10} />

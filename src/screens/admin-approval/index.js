@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import Spacing from '../../components/spacing';
 import typography from '../../utility/typography';
@@ -40,7 +41,10 @@ export default function AdminApproval() {
       <View style={{padding: 10}}>
         <Button
           title={t('common.login')}
-          onPress={() => navigation.navigate('AdminApproval')}></Button>
+          onPress={() => {
+            crashlytics().log('NAVIGATE TO ADMIN APPROVAL SCREEN....');
+            navigation.navigate('AdminApproval');
+          }}></Button>
       </View>
       <Spacing size={10} />
     </View>

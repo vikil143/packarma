@@ -92,11 +92,12 @@ const WhiteTextBox = React.forwardRef(
           secureTextEntry={secureText}
           value={value}
           onChangeText={text => onChangeText(name, text)}
+          placeholderTextColor={'#B6B6B6'}
           {...inputProps}
         />
         {placeholderCustText && value.length == 0 && (
           <View style={styles.placeholderWrapper} pointerEvents="none">
-            <Text style={styles.placeholderText}>{placeholderCustText}</Text>
+            <Text style={[styles.placeholderText]}>{placeholderCustText}</Text>
           </View>
         )}
         {!!action && (

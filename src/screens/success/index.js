@@ -1,5 +1,6 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import Spacing from '../../components/spacing';
 import typography from '../../utility/typography';
@@ -12,8 +13,8 @@ export default function Success({navigation}) {
 
   return (
     <View style={{flex: 1}}>
-      <Spacing size={30} />
-      <View>
+      <TakeSpace />
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <Image
           style={[
             {
@@ -35,13 +36,16 @@ export default function Success({navigation}) {
           paddingHorizontal: 20,
         }}>
         {/* You have reset your password successfully */}
-        {t('descritpion.successDescription')}
+        {t('descriptions.successDescription')}
       </Text>
       <TakeSpace />
       <View style={{padding: 10}}>
         <Button
           title={t('common.login')}
-          onPress={() => navigation.navigate('BottomTabs')}></Button>
+          onPress={() => {
+            crashlytics().log('NAVIGATE TO DASHBOARD SCREEN...');
+            navigation.navigate('BottomTabs');
+          }}></Button>
       </View>
     </View>
   );

@@ -13,8 +13,9 @@ import BottomSheet from '../../components/bottomsheet/BottomSheet';
 import typography from '../../utility/typography';
 import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import BackHeader from '../../components/back-header';
+import Search from '../../components/search';
 
-export default function Category() {
+export default function Category({}) {
   const [open, setOpen] = useState(false);
   const [treatmentSheet, setTreatMentSheet] = useState(false);
   const [treatmentDetails, setTreatmentDetails] = useState(false);
@@ -59,6 +60,7 @@ export default function Category() {
                   paddingHorizontal: 15,
                   fontFamily: typography.poppinsRegular,
                   fontSize: 14,
+                  color: Colors.black,
                 }}>
                 We provide packaging solutions for all type of dried foods and
                 dehydrated products like beans , Grains, dried vegetables, dried
@@ -111,7 +113,7 @@ export default function Category() {
                 </Text>
                 <Spacing size={5} />
                 <View>
-                  <Text>
+                  <Text style={{color: Colors.black}}>
                     We provide packaging solutions for all type of dried foods
                     and dehydrated products like beans…
                   </Text>
@@ -142,7 +144,7 @@ export default function Category() {
               </Text>
               <Spacing size={5} />
               <View>
-                <Text>
+                <Text style={{color: Colors.black}}>
                   We provide packaging solutions for all type of dried foods and
                   dehydrated products like beans…
                 </Text>
@@ -171,7 +173,7 @@ export default function Category() {
               </Text>
               <Spacing size={5} />
               <View>
-                <Text>
+                <Text style={{color: Colors.black}}>
                   We provide packaging solutions for all type of dried foods and
                   dehydrated products like beans…
                 </Text>
@@ -201,7 +203,7 @@ export default function Category() {
               </Text>
               <Spacing size={5} />
               <View>
-                <Text>
+                <Text style={{color: Colors.black}}>
                   We provide packaging solutions for all type of dried foods and
                   dehydrated products like beans…
                 </Text>
@@ -230,9 +232,13 @@ export default function Category() {
             Dried & dehydrated food Products
           </Text>
           <Spacing size={2} />
-          <Text style={{textAlign: 'center'}}>Food</Text>
+          <Text style={{textAlign: 'center', color: Colors.black}}>Food</Text>
           <Spacing size={5} />
-          <Text style={{fontFamily: typography.poppinsRegular}}>
+          <Text
+            style={{
+              fontFamily: typography.poppinsRegular,
+              color: Colors.black,
+            }}>
             We provide packaging solutions for all type of dried foods and
             dehydrated products like beans , Grains, dried vegetables, dried
             fruits , processed foods, dried fish and seafood etc
@@ -270,6 +276,10 @@ export default function Category() {
           </View>
         </View>
       </BottomSheet>
+
+      <View style={{padding: 10}}>
+        <Search />
+      </View>
       <View style={{flexDirection: 'row'}}>
         <View>
           <TouchableWithoutFeedback>
@@ -419,6 +429,7 @@ export default function Category() {
             </View>
           </View>
         </View>
+
         <Spacing size={10} />
         <ScrollView contentContainerStyle={{flexGrow: 1}}>
           <View style={{flex: 1}}>
@@ -431,7 +442,7 @@ export default function Category() {
               Product{' '}
             </Text>
             <Text>Total : 21</Text>
-            <Spacing size={5} />
+            {/* <Spacing size={5} /> */}
             <TouchableWithoutFeedback onPress={() => setOpen(true)}>
               <View style={{flexDirection: 'row'}}>
                 <Image
