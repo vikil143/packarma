@@ -61,8 +61,7 @@ export default function Login({navigation}) {
             navigation.navigate('Register');
           }}
           style={[styles.registerText]}>
-          {/* Register */}
-          {t('common.register')}
+          {/* Register */} {t('common.register')}
         </Text>
       </Text>
       <Spacing size={5} />

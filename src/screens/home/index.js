@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Image, Text, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  ScrollView,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Search from '../../components/search';
 import Spacing from '../../components/spacing';
@@ -7,12 +14,13 @@ import PlaceIcon from '../../svg/PlaceIcon';
 import QuationsIcon from '../../svg/QuationsIcon';
 import QuestionMark from '../../svg/QuestionMark';
 import UserIcon from '../../svg/user_icon';
+import ViewAll from '../../svg/ViewAll';
 import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import typography from '../../utility/typography';
 
 const SLIDE_ITEM = SCREEN_WIDTH - 30;
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeItem, setActiveItem] = useState(0);
 
@@ -59,11 +67,14 @@ export default function HomeScreen() {
       <View style={{padding: 20, flexDirection: 'row', alignItems: 'center'}}>
         <Search containerStyle={{flex: 1}} />
         <Spacing size={10} />
-        <UserIcon />
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate('MyProfile')}>
+          <UserIcon />
+        </TouchableWithoutFeedback>
       </View>
       <ScrollView>
-        <View style={{flex: 1, padding: 10}}>
-          <View>
+        <View style={{flex: 1}}>
+          <View style={{padding: 10}}>
             <Carousel
               data={[1, 2]}
               renderItem={_renderItem}
@@ -75,7 +86,7 @@ export default function HomeScreen() {
           <Spacing size={5} />
           {pagination()}
           <Spacing size={10} />
-          <View>
+          <View style={{padding: 10}}>
             <View
               style={{
                 flexDirection: 'row',
@@ -87,7 +98,8 @@ export default function HomeScreen() {
                 <Text
                   style={{
                     color: Colors.black,
-                    fontFamily: typography.poppinsMedium,
+                    fontFamily: typography.poppinsRegular,
+                    fontSize: 12,
                   }}>
                   Food
                 </Text>
@@ -120,7 +132,8 @@ export default function HomeScreen() {
                 <Text
                   style={{
                     color: Colors.black,
-                    fontFamily: typography.poppinsMedium,
+                    fontFamily: typography.poppinsRegular,
+                    fontSize: 12,
                   }}>
                   Home Care
                 </Text>
@@ -151,7 +164,8 @@ export default function HomeScreen() {
                 <Text
                   style={{
                     color: Colors.black,
-                    fontFamily: typography.poppinsMedium,
+                    fontFamily: typography.poppinsRegular,
+                    fontSize: 12,
                   }}>
                   Personal Care
                 </Text>
@@ -182,7 +196,8 @@ export default function HomeScreen() {
                 <Text
                   style={{
                     color: Colors.black,
-                    fontFamily: typography.poppinsMedium,
+                    fontFamily: typography.poppinsRegular,
+                    fontSize: 12,
                   }}>
                   Stationery
                 </Text>
@@ -217,21 +232,79 @@ export default function HomeScreen() {
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 75) / 3}}
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
                     source={require('../../../assests/images/dairy.png')}
                   />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
                 </View>
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 75) / 3}}
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
                     source={require('../../../assests/images/dairy.png')}
                   />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
                 </View>
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 75) / 3}}
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
                     source={require('../../../assests/images/dairy.png')}
                   />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
+                    source={require('../../../assests/images/dairy.png')}
+                  />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
                 </View>
               </View>
 
@@ -240,21 +313,86 @@ export default function HomeScreen() {
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 75) / 3}}
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
                     source={require('../../../assests/images/dairy.png')}
                   />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
                 </View>
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 75) / 3}}
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
                     source={require('../../../assests/images/dairy.png')}
                   />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
                 </View>
                 <View>
                   <Image
-                    style={{width: (SCREEN_WIDTH - 75) / 3}}
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
                     source={require('../../../assests/images/dairy.png')}
                   />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+                <View>
+                  <View
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      backgroundColor: '#E4E4E4',
+                    }}>
+                    <ViewAll />
+                  </View>
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    View All
+                  </Text>
+                  {/* <Image
+                    
+                    source={require('../../../assests/images/dairy.png')}
+                  /> */}
                 </View>
               </View>
             </View>
@@ -301,37 +439,93 @@ export default function HomeScreen() {
           </View>
 
           <View
-            style={{
+            tyle={{
               backgroundColor: Colors.white,
-              padding: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'flex-end',
             }}>
-            <Text
+            <View
               style={{
-                fontFamily: typography.poppinsMedium,
-                fontSize: 14,
-                color: Colors.black,
+                backgroundColor: Colors.white,
+                padding: 10,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'flex-end',
               }}>
-              Packaging Treatments
-            </Text>
-            <Text
+              <Text
+                style={{
+                  fontFamily: typography.poppinsMedium,
+                  fontSize: 14,
+                  color: Colors.black,
+                }}>
+                Packaging Treatments
+              </Text>
+              <Text
+                style={{
+                  color: '#EE3F27',
+                  fontFamily: typography.poppinsMedium,
+                  fontSize: 12,
+                }}>
+                More..
+              </Text>
+            </View>
+            <View
               style={{
-                color: '#EE3F27',
-                fontFamily: typography.poppinsMedium,
-                fontSize: 12,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingHorizontal: 10,
+                backgroundColor: Colors.white,
+                paddingBottom: 15,
               }}>
-              More..
-            </Text>
+              <View style={{}}>
+                <TouchableWithoutFeedback
+                  onPress={() => navigation.navigate('Treatment')}>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 60) / 3,
+                      height: (SCREEN_WIDTH - 60) / 3,
+                      borderRadius: 10,
+                    }}
+                    source={require('../../../assests/images/glasses.png')}
+                  />
+                </TouchableWithoutFeedback>
+              </View>
+              <View style={{}}>
+                <TouchableWithoutFeedback
+                  onPress={() => navigation.navigate('Treatment')}>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 60) / 3,
+                      height: (SCREEN_WIDTH - 60) / 3,
+                      borderRadius: 10,
+                    }}
+                    source={require('../../../assests/images/glasses.png')}
+                  />
+                </TouchableWithoutFeedback>
+              </View>
+              <View style={{}}>
+                <TouchableWithoutFeedback
+                  onPress={() => navigation.navigate('Treatment')}>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 60) / 3,
+                      height: (SCREEN_WIDTH - 60) / 3,
+                      borderRadius: 10,
+                    }}
+                    source={require('../../../assests/images/glasses.png')}
+                  />
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
           </View>
           <View
-            style={{padding: 10, flexDirection: 'row', alignItems: 'flex-end'}}>
+            style={{
+              padding: 10,
+              flexDirection: 'row',
+              alignItems: 'flex-end',
+            }}>
             <View>
               <Text
                 style={{
-                  fontSize: 18,
-                  fontFamily: typography.poppinsMedium,
+                  fontSize: 19,
                   color: Colors.black,
                 }}>
                 Need Support ?

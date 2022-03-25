@@ -20,6 +20,7 @@ import MyOrders from '../order/MyOrders';
 import {AcceptQuatation} from '../quatation';
 import SelectAddress from '../quatation/SelectAddress';
 import SplashScreen from '../splash';
+import {Treatment, TreatmentDetails} from '../treatment';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,8 @@ export default function Navigation() {
         <Stack.Screen name="MyOrders" component={MyOrders} />
         <Stack.Screen name="AcceptQuataion" component={AcceptQuatation} />
         <Stack.Screen name="SelectAddress" component={SelectAddress} />
+        <Stack.Screen name="Treatment" component={Treatment} />
+        <Stack.Screen name="TreatmentDetails" component={TreatmentDetails} />
         {/* <Stack.Screen name="Success" component={Success} /> */}
       </Stack.Navigator>
     </NavigationContainer>

@@ -5,7 +5,7 @@ import {SCREEN_WIDTH} from '../../utility/constants';
 export default function SplashScreen({navigation}) {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Login');
+      navigation.replace('Login');
     }, 3000);
   }, []);
 

@@ -1,4 +1,10 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import React from 'react';
 import commonStyles from '../../utility/commonStyles';
 import SideArrow from '../../svg/SideArrow';

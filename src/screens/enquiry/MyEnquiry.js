@@ -30,6 +30,12 @@ function EnquireCard({onPress}) {
           </Text>
           <View style={{flex: 1}} />
           <View style={{}}>
+            <Image
+              style={{width: 20, height: 25}}
+              resizeMode="contain"
+              source={require('../../../assests/icons/my_order.png')}
+            />
+
             <View
               style={{
                 width: 15,
@@ -42,13 +48,11 @@ function EnquireCard({onPress}) {
                 top: -5,
                 left: -5,
               }}>
-              <Text>3</Text>
+              <Text
+                style={{fontFamily: typography.poppinsRegular, fontSize: 10}}>
+                3
+              </Text>
             </View>
-            <Image
-              style={{width: 20, height: 25}}
-              resizeMode="contain"
-              source={require('../../../assests/icons/my_order.png')}
-            />
           </View>
         </View>
         <View

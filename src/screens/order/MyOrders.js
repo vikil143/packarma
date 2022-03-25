@@ -6,7 +6,7 @@ import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
 import useLocalization from '../../hooks/useLocalization';
 
-export default function MyOrders({}) {
+export default function MyOrders({navigation}) {
   const t = useLocalization();
   const [tabNumber, setTabNumber] = React.useState(0);
 
@@ -67,75 +67,78 @@ export default function MyOrders({}) {
         <View style={{flex: 1}}>
           {tabNumber == 0 && (
             <View style={{flex: 1, padding: 10}}>
-              <View
-                style={{
-                  backgroundColor: Colors.white,
-                  padding: 10,
-                }}>
-                <View style={{}}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontFamily: typography.poppinsMedium,
-                      color: Colors.black,
-                    }}>
-                    Dried & dehydrated food Products
-                  </Text>
-                  <Spacing size={5} />
-                  <View style={{flexDirection: 'row'}}>
-                    <View style={{backgroundColor: '#F4F4F4', padding: 5}}>
-                      <Text
-                        style={{
-                          fontFamily: typography.poppinsRegular,
-                          fontSize: 12,
-                          color: Colors.black,
-                        }}>
-                        #PAC000654
-                      </Text>
-                    </View>
-                    <View style={{flex: 1}} />
-                    <View style={{}}>
-                      <Text
-                        style={{
-                          fontFamily: typography.poppinsRegular,
-                          fontSize: 16,
-                          color: Colors.black,
-                        }}>
-                        116000
-                      </Text>
-                    </View>
-                  </View>
-                  <Spacing size={5} />
-                  <View>
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate('OrderDetails')}>
+                <View
+                  style={{
+                    backgroundColor: Colors.white,
+                    padding: 10,
+                  }}>
+                  <View style={{}}>
                     <Text
                       style={{
                         fontSize: 14,
-                        fontFamily: typography.poppinsRegular,
+                        fontFamily: typography.poppinsMedium,
                         color: Colors.black,
                       }}>
-                      Payment Status : <Text>Paid</Text>
+                      Dried & dehydrated food Products
                     </Text>
+                    <Spacing size={5} />
+                    <View style={{flexDirection: 'row'}}>
+                      <View style={{backgroundColor: '#F4F4F4', padding: 5}}>
+                        <Text
+                          style={{
+                            fontFamily: typography.poppinsRegular,
+                            fontSize: 12,
+                            color: Colors.black,
+                          }}>
+                          #PAC000654
+                        </Text>
+                      </View>
+                      <View style={{flex: 1}} />
+                      <View style={{}}>
+                        <Text
+                          style={{
+                            fontFamily: typography.poppinsRegular,
+                            fontSize: 16,
+                            color: Colors.black,
+                          }}>
+                          116000
+                        </Text>
+                      </View>
+                    </View>
+                    <Spacing size={5} />
+                    <View>
+                      <Text
+                        style={{
+                          fontSize: 14,
+                          fontFamily: typography.poppinsRegular,
+                          color: Colors.black,
+                        }}>
+                        Payment Status : <Text>Paid</Text>
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: 14,
+                          fontFamily: typography.poppinsRegular,
+                          color: Colors.black,
+                        }}>
+                        Delivery Status : <Text>Pending</Text>
+                      </Text>
+                    </View>
                     <Text
                       style={{
-                        fontSize: 14,
+                        textAlign: 'right',
                         fontFamily: typography.poppinsRegular,
+                        fontSize: 12,
                         color: Colors.black,
                       }}>
-                      Delivery Status : <Text>Pending</Text>
+                      15-03-22 10:12 AM
                     </Text>
                   </View>
-                  <Text
-                    style={{
-                      textAlign: 'right',
-                      fontFamily: typography.poppinsRegular,
-                      fontSize: 12,
-                      color: Colors.black,
-                    }}>
-                    15-03-22 10:12 AM
-                  </Text>
+                  {/* <Spacing /> */}
                 </View>
-                {/* <Spacing /> */}
-              </View>
+              </TouchableWithoutFeedback>
 
               <Spacing />
               <View

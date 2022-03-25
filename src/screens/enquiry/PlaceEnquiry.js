@@ -1,4 +1,10 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import React from 'react';
 import BackHeader from '../../components/back-header';
 import typography from '../../utility/typography';
@@ -7,7 +13,7 @@ import Spacing from '../../components/spacing';
 import Picker from '../../components/picker';
 import Label from '../../components/label';
 
-export default function PlaceEnquiry() {
+export default function PlaceEnquiry({navigation}) {
   return (
     <View style={{flex: 1}}>
       <BackHeader title={'Place Enquiry'} />
@@ -134,16 +140,19 @@ export default function PlaceEnquiry() {
           </View>
           <Spacing size={10} />
 
-          <View
-            style={{
-              backgroundColor: Colors.brownColor,
-              padding: 10,
-              paddingHorizontal: 30,
-            }}>
-            <Text style={{color: Colors.white, textAlign: 'center'}}>
-              Procced
-            </Text>
-          </View>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate('EnquiryDescription')}>
+            <View
+              style={{
+                backgroundColor: Colors.brownColor,
+                padding: 15,
+                paddingHorizontal: 30,
+              }}>
+              <Text style={{color: Colors.white, textAlign: 'center'}}>
+                Procced
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
 
           <Spacing size={30} />
         </ScrollView>

@@ -39,7 +39,7 @@ export default function Verify({navigation}) {
             }}>
             {/* Didn’t receive OTP?{' '} */}
             {t('login.didntReceiveOTP')}
-            <Text style={{color: Colors.black}}> {t('common.resend')}</Text>
+            <Text style={{color: '#52392F'}}> {t('common.resend')}</Text>
           </Text>
           <Spacing size={2} />
           <Text

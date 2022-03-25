@@ -9,6 +9,7 @@ import Spacing from '../../components/spacing';
 import TakeSpace from '../../components/take_space';
 import Button from '../../components/button';
 import useLocalization from '../../hooks/useLocalization';
+import Label from '../../components/label';
 
 export default function ForgetPassword({navigation}) {
   const t = useLocalization();
@@ -26,6 +27,7 @@ export default function ForgetPassword({navigation}) {
           {t('login.forgetPasswordDescription')}
         </Text>
         <Spacing size={10} />
+        <Label>{t('common.mobileNumber')}</Label>
         <WhiteTextBox
           prefix={
             <View style={{flexDirection: 'row'}}>

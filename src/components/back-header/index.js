@@ -16,7 +16,7 @@ export default function BackHeader({title}) {
   return (
     <View>
       <View style={[styles.header]}>
-        <View style={{flex: 1 / 3}}>
+        <View style={{flex: 1 / 45}}>
           <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
             <Image
               style={[{width: 30, height: 30}]}
@@ -37,7 +37,7 @@ export default function BackHeader({title}) {
             {/* Create Account */}
           </Text>
         </View>
-        <View style={{flex: 1 / 3}} />
+        <View style={{flex: 1 / 45, backgroundColor: 'red'}} />
       </View>
     </View>
   );

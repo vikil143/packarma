@@ -123,12 +123,21 @@ export default function OrderDetails() {
                 </Text>
               </View>
             </View>
-            <Text style={{fontSize: 12, fontFamily: typography.poppinsRegular}}>
+            <Text
+              style={{
+                fontSize: 12,
+                fontFamily: typography.poppinsRegular,
+                color: Colors.black,
+              }}>
               {'  '}Order Placed On : 15-03-22 10:12 AM
             </Text>
             <View style={[commonStyles.rowAlignCenter]}>
               <Text
-                style={{fontFamily: typography.poppinsRegular, fontSize: 14}}>
+                style={{
+                  fontFamily: typography.poppinsRegular,
+                  fontSize: 14,
+                  color: Colors.black,
+                }}>
                 {'  '}Payment :{' '}
               </Text>
               <Spacing />
@@ -139,11 +148,15 @@ export default function OrderDetails() {
                   paddingHorizontal: 20,
                   borderRadius: 8,
                 }}>
-                <Text>{t('common.paid')}</Text>
+                <Text style={{color: Colors.black}}>{t('common.paid')}</Text>
               </View>
               <View style={[commonStyles.flexOne]} />
               <Text
-                style={{fontFamily: typography.poppinsRegular, fontSize: 14}}>
+                style={{
+                  fontFamily: typography.poppinsRegular,
+                  fontSize: 14,
+                  color: Colors.black,
+                }}>
                 {'  '}Delivery :{' '}
               </Text>
               <Spacing />
@@ -154,7 +167,12 @@ export default function OrderDetails() {
                   paddingHorizontal: 20,
                   borderRadius: 8,
                 }}>
-                <Text>Paid</Text>
+                <Text
+                  style={{
+                    color: Colors.black,
+                  }}>
+                  Paid
+                </Text>
               </View>
             </View>
           </View>
@@ -199,7 +217,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -207,6 +225,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Food
                   </Text>
@@ -226,7 +245,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -234,6 +253,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Dried & dehydrated Products
                   </Text>
@@ -253,7 +273,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -261,6 +281,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     200 Kg
                   </Text>
@@ -280,7 +301,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -288,6 +309,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     180 Days
                   </Text>
@@ -308,7 +330,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -316,6 +338,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Relative humidity
                   </Text>
@@ -336,7 +359,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -344,6 +367,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     German
                   </Text>
@@ -364,7 +388,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -372,6 +396,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Solid
                   </Text>
@@ -392,7 +417,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -400,6 +425,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Primary
                   </Text>
@@ -420,7 +446,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -428,6 +454,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Gamma/E-beam Sterilisation
                   </Text>
@@ -448,7 +475,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -456,6 +483,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     401107
                   </Text>
@@ -583,7 +611,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -591,6 +619,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Packarma Private Limited
                   </Text>
@@ -610,7 +639,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -618,6 +647,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Mumbai, Maharashtra
                   </Text>
@@ -670,7 +700,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -678,6 +708,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     102/Kg
                   </Text>
@@ -696,7 +727,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -704,6 +735,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     12000
                   </Text>
@@ -722,7 +754,7 @@ export default function OrderDetails() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -730,6 +762,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     12000
                   </Text>
@@ -791,6 +824,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Shipping
                   </Text>
@@ -799,7 +833,11 @@ export default function OrderDetails() {
               <Spacing size={5} />
               <View>
                 <Text
-                  style={{fontFamily: typography.poppinsRegular, fontSize: 14}}>
+                  style={{
+                    fontFamily: typography.poppinsRegular,
+                    fontSize: 14,
+                    color: Colors.black,
+                  }}>
                   A 204, Gardenea Heights Kanakia Road, Santacruz - East,
                   Mumbai, Maharashtra -400055 Mob : +91 543672993
                 </Text>
@@ -829,6 +867,7 @@ export default function OrderDetails() {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Billing
                   </Text>
@@ -836,7 +875,11 @@ export default function OrderDetails() {
               </View>
               <View>
                 <Text
-                  style={{fontFamily: typography.poppinsRegular, fontSize: 14}}>
+                  style={{
+                    fontFamily: typography.poppinsRegular,
+                    fontSize: 14,
+                    color: Colors.black,
+                  }}>
                   A 204, Gardenea Heights Kanakia Road, Santacruz - East,
                   Mumbai, Maharashtra -400055 Mob : +91 543672993
                 </Text>

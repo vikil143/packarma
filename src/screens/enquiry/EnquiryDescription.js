@@ -19,7 +19,7 @@ import Tooltip from 'react-native-walkthrough-tooltip';
 import commonStyles from '../../utility/commonStyles';
 import EnquiryIcon from '../../svg/EnquiryIcon';
 
-export default function EnquiryDescription() {
+export default function EnquiryDescription({navigation}) {
   const [collapuse, setCollapuse] = useState(true);
   const [toolTipVisible, setTooltipVisible] = useState(false);
   const [nextTooltip, setNextTooltip] = useState(false);
@@ -69,7 +69,7 @@ export default function EnquiryDescription() {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -689,6 +689,180 @@ export default function EnquiryDescription() {
                     180 Days
                   </Text>
                 </Text>
+              </View>
+            </View>
+
+            <Spacing size={10} />
+
+            <Text
+              style={{
+                fontFamily: typography.poppinsMedium,
+                fontSize: 16,
+                color: Colors.black,
+              }}>
+              Quatation
+            </Text>
+            <Spacing size={10} />
+
+            <View
+              style={{
+                backgroundColor: Colors.white,
+                borderRadius: 10,
+              }}>
+              <View
+                style={{
+                  padding: 20,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 14,
+                    color: Colors.black,
+                  }}>
+                  Vendor {'   '} :{'   '}
+                  <Text style={{fontFamily: typography.poppinsRegular}}>
+                    Packarma Private Limited
+                  </Text>
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 14,
+                    color: Colors.black,
+                  }}>
+                  Ship From {'   '} :{'   '}
+                  <Text style={{fontFamily: typography.poppinsRegular}}>
+                    Mumbai, Maharashtra
+                  </Text>
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 14,
+                    color: Colors.black,
+                  }}>
+                  Rate/kg {'   '} :{'   '}
+                  <Text style={{fontFamily: typography.poppinsRegular}}>
+                    102
+                  </Text>
+                </Text>
+              </View>
+              <View
+                style={{
+                  width: '100%',
+                  height: 1,
+                  backgroundColor: '#ddd',
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: 'row',
+                  padding: 10,
+                }}>
+                <TouchableWithoutFeedback
+                  onPress={() => navigation.navigate('AcceptQuataion')}>
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text style={{color: Colors.black}}>Accept</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+                <View
+                  style={{width: 2, height: '100%', backgroundColor: '#ddd'}}
+                />
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text style={{color: Colors.black}}>Reject</Text>
+                </View>
+              </View>
+            </View>
+
+            <Spacing size={10} />
+
+            <View
+              style={{
+                backgroundColor: Colors.white,
+                borderRadius: 10,
+              }}>
+              <View
+                style={{
+                  padding: 20,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 14,
+                    color: Colors.black,
+                  }}>
+                  Vendor {'   '} :{'   '}
+                  <Text style={{fontFamily: typography.poppinsRegular}}>
+                    Packarma Private Limited
+                  </Text>
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 14,
+                    color: Colors.black,
+                  }}>
+                  Ship From {'   '} :{'   '}
+                  <Text style={{fontFamily: typography.poppinsRegular}}>
+                    Mumbai, Maharashtra
+                  </Text>
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 14,
+                    color: Colors.black,
+                  }}>
+                  Rate/kg {'   '} :{'   '}
+                  <Text style={{fontFamily: typography.poppinsRegular}}>
+                    102
+                  </Text>
+                </Text>
+              </View>
+              <View
+                style={{
+                  width: '100%',
+                  height: 1,
+                  backgroundColor: '#ddd',
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: 'row',
+                  padding: 10,
+                }}>
+                <TouchableWithoutFeedback
+                  onPress={() => navigation.navigate('AcceptQuataion')}>
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text style={{color: Colors.black}}>Accept</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+                <View
+                  style={{width: 2, height: '100%', backgroundColor: '#ddd'}}
+                />
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text style={{color: Colors.black}}>Reject</Text>
+                </View>
               </View>
             </View>
           </View>

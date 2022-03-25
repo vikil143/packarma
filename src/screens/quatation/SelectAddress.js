@@ -45,6 +45,28 @@ export default function SelectAddress({navigation}) {
         </View>
 
         <Spacing />
+        <View style={{flexDirection: 'row'}}>
+          <View
+            style={{
+              width: 20,
+              height: 20,
+              backgroundColor: Colors.redColor,
+              borderRadius: 5,
+            }}
+          />
+
+          <Spacing size={5} />
+
+          <Text
+            style={{
+              fontFamily: typography.poppinsRegular,
+              fontSize: 12,
+              color: Colors.black,
+            }}>
+            Billing Address is same as shipping address.
+          </Text>
+        </View>
+        <Spacing />
         <Label required>Billing Address</Label>
         <Spacing size={5} />
         <View
