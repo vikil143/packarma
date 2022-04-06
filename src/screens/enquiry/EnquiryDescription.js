@@ -23,11 +23,12 @@ export default function EnquiryDescription({navigation}) {
   const [collapuse, setCollapuse] = useState(true);
   const [toolTipVisible, setTooltipVisible] = useState(false);
   const [nextTooltip, setNextTooltip] = useState(false);
+  const [collapusePS, setCollapusePS] = useState(false);
   const t = useLocalization();
 
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={t('common.enquiryDescription')} />
+      <BackHeader title={t('common.requestDescription')} />
       <View style={{flex: 1}}>
         <ScrollView>
           {/* Collapuse View */}
@@ -148,7 +149,7 @@ export default function EnquiryDescription({navigation}) {
                       fontSize: 14,
                       color: Colors.black,
                     }}>
-                    Self Life
+                    Shelf Life
                   </Text>
                 </View>
                 <Spacing size={5} />
@@ -516,7 +517,7 @@ export default function EnquiryDescription({navigation}) {
                     fontFamily: typography.poppinsMedium,
                     color: Colors.black,
                   }}>
-                  Self Life :{' '}
+                  Shelf Life :{' '}
                   <Text style={{fontFamily: typography.poppinsRegular}}>
                     180 Days
                   </Text>
@@ -684,7 +685,7 @@ export default function EnquiryDescription({navigation}) {
                     fontFamily: typography.poppinsMedium,
                     color: Colors.black,
                   }}>
-                  Self Life :{' '}
+                  Shelf Life :{' '}
                   <Text style={{fontFamily: typography.poppinsRegular}}>
                     180 Days
                   </Text>
@@ -700,9 +701,9 @@ export default function EnquiryDescription({navigation}) {
                 fontSize: 16,
                 color: Colors.black,
               }}>
-              Quatation
+              Quotations {'('}3{')'}
             </Text>
-            <Spacing size={10} />
+            <Spacing size={5} />
 
             <View
               style={{

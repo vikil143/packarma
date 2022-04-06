@@ -37,7 +37,7 @@ export default function BottomTabs({navigation}) {
                     flex: 1,
                   }}>
                   <Image
-                    style={{width: 26, height: 26}}
+                    style={{width: 18, height: 18}}
                     resizeMode="contain"
                     source={require('../../../assests/icons/home_icon.png')}
                   />
@@ -71,7 +71,7 @@ export default function BottomTabs({navigation}) {
                     flex: 1,
                   }}>
                   <Image
-                    style={{width: 25, height: 25}}
+                    style={{width: 18, height: 18}}
                     resizeMode="contain"
                     source={require('../../../assests/icons/figrid.png')}
                   />
@@ -105,7 +105,7 @@ export default function BottomTabs({navigation}) {
                     flex: 1,
                   }}>
                   <Image
-                    style={{width: 40, height: 40}}
+                    style={{width: 30, height: 30}}
                     resizeMode="contain"
                     source={require('../../../assests/icons/middle_tab.png')}
                   />
@@ -129,7 +129,7 @@ export default function BottomTabs({navigation}) {
                     justifyContent: 'center',
                     flex: 1,
                   }}>
-                  <OrdersIcon width={25} height={25} />
+                  <OrdersIcon width={18} height={18} />
                   {/* <Image
                     style={{width: 25, height: 25}}
                     resizeMode="contain"
@@ -165,7 +165,7 @@ export default function BottomTabs({navigation}) {
                     flex: 1,
                   }}>
                   <Image
-                    style={{width: 25, height: 25}}
+                    style={{width: 18, height: 18}}
                     resizeMode="contain"
                     source={require('../../../assests/icons/enquire.png')}
                   />
@@ -177,7 +177,7 @@ export default function BottomTabs({navigation}) {
                       fontSize: 10,
                       color: Colors.black,
                     }}>
-                    Enquiry
+                    Help
                   </Text>
                 </View>
               </TouchableWithoutFeedback>

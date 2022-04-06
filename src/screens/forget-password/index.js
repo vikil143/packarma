@@ -58,7 +58,7 @@ export default function ForgetPassword({navigation}) {
             navigation.navigate('Verify');
             crashlytics().log('NAVIGATE TO VERIFY SCREEN....');
           }}
-          title={t('common.procced')}></Button>
+          title={t('common.proceed')}></Button>
       </View>
     </View>
   );

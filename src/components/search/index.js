@@ -25,9 +25,10 @@ export default function Search({containerStyle}) {
           style={{
             fontFamily: typography.poppinsRegular,
             fontSize: 12,
-            color: Colors.black,
+            color: Colors.greyColor,
           }}>
-          Search for product
+          Search for Products
+          {/* {placeholder} */}
         </Text>
       </View>
     </View>

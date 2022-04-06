@@ -16,7 +16,7 @@ import Privacy from '../../svg/my-profile-icons/Privacy';
 import commonStyles from '../../utility/commonStyles';
 import useLocalization from '../../hooks/useLocalization';
 
-export default function MyProfile() {
+export default function MyProfile({navigation}) {
   const t = useLocalization();
 
   return (
@@ -88,7 +88,11 @@ export default function MyProfile() {
 
         <View style={{padding: 10}}>
           <Item name="My Orders" icon={<MyOrdersIcon />} />
-          <Item name="My Subscriptions" icon={<MySubscription />} />
+          <Item
+            name="My Subscriptions"
+            icon={<MySubscription />}
+            onPress={() => navigation.navigate('Subscription')}
+          />
           <Item name="My Addresses" icon={<MapIcon />} />
           <Item
             name="Change Password"

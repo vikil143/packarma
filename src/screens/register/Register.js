@@ -18,8 +18,9 @@ import WhiteTextBox from '../../components/white_text_box';
 import useLocalization from '../../hooks/useLocalization';
 import Info from '../../svg/Info';
 import commonStyles from '../../utility/commonStyles';
-import {Colors} from '../../utility/constants';
+import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import typography from '../../utility/typography';
+import VisitingCard from '../../svg/VisitingCards';
 
 export default function Register({navigation}) {
   const [toolTipVisible, setTooltipVisible] = React.useState(false);
@@ -101,7 +102,7 @@ export default function Register({navigation}) {
             color: Colors.black,
             fontSize: 14,
           }}>
-          {t('common.emailId')}
+          {t('common.emailId')} *
         </Text>
         <Spacing size={5} />
         <WhiteTextBox placeholder={t('login.enterEmailId')} />
@@ -231,14 +232,81 @@ export default function Register({navigation}) {
         <Spacing size={5} />
         <WhiteTextBox action="password" actionStyles={{tintColor: '#ddd'}} />
         <Spacing />
+
+        <Text
+          style={{
+            fontFamily: typography.poppinsRegular,
+            color: Colors.black,
+            fontSize: 14,
+          }}>
+          {t('common.uploadVisitingCard')}
+        </Text>
+        <Spacing size={5} />
         <View style={{flexDirection: 'row'}}>
+          <View
+            style={{
+              borderRadius: 8,
+              padding: 15,
+              backgroundColor: '#E6E6E6',
+              // flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: (SCREEN_WIDTH - 40) / 2,
+              height: 100,
+              // borderWidth: 1,
+              // borderColor: '#707070',
+            }}>
+            <VisitingCard width={36} height={31} />
+            <Spacing />
+            <Text
+              style={{
+                fontSize: 12,
+                fontFamily: typography.poppinsRegular,
+                color: '#707070',
+              }}>
+              Front
+            </Text>
+          </View>
+          <Spacing />
+          <View
+            style={{
+              borderRadius: 8,
+              padding: 15,
+              backgroundColor: '#E6E6E6',
+              width: '100%',
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: (SCREEN_WIDTH - 40) / 2,
+              height: 100,
+              // borderWidth: 1,
+              // borderColor: '#707070',
+            }}>
+            <VisitingCard width={36} height={31} />
+            <Spacing />
+            <Text
+              style={{
+                fontSize: 12,
+                fontFamily: typography.poppinsRegular,
+                color: '#707070',
+              }}>
+              Back
+            </Text>
+          </View>
+        </View>
+
+        <Spacing />
+
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View>
             <CheckBox />
           </View>
           <Spacing size={5} />
-          <Text style={{flex: 1, color: Colors.black}}>
-            {/* I agree to the Terms and conditions and Privacy Policy. */}
-            {t('login.agreeTermsAndCondition')}
+          <Text style={{flex: 1, color: Colors.black, fontSize: 12}}>
+            I agree to the{' '}
+            <Text style={{color: '#663C2F'}}> Terms and conditions</Text> and{' '}
+            <Text style={{color: '#663C2F'}}>Privacy Policy.</Text>
+            {/* {t('login.agreeTermsAndCondition')} */}
           </Text>
         </View>
         <Spacing />
@@ -248,7 +316,7 @@ export default function Register({navigation}) {
             crashlytics().log('NAVIGATE TO VERIFY SCREEN...');
             navigation.navigate('Verify');
           }}
-          title={t('common.procced')}></Button>
+          title={t('common.proceed')}></Button>
       </View>
     </View>
   );

@@ -9,7 +9,7 @@ export default {
     name: 'Name',
     mobileNumber: 'Mobile Number',
     password: 'Password',
-    procced: 'Proceed',
+    proceed: 'Proceed',
     verify: 'Verify',
     resend: 'Resend',
     setPassword: 'Set Password',
@@ -18,12 +18,15 @@ export default {
     reset: 'Reset',
     subscription: 'Subscription',
     enquiryDescription: 'Enquiry Description',
+    requestDescription: 'Request Description',
     myProfile: 'My Profile',
     edit: 'Edit',
     logout: 'Logout',
     orderDetails: 'Order Details',
     cancelOrder: 'Cancel Order',
     myOrders: 'My Orders',
+    orderId: 'Order Id',
+    uploadVisitingCard: 'Upload Visiting card',
   },
   login: {
     loginInToAccount: 'Login to your Account',
@@ -35,7 +38,7 @@ export default {
     enterEmailId: 'Enter email id',
     agreeTermsAndCondition:
       'I agree to the Terms and conditions and Privacy Policy.',
-    procced: 'Proceed',
+    proceed: 'Proceed',
     forgotPassword: 'Forgot Password',
     forgetPasswordDescription:
       'Enter the Mobile Number associated with your account and we’ll send you an OTP to verify your account',
@@ -48,5 +51,6 @@ export default {
     adminApporval: 'Your onboarding has been completed successfully',
     successDescription: 'You have reset your password successfully',
     verifyMobileNumber: 'Verify Mobile Number',
+    successWhenAddedAddress: 'Your payments has been completed successfully.',
   },
 };

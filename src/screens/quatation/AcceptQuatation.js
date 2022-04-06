@@ -4,6 +4,7 @@ import {
   View,
   TouchableWithoutFeedback,
   ScrollView,
+  Image,
 } from 'react-native';
 import React, {useState} from 'react';
 import crashlytics from '@react-native-firebase/crashlytics';
@@ -14,11 +15,13 @@ import {Colors} from '../../utility/constants';
 import UpArrow from '../../svg/UpArrow';
 import DownArrow from '../../svg/DownArrow';
 import commonStyles from '../../utility/commonStyles';
+import Info from '../../svg/Info';
 
 export default function AcceptQuatation({navigation}) {
   const [collapuse, setCollapuse] = useState(false);
   const [collapuseVD, setCollapuseVD] = useState(false);
   const [collapuseBD, setCollapuseBD] = useState(false);
+  const [collapusePS, setCollapusePS] = useState(false);
   return (
     <View style={{flex: 1}}>
       <BackHeader title={'Accept Quotation'} />
@@ -143,7 +146,7 @@ export default function AcceptQuatation({navigation}) {
                       fontSize: 14,
                       color: Colors.black,
                     }}>
-                    Self Life
+                    Shelf Life
                   </Text>
                 </View>
                 <Spacing size={5} />
@@ -293,7 +296,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -301,6 +304,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Gamma/E-beam Sterilisation
                   </Text>
@@ -321,7 +325,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -329,6 +333,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     401107
                   </Text>
@@ -339,6 +344,82 @@ export default function AcceptQuatation({navigation}) {
             <View></View>
           )}
 
+          <Spacing />
+          {/* Collapuse View */}
+          <TouchableWithoutFeedback
+            onPress={() => setCollapusePS(!collapusePS)}>
+            <View
+              style={{
+                flexDirection: 'row',
+                backgroundColor: Colors.white,
+                padding: 15,
+                alignItems: 'center',
+                elevation: 5,
+              }}>
+              <Text
+                style={{
+                  fontFamily: typography.poppinsMedium,
+                  fontSize: 16,
+                  flex: 1,
+                  paddingHorizontal: 10,
+                  color: Colors.black,
+                }}>
+                Packaging Solutions
+              </Text>
+              {collapusePS ? <UpArrow /> : <DownArrow />}
+            </View>
+          </TouchableWithoutFeedback>
+          {/*  */}
+          {collapusePS ? (
+            <View style={{backgroundColor: Colors.white, padding: 15}}>
+              <View style={{flexDirection: 'row'}}>
+                <View>
+                  <Text
+                    style={{
+                      fontFamily: typography.poppinsRegular,
+                      fontSize: 14,
+                      color: Colors.black,
+                    }}>
+                    Conventional structure
+                  </Text>
+                </View>
+                <View style={[commonStyles.flexOne]} />
+                <Info />
+              </View>
+              <Spacing size={10} />
+              <View style={[commonStyles.rowAlignCenter]}>
+                <Image
+                  style={{width: 30, height: 30}}
+                  source={require('../../../assests/images/enquiry_icon.png')}
+                />
+                <Spacing />
+                <Text
+                  style={{
+                    fontFamily: typography.poppinsRegular,
+                    fontSize: 14,
+                    flex: 1,
+                    color: '#4C4C4C',
+                  }}>
+                  15 μ BOPP PLAIN PCT 1 /10μ MET PET / 4.5 GSM COLD SEAL
+                </Text>
+              </View>
+              <Spacing />
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontFamily: typography.poppinsMedium,
+                  color: Colors.black,
+                }}>
+                Shelf Life :{' '}
+                <Text
+                  style={{fontSize: 14, fontFamily: typography.poppinsRegular}}>
+                  30 Days
+                </Text>
+              </Text>
+            </View>
+          ) : (
+            <View></View>
+          )}
           <Spacing />
 
           {/* Collapuse View */}
@@ -381,7 +462,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -389,6 +470,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Packarma Private Limited
                   </Text>
@@ -408,7 +490,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -416,6 +498,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     Mumbai, Maharashtra
                   </Text>
@@ -468,7 +551,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -476,6 +559,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     102/Kg
                   </Text>
@@ -494,7 +578,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -502,6 +586,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     12000
                   </Text>
@@ -520,7 +605,7 @@ export default function AcceptQuatation({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text>:</Text>
+                  <Text style={{color: Colors.black}}>:</Text>
                 </View>
                 <Spacing size={5} />
                 <View style={{flex: 1}}>
@@ -528,6 +613,7 @@ export default function AcceptQuatation({navigation}) {
                     style={{
                       fontSize: 14,
                       fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
                     }}>
                     12000
                   </Text>

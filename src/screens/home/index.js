@@ -10,6 +10,7 @@ import {
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Search from '../../components/search';
 import Spacing from '../../components/spacing';
+import useLocalization from '../../hooks/useLocalization';
 import PlaceIcon from '../../svg/PlaceIcon';
 import QuationsIcon from '../../svg/QuationsIcon';
 import QuestionMark from '../../svg/QuestionMark';
@@ -23,6 +24,7 @@ const SLIDE_ITEM = SCREEN_WIDTH - 30;
 export default function HomeScreen({navigation}) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeItem, setActiveItem] = useState(0);
+  const t = useLocalization();
 
   function _renderItem({item, index}) {
     return (
@@ -409,7 +411,14 @@ export default function HomeScreen({navigation}) {
                 }}>
                 <QuestionMark />
                 <Spacing size={5} />
-                <Text style={{}}>Place Enquiry</Text>
+                <Text
+                  style={{
+                    color: Colors.black,
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 12,
+                  }}>
+                  Place Enquiry
+                </Text>
               </View>
               <View
                 style={{
@@ -420,7 +429,14 @@ export default function HomeScreen({navigation}) {
                 }}>
                 <QuationsIcon />
                 <Spacing size={5} />
-                <Text style={{color: Colors.black}}>Get Quotations</Text>
+                <Text
+                  style={{
+                    color: Colors.black,
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 12,
+                  }}>
+                  Get Quotations
+                </Text>
               </View>
               <View
                 style={{
@@ -431,7 +447,14 @@ export default function HomeScreen({navigation}) {
                 }}>
                 <PlaceIcon />
                 <Spacing size={5} />
-                <Text style={{color: Colors.black}}>Place Order</Text>
+                <Text
+                  style={{
+                    color: Colors.black,
+                    fontFamily: typography.poppinsMedium,
+                    fontSize: 12,
+                  }}>
+                  Place Order
+                </Text>
               </View>
             </View>
 
@@ -475,54 +498,104 @@ export default function HomeScreen({navigation}) {
                 backgroundColor: Colors.white,
                 paddingBottom: 15,
               }}>
-              <View style={{}}>
+              <View style={{flex: 1, alignItems: 'center'}}>
                 <TouchableWithoutFeedback
                   onPress={() => navigation.navigate('Treatment')}>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 60) / 3,
-                      height: (SCREEN_WIDTH - 60) / 3,
-                      borderRadius: 10,
-                    }}
-                    source={require('../../../assests/images/glasses.png')}
-                  />
+                  <View>
+                    <Image
+                      style={{
+                        width: (SCREEN_WIDTH - 60) / 3,
+                        height: (SCREEN_WIDTH - 60) / 3,
+                        borderRadius: 10,
+                      }}
+                      source={require('../../../assests/images/glasses.png')}
+                    />
+                    <Spacing size={5} />
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: typography.poppinsRegular,
+                        textAlign: 'center',
+                        color: Colors.black,
+                      }}>
+                      Aseptic Filling
+                    </Text>
+                  </View>
                 </TouchableWithoutFeedback>
               </View>
-              <View style={{}}>
+              <View style={{flex: 1, alignItems: 'center'}}>
                 <TouchableWithoutFeedback
                   onPress={() => navigation.navigate('Treatment')}>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 60) / 3,
-                      height: (SCREEN_WIDTH - 60) / 3,
-                      borderRadius: 10,
-                    }}
-                    source={require('../../../assests/images/glasses.png')}
-                  />
+                  <View>
+                    <Image
+                      style={{
+                        width: (SCREEN_WIDTH - 60) / 3,
+                        height: (SCREEN_WIDTH - 60) / 3,
+                        borderRadius: 10,
+                      }}
+                      source={require('../../../assests/images/glasses.png')}
+                    />
+                    <Spacing size={5} />
+
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: typography.poppinsRegular,
+                        textAlign: 'center',
+                        color: Colors.black,
+                      }}>
+                      Gamma/E-beam Sterilisation
+                    </Text>
+                  </View>
                 </TouchableWithoutFeedback>
               </View>
-              <View style={{}}>
+              <View style={{flex: 1, alignItems: 'center'}}>
                 <TouchableWithoutFeedback
                   onPress={() => navigation.navigate('Treatment')}>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 60) / 3,
-                      height: (SCREEN_WIDTH - 60) / 3,
-                      borderRadius: 10,
-                    }}
-                    source={require('../../../assests/images/glasses.png')}
-                  />
+                  <View>
+                    <Image
+                      style={{
+                        width: (SCREEN_WIDTH - 60) / 3,
+                        height: (SCREEN_WIDTH - 60) / 3,
+                        borderRadius: 10,
+                      }}
+                      source={require('../../../assests/images/glasses.png')}
+                    />
+                    <Spacing size={5} />
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        // flex: 1,
+                        fontFamily: typography.poppinsRegular,
+                        textAlign: 'center',
+                        color: Colors.black,
+                      }}>
+                      Hot Filling
+                    </Text>
+                  </View>
                 </TouchableWithoutFeedback>
               </View>
             </View>
           </View>
+
+          <Spacing />
           <View
             style={{
               padding: 10,
               flexDirection: 'row',
               alignItems: 'flex-end',
+              justifyContent: 'space-between',
+              backgroundColor: '#EDEDED',
+              paddingVertical: 25,
             }}>
-            <View>
+            <View style={{...StyleSheet.absoluteFillObject}}>
+              <Image
+                style={{width: SCREEN_WIDTH, height: (SCREEN_WIDTH * 85) / 375}}
+                resizeMode="contain"
+                source={require('../../../assests/images/shaded_background.png')}
+              />
+            </View>
+            <View style={{flex: 1}}>
               <Text
                 style={{
                   fontSize: 19,
@@ -535,7 +608,7 @@ export default function HomeScreen({navigation}) {
                 Fill out the form and we will connect with you.
               </Text>
             </View>
-            <Spacing size={10} />
+            <Spacing size={20} />
             <View style={{}}>
               <Image
                 style={{width: 50, height: 50}}
@@ -543,7 +616,35 @@ export default function HomeScreen({navigation}) {
                 source={require('../../../assests/images/new.png')}
               />
             </View>
+            <Spacing size={2} />
           </View>
+
+          <Spacing size={5} />
+
+          <View
+            style={{
+              padding: 10,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image
+              style={{width: 21, height: 26, tintColor: '#707070'}}
+              resizeMode="contain"
+              source={require('../../../assests/images/packarma_logo.png')}
+            />
+            <Spacing size={5} />
+            <Text
+              style={{
+                fontFamily: typography.poppinsRegular,
+                fontSize: 14,
+                color: '#707070',
+              }}>
+              {t('common.appNameCaps')}
+            </Text>
+          </View>
+
+          <Spacing />
         </View>
       </ScrollView>
     </View>

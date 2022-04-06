@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import React from 'react';
 import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import typography from '../../utility/typography';
@@ -35,6 +35,15 @@ export default function TreatmentDetails() {
             }}>
             Aseptic Filling
           </Text>
+          <Spacing size={5} />
+          <View
+            style={{
+              height: 1,
+              backgroundColor: Colors.greyColor,
+              width: '100%',
+            }}
+          />
+          <Spacing size={5} />
 
           <Text
             style={{
@@ -50,13 +59,55 @@ export default function TreatmentDetails() {
           <Spacing size={5} />
           <Text
             style={{
-              fontFamily: typography.poppinsRegular,
+              fontFamily: typography.poppinsMedium,
               fontSize: 14,
               color: Colors.black,
               paddingHorizontal: 15,
             }}>
             Applicable Products
           </Text>
+        </View>
+
+        <Spacing size={5} />
+        <View
+          style={{
+            height: 1,
+            backgroundColor: Colors.greyColor,
+            width: '100%',
+          }}
+        />
+        <Spacing size={5} />
+        {/* <Spacing /> */}
+        <View
+          style={{
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+          }}>
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((_, ind) => {
+            return (
+              <View key={ind} style={{}}>
+                <Image
+                  style={{
+                    width: (SCREEN_WIDTH - 80) / 4,
+                    height: (SCREEN_WIDTH - 80) / 4,
+                    margin: 8,
+                  }}
+                  source={require('../../../assests/images/friuts.png')}
+                />
+                <Spacing size={1} />
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontFamily: typography.poppinsRegular,
+                    fontSize: 12,
+                    color: Colors.black,
+                  }}>
+                  Dairy
+                </Text>
+              </View>
+            );
+          })}
         </View>
       </View>
     </View>

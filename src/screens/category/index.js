@@ -14,6 +14,7 @@ import typography from '../../utility/typography';
 import {Colors, SCREEN_HEIGHT, SCREEN_WIDTH} from '../../utility/constants';
 import BackHeader from '../../components/back-header';
 import Search from '../../components/search';
+import HomeCare from '../../svg/HomeCare';
 
 export default function Category({navigation}) {
   const [open, setOpen] = useState(false);
@@ -31,10 +32,10 @@ export default function Category({navigation}) {
         }}
         hide={() => setOpen(false)}>
         <ScrollView>
-          <View style={{padding: 20}}>
+          <View style={{padding: 20, paddingBottom: 10}}>
             <View style={{alignItems: 'center'}}>
               <Image
-                style={{}}
+                style={{width: 60, height: 55}}
                 source={require('../../../assests/images/products.png')}
               />
             </View>
@@ -51,6 +52,15 @@ export default function Category({navigation}) {
             <Spacing size={2} />
             <Text style={{textAlign: 'center', color: Colors.black}}>Food</Text>
             <Spacing size={5} />
+            <View
+              style={{
+                height: 1,
+                backgroundColor: Colors.greyColor,
+                width: '100%',
+              }}
+            />
+
+            <Spacing size={5} />
             <Text
               style={{
                 fontFamily: typography.poppinsRegular,
@@ -65,7 +75,7 @@ export default function Category({navigation}) {
               style={{
                 fontSize: 14,
                 color: Colors.black,
-                fontFamily: typography.poppinsRegular,
+                fontFamily: typography.poppinsMedium,
               }}>
               Packaging Treatments
             </Text>
@@ -89,8 +99,8 @@ export default function Category({navigation}) {
                   style={{
                     padding: 20,
                     paddingVertical: 10,
-                    backgroundColor: Colors.brownColor,
-                    borderRadius: 10,
+                    backgroundColor: '#663c2f',
+                    borderRadius: 5,
                   }}>
                   <Text style={{color: Colors.white}}>Place enquiry</Text>
                 </View>
@@ -112,7 +122,7 @@ export default function Category({navigation}) {
                 source={require('../../../assests/images/grid_bar.png')}
                 resizeMode="contain"
               />
-              <Spacing size={10} />
+              <Spacing size={5} />
               <Text
                 style={{
                   fontSize: 12,
@@ -130,12 +140,13 @@ export default function Category({navigation}) {
                 padding: 20,
                 paddingHorizontal: 30,
               }}>
-              <Image
+              <HomeCare width={40} height={40} />
+              {/* <Image
                 style={{width: 40, height: 40}}
                 source={require('../../../assests/images/grid_bar.png')}
                 resizeMode="contain"
-              />
-              <Spacing size={10} />
+              /> */}
+              <Spacing size={5} />
               <Text
                 style={{
                   fontSize: 12,
@@ -156,7 +167,7 @@ export default function Category({navigation}) {
                 source={require('../../../assests/images/grid_bar.png')}
                 resizeMode="contain"
               />
-              <Spacing size={10} />
+              <Spacing size={5} />
               <Text
                 style={{
                   fontSize: 12,
@@ -177,7 +188,7 @@ export default function Category({navigation}) {
                 source={require('../../../assests/images/grid_bar.png')}
                 resizeMode="contain"
               />
-              <Spacing size={10} />
+              <Spacing size={5} />
               <Text
                 style={{
                   fontSize: 12,
@@ -198,7 +209,7 @@ export default function Category({navigation}) {
                 source={require('../../../assests/images/grid_bar.png')}
                 resizeMode="contain"
               />
-              <Spacing size={10} />
+              <Spacing size={5} />
               <Text
                 style={{
                   fontSize: 12,
@@ -219,7 +230,7 @@ export default function Category({navigation}) {
                 source={require('../../../assests/images/grid_bar.png')}
                 resizeMode="contain"
               />
-              <Spacing size={10} />
+              <Spacing size={5} />
               <Text
                 style={{
                   fontSize: 12,
@@ -240,7 +251,7 @@ export default function Category({navigation}) {
                 source={require('../../../assests/images/grid_bar.png')}
                 resizeMode="contain"
               />
-              <Spacing size={10} />
+              <Spacing size={5} />
               <Text
                 style={{
                   fontSize: 12,
@@ -262,23 +273,26 @@ export default function Category({navigation}) {
                 fontFamily: typography.poppinsMedium,
                 color: Colors.black,
               }}>
-              Product{' '}
+              Products
             </Text>
-            <Text>Total : 21</Text>
-            {/* <Spacing size={5} /> */}
+            <Spacing />
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              }}>
               <TouchableWithoutFeedback onPress={() => setOpen(true)}>
                 <View>
                   <Image
                     style={{
-                      width: (SCREEN_WIDTH - 60) / 4,
-                      height: (SCREEN_WIDTH - 60) / 4,
-                      borderRadius: 10,
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                      borderRadius: 5,
                     }}
                     source={require('../../../assests/images/friuts.png')}
                   />
-                  <Spacing size={5} />
+                  <Spacing size={3} />
                   <Text
                     style={{
                       fontSize: 14,
@@ -292,17 +306,25 @@ export default function Category({navigation}) {
               </TouchableWithoutFeedback>
 
               <Spacing size={10} />
+              <View
+                style={{
+                  height: '40%',
+                  width: 2,
+                  backgroundColor: Colors.greyColor,
+                }}
+              />
+              <Spacing size={10} />
               <View>
                 <Image
                   style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
+                    width: (SCREEN_WIDTH - 75) / 4,
+                    height: (SCREEN_WIDTH - 75) / 4,
                     borderRadius: 10,
                   }}
                   source={require('../../../assests/images/dairy.png')}
                 />
 
-                <Spacing size={5} />
+                <Spacing size={3} />
                 <Text
                   style={{
                     fontSize: 14,
@@ -317,40 +339,54 @@ export default function Category({navigation}) {
             <Spacing />
 
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-              <View>
-                <Image
-                  style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
-                    borderRadius: 10,
-                  }}
-                  source={require('../../../assests/images/friuts.png')}
-                />
-                <Spacing size={5} />
-                <Text
-                  style={{
-                    fontSize: 14,
-                    fontFamily: typography.poppinsRegular,
-                    color: Colors.black,
-                    textAlign: 'center',
-                  }}>
-                  Dairy
-                </Text>
-              </View>
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              }}>
+              <TouchableWithoutFeedback onPress={() => setOpen(true)}>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                      borderRadius: 5,
+                    }}
+                    source={require('../../../assests/images/friuts.png')}
+                  />
+                  <Spacing size={3} />
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
 
+              <Spacing size={10} />
+              <View
+                style={{
+                  height: '40%',
+                  width: 2,
+                  backgroundColor: Colors.greyColor,
+                }}
+              />
               <Spacing size={10} />
               <View>
                 <Image
                   style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
+                    width: (SCREEN_WIDTH - 75) / 4,
+                    height: (SCREEN_WIDTH - 75) / 4,
                     borderRadius: 10,
                   }}
                   source={require('../../../assests/images/dairy.png')}
                 />
 
-                <Spacing size={5} />
+                <Spacing size={3} />
                 <Text
                   style={{
                     fontSize: 14,
@@ -364,89 +400,54 @@ export default function Category({navigation}) {
             </View>
             <Spacing />
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-              <View>
-                <Image
-                  style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
-                    borderRadius: 10,
-                  }}
-                  source={require('../../../assests/images/friuts.png')}
-                />
-                <Spacing size={5} />
-                <Text
-                  style={{
-                    fontSize: 14,
-                    fontFamily: typography.poppinsRegular,
-                    color: Colors.black,
-                    textAlign: 'center',
-                  }}>
-                  Dairy
-                </Text>
-              </View>
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              }}>
+              <TouchableWithoutFeedback onPress={() => setOpen(true)}>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                      borderRadius: 5,
+                    }}
+                    source={require('../../../assests/images/friuts.png')}
+                  />
+                  <Spacing size={3} />
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
 
+              <Spacing size={10} />
+              <View
+                style={{
+                  height: '40%',
+                  width: 2,
+                  backgroundColor: Colors.greyColor,
+                }}
+              />
               <Spacing size={10} />
               <View>
                 <Image
                   style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
+                    width: (SCREEN_WIDTH - 75) / 4,
+                    height: (SCREEN_WIDTH - 75) / 4,
                     borderRadius: 10,
                   }}
                   source={require('../../../assests/images/dairy.png')}
                 />
 
-                <Spacing size={5} />
-                <Text
-                  style={{
-                    fontSize: 14,
-                    fontFamily: typography.poppinsRegular,
-                    color: Colors.black,
-                    textAlign: 'center',
-                  }}>
-                  Beverages
-                </Text>
-              </View>
-            </View>
-
-            <Spacing />
-
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-              <View>
-                <Image
-                  style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
-                    borderRadius: 10,
-                  }}
-                  source={require('../../../assests/images/friuts.png')}
-                />
-                <Spacing size={5} />
-                <Text
-                  style={{
-                    fontSize: 14,
-                    fontFamily: typography.poppinsRegular,
-                    color: Colors.black,
-                    textAlign: 'center',
-                  }}>
-                  Dairy
-                </Text>
-              </View>
-
-              <Spacing size={10} />
-              <View>
-                <Image
-                  style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
-                    borderRadius: 10,
-                  }}
-                  source={require('../../../assests/images/dairy.png')}
-                />
-
-                <Spacing size={5} />
+                <Spacing size={3} />
                 <Text
                   style={{
                     fontSize: 14,
@@ -461,40 +462,54 @@ export default function Category({navigation}) {
             <Spacing />
 
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-              <View>
-                <Image
-                  style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
-                    borderRadius: 10,
-                  }}
-                  source={require('../../../assests/images/friuts.png')}
-                />
-                <Spacing size={5} />
-                <Text
-                  style={{
-                    fontSize: 14,
-                    fontFamily: typography.poppinsRegular,
-                    color: Colors.black,
-                    textAlign: 'center',
-                  }}>
-                  Dairy
-                </Text>
-              </View>
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              }}>
+              <TouchableWithoutFeedback onPress={() => setOpen(true)}>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                      borderRadius: 5,
+                    }}
+                    source={require('../../../assests/images/friuts.png')}
+                  />
+                  <Spacing size={3} />
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
 
+              <Spacing size={10} />
+              <View
+                style={{
+                  height: '40%',
+                  width: 2,
+                  backgroundColor: Colors.greyColor,
+                }}
+              />
               <Spacing size={10} />
               <View>
                 <Image
                   style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
+                    width: (SCREEN_WIDTH - 75) / 4,
+                    height: (SCREEN_WIDTH - 75) / 4,
                     borderRadius: 10,
                   }}
                   source={require('../../../assests/images/dairy.png')}
                 />
 
-                <Spacing size={5} />
+                <Spacing size={3} />
                 <Text
                   style={{
                     fontSize: 14,
@@ -509,40 +524,54 @@ export default function Category({navigation}) {
             <Spacing />
 
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-              <View>
-                <Image
-                  style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
-                    borderRadius: 10,
-                  }}
-                  source={require('../../../assests/images/friuts.png')}
-                />
-                <Spacing size={5} />
-                <Text
-                  style={{
-                    fontSize: 14,
-                    fontFamily: typography.poppinsRegular,
-                    color: Colors.black,
-                    textAlign: 'center',
-                  }}>
-                  Dairy
-                </Text>
-              </View>
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              }}>
+              <TouchableWithoutFeedback onPress={() => setOpen(true)}>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                      borderRadius: 5,
+                    }}
+                    source={require('../../../assests/images/friuts.png')}
+                  />
+                  <Spacing size={3} />
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
 
+              <Spacing size={10} />
+              <View
+                style={{
+                  height: '40%',
+                  width: 2,
+                  backgroundColor: Colors.greyColor,
+                }}
+              />
               <Spacing size={10} />
               <View>
                 <Image
                   style={{
-                    width: (SCREEN_WIDTH - 60) / 4,
-                    height: (SCREEN_WIDTH - 60) / 4,
+                    width: (SCREEN_WIDTH - 75) / 4,
+                    height: (SCREEN_WIDTH - 75) / 4,
                     borderRadius: 10,
                   }}
                   source={require('../../../assests/images/dairy.png')}
                 />
 
-                <Spacing size={5} />
+                <Spacing size={3} />
                 <Text
                   style={{
                     fontSize: 14,
@@ -554,6 +583,69 @@ export default function Category({navigation}) {
                 </Text>
               </View>
             </View>
+            <Spacing />
+
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              }}>
+              <TouchableWithoutFeedback onPress={() => setOpen(true)}>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                      borderRadius: 5,
+                    }}
+                    source={require('../../../assests/images/friuts.png')}
+                  />
+                  <Spacing size={3} />
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontFamily: typography.poppinsRegular,
+                      color: Colors.black,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+
+              <Spacing size={10} />
+              <View
+                style={{
+                  height: '40%',
+                  width: 2,
+                  backgroundColor: Colors.greyColor,
+                }}
+              />
+              <Spacing size={10} />
+              <View>
+                <Image
+                  style={{
+                    width: (SCREEN_WIDTH - 75) / 4,
+                    height: (SCREEN_WIDTH - 75) / 4,
+                    borderRadius: 10,
+                  }}
+                  source={require('../../../assests/images/dairy.png')}
+                />
+
+                <Spacing size={3} />
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontFamily: typography.poppinsRegular,
+                    color: Colors.black,
+                    textAlign: 'center',
+                  }}>
+                  Beverages
+                </Text>
+              </View>
+            </View>
+            <Spacing size={80} />
           </View>
         </ScrollView>
       </View>

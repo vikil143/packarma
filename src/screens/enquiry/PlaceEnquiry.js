@@ -12,11 +12,14 @@ import {Colors} from '../../utility/constants';
 import Spacing from '../../components/spacing';
 import Picker from '../../components/picker';
 import Label from '../../components/label';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function PlaceEnquiry({navigation}) {
+  const t = useLocalization();
+
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={'Place Enquiry'} />
+      <BackHeader title={'Help Request'} />
       <View style={{flex: 1}}>
         <ScrollView style={{padding: 15}}>
           <View style={{}}>
@@ -35,6 +38,7 @@ export default function PlaceEnquiry({navigation}) {
                 {label: 'Python', value: 'python'},
                 {label: 'Java', value: 'java'},
               ]}
+              placeHolder="Select Product Category"
             />
           </View>
           <Spacing size={10} />
@@ -47,22 +51,31 @@ export default function PlaceEnquiry({navigation}) {
                 {label: 'Python', value: 'python'},
                 {label: 'Java', value: 'java'},
               ]}
+              placeHolder="Select Products"
             />
           </View>
           <Spacing size={10} />
           <View style={{}}>
-            <Label required>Self Life</Label>
+            <Label required>Shelf Life</Label>
             <Spacing size={5} />
             <View style={{flexDirection: 'row'}}>
               <View
-                style={{backgroundColor: Colors.white, padding: 10, flex: 1}}>
-                <Text></Text>
+                style={{
+                  backgroundColor: Colors.white,
+                  padding: 10,
+                  flex: 1,
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: '#707070', fontSize: 16}}>
+                  Days/Months
+                </Text>
               </View>
 
               <Spacing />
               <Picker
                 data={[{label: 'Days', value: 'days'}]}
                 containerStyle={{flex: 1 / 2}}
+                placeHolder="Days"
               />
             </View>
           </View>
@@ -73,14 +86,22 @@ export default function PlaceEnquiry({navigation}) {
             <Spacing size={5} />
             <View style={{flexDirection: 'row'}}>
               <View
-                style={{backgroundColor: Colors.white, padding: 10, flex: 1}}>
-                <Text></Text>
+                style={{
+                  backgroundColor: Colors.white,
+                  padding: 10,
+                  flex: 1,
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: '#707070', fontSize: 16}}>
+                  Days/Months
+                </Text>
               </View>
 
               <Spacing />
               <Picker
                 data={[{label: 'Days', value: 'days'}]}
                 containerStyle={{flex: 1 / 2}}
+                placeHolder={'Kg'}
               />
             </View>
           </View>
@@ -89,16 +110,24 @@ export default function PlaceEnquiry({navigation}) {
           <View style={{}}>
             <Label required>Storage conditions</Label>
             <Spacing size={5} />
-            <View style={{flexDirection: 'row'}}>
-              <View
-                style={{backgroundColor: Colors.white, padding: 10, flex: 1}}>
-                <Text></Text>
+            <View>
+              {/* <View
+                style={{
+                  backgroundColor: Colors.white,
+                  padding: 10,
+                  flex: 1,
+                  justifyContent: 'center',
+                }}>
+                <Text style={{color: '#707070', fontSize: 16}}>
+                  Days/Months
+                </Text>
               </View>
 
-              <Spacing />
+              <Spacing /> */}
               <Picker
                 data={[{label: 'Days', value: 'days'}]}
                 containerStyle={{flex: 1 / 2}}
+                placeHolder="Select storage conditions"
               />
             </View>
           </View>
@@ -107,7 +136,10 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Machine</Label>
             <Spacing size={5} />
             <View>
-              <Picker data={[{label: 'Days', value: 'days'}]} />
+              <Picker
+                data={[{label: 'Days', value: 'days'}]}
+                placeHolder="Select Machine"
+              />
             </View>
           </View>
 
@@ -117,7 +149,22 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Product form</Label>
             <Spacing size={5} />
             <View>
-              <Picker data={[{label: 'Days', value: 'days'}]} />
+              <Picker
+                data={[{label: 'Days', value: 'days'}]}
+                placeHolder="Select Machine"
+              />
+            </View>
+          </View>
+          <Spacing size={10} />
+
+          <View style={{}}>
+            <Label required>Packaging Type </Label>
+            <Spacing size={5} />
+            <View>
+              <Picker
+                data={[{label: 'Days', value: 'days'}]}
+                placeHolder="Enter PIN number"
+              />
             </View>
           </View>
           <Spacing size={10} />
@@ -126,7 +173,10 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Treatments</Label>
             <Spacing size={5} />
             <View>
-              <Picker data={[{label: 'Days', value: 'days'}]} />
+              <Picker
+                data={[{label: 'Days', value: 'days'}]}
+                placeHolder="Select Machine"
+              />
             </View>
           </View>
           <Spacing size={10} />
@@ -135,7 +185,10 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Location</Label>
             <Spacing size={5} />
             <View>
-              <Picker data={[{label: 'Days', value: 'days'}]} />
+              <Picker
+                data={[{label: 'Days', value: 'days'}]}
+                placeHolder="Enter PIN number"
+              />
             </View>
           </View>
           <Spacing size={10} />
@@ -148,8 +201,15 @@ export default function PlaceEnquiry({navigation}) {
                 padding: 15,
                 paddingHorizontal: 30,
               }}>
-              <Text style={{color: Colors.white, textAlign: 'center'}}>
-                Procced
+              <Text
+                style={{
+                  color: Colors.white,
+                  textAlign: 'center',
+                  fontSize: 16,
+                  fontStyle: typography.poppinsRegular,
+                }}>
+                {t('common.proceed')}
+                {/* Proceed */}
               </Text>
             </View>
           </TouchableWithoutFeedback>

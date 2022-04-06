@@ -32,7 +32,7 @@ export default function Login({navigation}) {
       <Spacing />
       <Text style={[styles.password]}>{t('common.password')}</Text>
       <Spacing size={2} />
-      <WhiteTextBox />
+      <WhiteTextBox action="password" actionStyles={{tintColor: '#ddd'}} />
       <Spacing />
       <Button
         onPress={() => {
@@ -56,8 +56,8 @@ export default function Login({navigation}) {
         {t('login.dontHaveAccount')}
         <Text
           onPress={() => {
-            console.log('On Click Login');
             crashlytics().log('Navigate to Register done...');
+            // console.log('On Click Login', crash);
             navigation.navigate('Register');
           }}
           style={[styles.registerText]}>

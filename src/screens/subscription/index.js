@@ -1,10 +1,11 @@
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import React from 'react';
 import typography from '../../utility/typography';
-import {Colors} from '../../utility/constants';
+import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import Spacing from '../../components/spacing';
 import commonStyles from '../../utility/commonStyles';
 import useLocalization from '../../hooks/useLocalization';
+import Rupee from '../../svg/Rupee';
 
 export default function Subscription() {
   const t = useLocalization();
@@ -17,7 +18,26 @@ export default function Subscription() {
           source={require('../../../assests/images/back_arrow.png')}
         />
       </View>
-      <View style={{paddingHorizontal: 20, flexDirection: 'row'}}>
+      <View
+        style={{
+          paddingHorizontal: 20,
+          flexDirection: 'row',
+          alignItems: 'flex-end',
+        }}>
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+          }}>
+          <Image
+            style={{
+              width: SCREEN_WIDTH / 2,
+              height: ((SCREEN_WIDTH / 2) * 38) / 138,
+            }}
+            source={require('../../../assests/images/bg_four.png')}
+          />
+        </View>
         <Text
           style={{
             fontFamily: typography.poppinsMedium,
@@ -30,12 +50,14 @@ export default function Subscription() {
         </Text>
         <View>
           <Image
-            style={{width: 30, height: 33}}
+            style={{width: 30, height: 30}}
             resizeMode="contain"
-            source={require('../../../assests/images/grid.png')}
+            source={require('../../../assests/images/subscription_logo.png')}
           />
         </View>
+        <Spacing size={5} />
       </View>
+      <Spacing />
       <View
         style={{
           backgroundColor: Colors.white,
@@ -47,7 +69,7 @@ export default function Subscription() {
           <Spacing size={10} />
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <View style={{flex: 1, alignItems: 'center'}}>
-              <Text>1 Month</Text>
+              <Text style={{color: Colors.black}}>1 Month</Text>
               <Spacing size={5} />
               <View
                 style={{
@@ -59,38 +81,38 @@ export default function Subscription() {
               />
             </View>
             <View style={{flex: 1, alignItems: 'center'}}>
-              <Text>3 Month</Text>
+              <Text style={{color: Colors.black}}>3 Months</Text>
               <Spacing size={5} />
               <View
                 style={{
                   width: 15,
                   borderRadius: 10,
                   height: 5,
-                  backgroundColor: Colors.redColor,
+                  // backgroundColor: Colors.redColor,
                 }}
               />
             </View>
             <View style={{flex: 1, alignItems: 'center'}}>
-              <Text>6 Month</Text>
+              <Text style={{color: Colors.black}}>6 Months</Text>
               <Spacing size={5} />
               <View
                 style={{
                   width: 15,
                   borderRadius: 10,
                   height: 5,
-                  backgroundColor: Colors.redColor,
+                  // backgroundColor: Colors.redColor,
                 }}
               />
             </View>
             <View style={{flex: 1, alignItems: 'center'}}>
-              <Text>12 Month</Text>
+              <Text style={{color: Colors.black}}>12 Months</Text>
               <Spacing size={5} />
               <View
                 style={{
                   width: 15,
                   borderRadius: 10,
                   height: 5,
-                  backgroundColor: Colors.redColor,
+                  // backgroundColor: Colors.redColor,
                 }}
               />
             </View>
@@ -108,15 +130,23 @@ export default function Subscription() {
                   borderRadius: 20,
                   width: 250,
                 }}>
-                <Text
+                <View
                   style={{
-                    fontFamily: typography.poppinsMedium,
-                    fontSize: 25,
-                    color: Colors.black,
-                    textAlign: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
                   }}>
-                  150
-                </Text>
+                  <Rupee />
+                  <Spacing size={2} />
+                  <Text
+                    style={{
+                      fontFamily: typography.poppinsMedium,
+                      fontSize: 25,
+                      color: Colors.black,
+                      textAlign: 'center',
+                    }}>
+                    150
+                  </Text>
+                </View>
                 <Spacing size={2} />
                 <Text
                   style={{
@@ -175,10 +205,12 @@ export default function Subscription() {
                   fontFamily: typography.poppinsRegular,
                   fontSize: 14,
                   color: Colors.black,
+                  flex: 1,
                 }}>
                 Browse through the products and raise an enquiry for packaging
                 solutions.
               </Text>
+              <Spacing size={5} />
             </View>
             <Spacing size={10} />
             <View style={[commonStyles.rowAlignCenter]}>
@@ -193,10 +225,12 @@ export default function Subscription() {
                   fontFamily: typography.poppinsRegular,
                   fontSize: 14,
                   color: Colors.black,
+                  flex: 1,
                 }}>
                 Packaging solution based on Conventional, Cost effective, and
                 Sustainable structure.
               </Text>
+              <Spacing size={5} />
             </View>
             <Spacing size={10} />
             <View style={[commonStyles.rowAlignCenter]}>
@@ -211,10 +245,12 @@ export default function Subscription() {
                   fontFamily: typography.poppinsRegular,
                   fontSize: 14,
                   color: Colors.black,
+                  flex: 1,
                 }}>
                 Multiple vendor Quotations with Vendor details inducing location
                 and price.
               </Text>
+              <Spacing size={5} />
             </View>
 
             <Spacing size={10} />

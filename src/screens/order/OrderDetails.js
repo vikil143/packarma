@@ -296,7 +296,7 @@ export default function OrderDetails() {
                       fontSize: 14,
                       color: Colors.black,
                     }}>
-                    Self Life
+                    Shelf Life
                   </Text>
                 </View>
                 <Spacing size={5} />
@@ -515,7 +515,7 @@ export default function OrderDetails() {
                 }}>
                 Packaging Solutions
               </Text>
-              {collapusePD ? <UpArrow /> : <DownArrow />}
+              {collapusePS ? <UpArrow /> : <DownArrow />}
             </View>
           </TouchableWithoutFeedback>
           {/*  */}
@@ -559,7 +559,7 @@ export default function OrderDetails() {
                   fontFamily: typography.poppinsMedium,
                   color: Colors.black,
                 }}>
-                Self Life :{' '}
+                Shelf Life :{' '}
                 <Text
                   style={{fontSize: 14, fontFamily: typography.poppinsRegular}}>
                   30 Days
@@ -687,7 +687,8 @@ export default function OrderDetails() {
           {/*  */}
           {collapuseBD ? (
             <View style={{backgroundColor: Colors.white, padding: 15}}>
-              <View style={{flexDirection: 'row'}}>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View style={{flex: 0.65}}>
                   <Text
                     style={{
@@ -698,12 +699,13 @@ export default function OrderDetails() {
                     Quantity
                   </Text>
                 </View>
-                <Spacing size={5} />
+                {/* <Spacing size={5} />
                 <View>
                   <Text style={{color: Colors.black}}>:</Text>
                 </View>
-                <Spacing size={5} />
-                <View style={{flex: 1}}>
+                <Spacing size={5} /> */}
+                <View>
+                  {/* style={{flex: 1}}> */}
                   <Text
                     style={{
                       fontSize: 14,
@@ -714,7 +716,8 @@ export default function OrderDetails() {
                   </Text>
                 </View>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View style={{flex: 0.65}}>
                   <Text
                     style={{
@@ -725,12 +728,13 @@ export default function OrderDetails() {
                     Rate
                   </Text>
                 </View>
-                <Spacing size={5} />
+                {/* <Spacing size={5} />
                 <View>
                   <Text style={{color: Colors.black}}>:</Text>
                 </View>
-                <Spacing size={5} />
-                <View style={{flex: 1}}>
+                <Spacing size={5} /> */}
+                <View>
+                  {/* style={{flex: 1}}> */}
                   <Text
                     style={{
                       fontSize: 14,
@@ -741,7 +745,8 @@ export default function OrderDetails() {
                   </Text>
                 </View>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View style={{flex: 0.65}}>
                   <Text
                     style={{
@@ -752,12 +757,13 @@ export default function OrderDetails() {
                     Taxes and Fee
                   </Text>
                 </View>
-                <Spacing size={5} />
+                {/* <Spacing size={5} />
                 <View>
                   <Text style={{color: Colors.black}}>:</Text>
                 </View>
-                <Spacing size={5} />
-                <View style={{flex: 1}}>
+                <Spacing size={5} /> */}
+                <View>
+                  {/* style={{flex: 1}}> */}
                   <Text
                     style={{
                       fontSize: 14,
@@ -765,6 +771,36 @@ export default function OrderDetails() {
                       color: Colors.black,
                     }}>
                     12000
+                  </Text>
+                </View>
+              </View>
+
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View style={{flex: 0.65}}>
+                  <Text
+                    style={{
+                      fontFamily: typography.poppinsMedium,
+                      fontSize: 16,
+                      color: Colors.black,
+                    }}>
+                    Total Amount
+                  </Text>
+                </View>
+                {/* <Spacing size={5} />
+                <View>
+                  <Text style={{color: Colors.black}}>:</Text>
+                </View>
+                <Spacing size={5} /> */}
+                <View>
+                  {/* style={{flex: 1}}> */}
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      fontFamily: typography.poppinsMedium,
+                      color: Colors.black,
+                    }}>
+                    116000
                   </Text>
                 </View>
               </View>
@@ -842,7 +878,15 @@ export default function OrderDetails() {
                   Mumbai, Maharashtra -400055 Mob : +91 543672993
                 </Text>
               </View>
+              <Spacing size={5} />
 
+              <View
+                style={{
+                  height: 1,
+                  backgroundColor: Colors.greyColor,
+                  width: '100%',
+                }}
+              />
               <Spacing size={5} />
               <View style={{flexDirection: 'row'}}>
                 <View style={{}}>

@@ -52,6 +52,11 @@ export default function Treatment({navigation}) {
           </View>
         </View>
       </TouchableWithoutFeedback>
+      {/* <Spacing size={5} /> */}
+      <View
+        style={{height: 1, backgroundColor: Colors.greyColor, width: '100%'}}
+      />
+      {/* <Spacing size={5} /> */}
 
       <View style={{flexDirection: 'row', padding: 10}}>
         <View style={{}}>
@@ -82,6 +87,13 @@ export default function Treatment({navigation}) {
           <Spacing size={5} />
         </View>
       </View>
+
+      {/* <Spacing size={5} /> */}
+      <View
+        style={{height: 1, backgroundColor: Colors.greyColor, width: '100%'}}
+      />
+      {/* <Spacing size={5} /> */}
+
       <View style={{flexDirection: 'row', padding: 10}}>
         <View style={{}}>
           <Image
@@ -111,6 +123,12 @@ export default function Treatment({navigation}) {
           <Spacing size={5} />
         </View>
       </View>
+
+      {/* <Spacing size={5} /> */}
+      <View
+        style={{height: 1, backgroundColor: Colors.greyColor, width: '100%'}}
+      />
+      {/* <Spacing size={5} /> */}
 
       <View style={{flexDirection: 'row', padding: 10}}>
         <View style={{}}>

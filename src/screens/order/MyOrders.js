@@ -99,7 +99,7 @@ export default function MyOrders({navigation}) {
                       <View style={{}}>
                         <Text
                           style={{
-                            fontFamily: typography.poppinsRegular,
+                            fontFamily: typography.poppinsMedium,
                             fontSize: 16,
                             color: Colors.black,
                           }}>
@@ -107,6 +107,14 @@ export default function MyOrders({navigation}) {
                         </Text>
                       </View>
                     </View>
+                    <Spacing size={5} />
+                    <View
+                      style={{
+                        backgroundColor: '#ddd',
+                        width: '100%',
+                        height: 2,
+                      }}
+                    />
                     <Spacing size={5} />
                     <View>
                       <Text
@@ -171,7 +179,7 @@ export default function MyOrders({navigation}) {
                     <View style={{}}>
                       <Text
                         style={{
-                          fontFamily: typography.poppinsRegular,
+                          fontFamily: typography.poppinsMedium,
                           fontSize: 16,
                           color: Colors.black,
                         }}>
@@ -179,6 +187,10 @@ export default function MyOrders({navigation}) {
                       </Text>
                     </View>
                   </View>
+                  <Spacing size={5} />
+                  <View
+                    style={{backgroundColor: '#ddd', width: '100%', height: 1}}
+                  />
                   <Spacing size={5} />
                   <View>
                     <Text

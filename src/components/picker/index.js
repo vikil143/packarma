@@ -8,15 +8,23 @@ export default function PickerComp({
   onValueChange,
   data,
   containerStyle,
+  placeHolder = 'None of below',
 }) {
   return (
     <Picker
       style={[{backgroundColor: Colors.white}, containerStyle]}
       selectedValue={selectedValue}
+      dropdownIconColor="#000"
       onValueChange={(itemValue, itemIndex) => onValueChange(itemValue)}>
-      <Picker.Item label="None of below" value="" />
+      <Picker.Item label={placeHolder} value="" style={{color: '#707070'}} />
       {data.map((item, ind) => {
-        return <Picker.Item label={item.label} value={item.value} />;
+        return (
+          <Picker.Item
+            label={item.label}
+            value={item.value}
+            style={{color: '#707070'}}
+          />
+        );
       })}
     </Picker>
   );

@@ -49,7 +49,11 @@ function EnquireCard({onPress}) {
                 left: -5,
               }}>
               <Text
-                style={{fontFamily: typography.poppinsRegular, fontSize: 10}}>
+                style={{
+                  fontFamily: typography.poppinsRegular,
+                  fontSize: 10,
+                  color: Colors.white,
+                }}>
                 3
               </Text>
             </View>
@@ -98,7 +102,7 @@ function EnquireCard({onPress}) {
               fontFamily: typography.poppinsRegular,
               fontSize: 14,
             }}>
-            Self Life : <Text>180 Days</Text>
+            Shelf Life : <Text>180 Days</Text>
           </Text>
         </View>
       </View>
@@ -109,7 +113,7 @@ function EnquireCard({onPress}) {
 export default function MyEnquiry({navigation}) {
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={'My Enquiries'} />
+      <BackHeader title={'Help Requests'} />
       <View style={{flex: 1, padding: 15, paddingBottom: 0}}>
         <EnquireCard
           onPress={() => {

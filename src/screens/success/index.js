@@ -43,8 +43,9 @@ export default function Success({navigation}) {
         <Button
           title={t('common.login')}
           onPress={() => {
-            crashlytics().log('NAVIGATE TO DASHBOARD SCREEN...');
-            navigation.navigate('BottomTabs');
+            crashlytics().log('NAVIGATE TO LOGIN SCREEN...');
+            // navigation.navigate('BottomTabs');
+            navigation.navigate('Login');
           }}></Button>
       </View>
     </View>

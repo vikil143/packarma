@@ -11,6 +11,7 @@ import AdminApproval from '../admin-approval';
 import ForgetPassword from '../forget-password';
 import SetPassword from '../set-password';
 import Success from '../success';
+import SuccessFromAddress from '../quatation/Success';
 import Subscription from '../subscription';
 import Product from '../product';
 import {PlaceEnquiry, EnquiryDescription} from '../enquiry';
@@ -49,6 +50,10 @@ export default function Navigation() {
         <Stack.Screen name="MyOrders" component={MyOrders} />
         <Stack.Screen name="AcceptQuataion" component={AcceptQuatation} />
         <Stack.Screen name="SelectAddress" component={SelectAddress} />
+        <Stack.Screen
+          name="SuccessFromAddress"
+          component={SuccessFromAddress}
+        />
         <Stack.Screen name="Treatment" component={Treatment} />
         <Stack.Screen name="TreatmentDetails" component={TreatmentDetails} />
         {/* <Stack.Screen name="Success" component={Success} /> */}
