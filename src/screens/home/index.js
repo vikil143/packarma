@@ -67,7 +67,10 @@ export default function HomeScreen({navigation}) {
   return (
     <View style={{flex: 1}}>
       <View style={{padding: 20, flexDirection: 'row', alignItems: 'center'}}>
-        <Search containerStyle={{flex: 1}} />
+        <Search
+          containerStyle={{flex: 1}}
+          onPress={() => navigation.navigate('SearchScreen')}
+        />
         <Spacing size={10} />
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate('MyProfile')}>

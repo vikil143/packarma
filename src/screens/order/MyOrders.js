@@ -123,7 +123,8 @@ export default function MyOrders({navigation}) {
                           fontFamily: typography.poppinsRegular,
                           color: Colors.black,
                         }}>
-                        Payment Status : <Text>Paid</Text>
+                        Payment Status :{' '}
+                        <Text style={{color: Colors.black}}>Paid</Text>
                       </Text>
                       <Text
                         style={{
@@ -131,7 +132,8 @@ export default function MyOrders({navigation}) {
                           fontFamily: typography.poppinsRegular,
                           color: Colors.black,
                         }}>
-                        Delivery Status : <Text>Pending</Text>
+                        Delivery Status :{' '}
+                        <Text style={{color: Colors.black}}>Pending</Text>
                       </Text>
                     </View>
                     <Text
@@ -199,7 +201,8 @@ export default function MyOrders({navigation}) {
                         fontFamily: typography.poppinsRegular,
                         color: Colors.black,
                       }}>
-                      Payment Status : <Text>Paid</Text>
+                      Payment Status :{' '}
+                      <Text style={{color: Colors.black}}>Paid</Text>
                     </Text>
                     <Text
                       style={{
@@ -207,7 +210,8 @@ export default function MyOrders({navigation}) {
                         fontFamily: typography.poppinsRegular,
                         color: Colors.black,
                       }}>
-                      Delivery Status : <Text>Pending</Text>
+                      Delivery Status :{' '}
+                      <Text style={{color: Colors.black}}>Pending</Text>
                     </Text>
                   </View>
                   <Text

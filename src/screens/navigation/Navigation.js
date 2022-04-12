@@ -22,6 +22,7 @@ import {AcceptQuatation} from '../quatation';
 import SelectAddress from '../quatation/SelectAddress';
 import SplashScreen from '../splash';
 import {Treatment, TreatmentDetails} from '../treatment';
+import SearchScreen from '../search';
 
 const Stack = createStackNavigator();
 
@@ -56,6 +57,7 @@ export default function Navigation() {
         />
         <Stack.Screen name="Treatment" component={Treatment} />
         <Stack.Screen name="TreatmentDetails" component={TreatmentDetails} />
+        <Stack.Screen name="SearchScreen" component={SearchScreen} />
         {/* <Stack.Screen name="Success" component={Success} /> */}
       </Stack.Navigator>
     </NavigationContainer>
