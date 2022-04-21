@@ -10,6 +10,7 @@ import BackHeader from '../../components/back-header';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
 import Spacing from '../../components/spacing';
+import commonStyles from '../../utility/commonStyles';
 
 function EnquireCard({onPress}) {
   return (
@@ -28,6 +29,62 @@ function EnquireCard({onPress}) {
             }}>
             Dried & dehydrated food Products
           </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            padding: 10,
+            paddingTop: 5,
+          }}>
+          <Text
+            style={{
+              color: Colors.black,
+              fontFamily: typography.poppinsRegular,
+              fontSize: 12,
+            }}>
+            Food
+          </Text>
+          <Text
+            style={{
+              color: Colors.black,
+              fontFamily: typography.poppinsRegular,
+              fontSize: 12,
+            }}>
+            15-03-22 10:12 AM
+          </Text>
+        </View>
+        <View
+          style={{width: '100%', height: 2, backgroundColor: Colors.greyColor}}
+        />
+
+        <View style={[commonStyles.rowAlignCenter, {padding: 15}]}>
+          <Image
+            style={{width: 30, height: 30}}
+            source={require('../../../assests/images/enquiry_icon.png')}
+          />
+          <Spacing />
+          <Text
+            style={{
+              fontFamily: typography.poppinsRegular,
+              fontSize: 14,
+              flex: 1,
+              color: '#4C4C4C',
+            }}>
+            15 μ BOPP PLAIN PCT 1 /10μ MET PET / 4.5 GSM COLD SEAL
+          </Text>
+        </View>
+
+        <View style={{padding: 10, flexDirection: 'row'}}>
+          <Text
+            style={{
+              color: Colors.black,
+              fontFamily: typography.poppinsRegular,
+              fontSize: 14,
+            }}>
+            Product Wt. <Text>200 Kg</Text>
+          </Text>
+          {/* <View style={{flex: 1}} /> */}
           <View style={{flex: 1}} />
           <View style={{}}>
             <Image
@@ -58,52 +115,15 @@ function EnquireCard({onPress}) {
               </Text>
             </View>
           </View>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 10,
-          }}>
-          <Text
-            style={{
-              color: Colors.black,
-              fontFamily: typography.poppinsRegular,
-              fontSize: 12,
-            }}>
-            Food
-          </Text>
-          <Text
-            style={{
-              color: Colors.black,
-              fontFamily: typography.poppinsRegular,
-              fontSize: 12,
-            }}>
-            15-03-22 10:12 AM
-          </Text>
-        </View>
-        <View
-          style={{width: '100%', height: 2, backgroundColor: Colors.greyColor}}
-        />
 
-        <View style={{padding: 10, flexDirection: 'row'}}>
-          <Text
-            style={{
-              color: Colors.black,
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-            }}>
-            Product Wt. <Text>200 Kg</Text>
-          </Text>
-          <View style={{flex: 1}} />
-          <Text
+          {/* <Text
             style={{
               color: Colors.black,
               fontFamily: typography.poppinsRegular,
               fontSize: 14,
             }}>
             Shelf Life : <Text>180 Days</Text>
-          </Text>
+          </Text> */}
         </View>
       </View>
     </TouchableWithoutFeedback>
