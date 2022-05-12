@@ -6,7 +6,9 @@ import {
   Image,
   TextInput,
   TouchableWithoutFeedback,
+  ScrollView,
 } from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import crashlytics from '@react-native-firebase/crashlytics';
 import Tooltip from 'react-native-walkthrough-tooltip';
 import BackHeader from '../../components/back-header';
@@ -18,16 +20,116 @@ import WhiteTextBox from '../../components/white_text_box';
 import useLocalization from '../../hooks/useLocalization';
 import Info from '../../svg/Info';
 import commonStyles from '../../utility/commonStyles';
-import {Colors, SCREEN_WIDTH} from '../../utility/constants';
+import {Colors, SCREEN_WIDTH, SUCCESS} from '../../utility/constants';
 import typography from '../../utility/typography';
 import VisitingCard from '../../svg/VisitingCards';
+import api from '../../utility/api';
+
+var axios = require('axios');
 
 export default function Register({navigation}) {
   const [toolTipVisible, setTooltipVisible] = React.useState(false);
+  const [forntImage, setForntImage] = React.useState(null);
+  const [backImage, setBackImage] = React.useState(null);
+  const [data, setData] = React.useState({
+    name: '',
+    phone_country_id: '1',
+    phone: '',
+    email: '',
+    password: '',
+  });
   const t = useLocalization();
 
+  const takeForntPhoto = async () => {
+    const image = await launchImageLibrary({
+      mediaType: 'photo',
+      width: (SCREEN_WIDTH - 40) / 2,
+      height: 100,
+    });
+
+    setForntImage(image.assets[0].uri);
+  };
+
+  const takeBackPhoto = async () => {
+    const image = await launchImageLibrary({
+      mediaType: 'photo',
+      width: (SCREEN_WIDTH - 40) / 2,
+      height: 100,
+    });
+
+    setBackImage(image.assets[0].uri);
+  };
+
+  const goToVerify = async () => {
+    try {
+      // const formData = new FormData();
+
+      const formData = {
+        name: data.name,
+        email: data.email,
+        phone_country_id: data.phone_country_id,
+        phone: data.phone,
+        password: data.password,
+        visiting_card_front: {
+          name: 'selfie.jpg',
+          type: 'image/jpg',
+          uri: forntImage,
+        },
+        visiting_card_back: {
+          name: 'selfie2.jpg',
+          type: 'image/jpg',
+          uri: backImage,
+        },
+      };
+
+      // formData.append('name', data.name);
+      // formData.append('email', data.email);
+      // formData.append('phone_country_id', data.phone_country_id);
+      // formData.append('phone', data.phone);
+      // formData.append('email', data.email);
+      // formData.append('password', data.password);
+      // formData.append('visiting_card_front', {
+      //   name: 'selfie.jpg',
+      //   type: 'image/jpg',
+      //   uri: forntImage,
+      // });
+
+      // formData.append('visiting_card_back', {
+      //   name: 'selfie.jpg',
+      //   type: 'image/jpg',
+      //   uri: backImage,
+      // });
+
+      const response = await api({
+        url: 'register_api',
+        data: formData,
+      });
+
+      if (response.data.success == SUCCESS) {
+        crashlytics().log('NAVIGATE TO VERIFY SCREEN...');
+        navigation.navigate('Verify', {phone: data.phone, fromRegister: true});
+      }
+
+      console.log('response api ', response.data);
+    } catch (error) {
+      console.log('Error ', error);
+    }
+  };
+
+  const onChangeEnterName = (name, value) =>
+    setData({...data, [name]: String(value)});
+
+  const onChangeEnterMobileNumber = (name, value) =>
+    setData({...data, [name]: String(value)});
+
+  const onChangeEmail = (name, value) =>
+    setData({...data, [name]: String(value)});
+
+  const onChangePassword = (name, value) =>
+    setData({...data, [name]: String(value)});
+
   return (
-    <View style={{flex: 1}}>
+    <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}}>
       <BackHeader title={t('login.createAccount')} />
       {/* <View style={[styles.header]}>
         <View style={{flex: 1 / 2}}>
@@ -60,7 +162,12 @@ export default function Register({navigation}) {
           {t('common.name')}*
         </Text>
         <Spacing size={5} />
-        <WhiteTextBox placeholder={t('login.enterYourName')} />
+        <WhiteTextBox
+          value={data.value}
+          onChangeText={onChangeEnterName}
+          name={'name'}
+          placeholder={t('login.enterYourName')}
+        />
 
         <Spacing />
         <Text
@@ -93,6 +200,9 @@ export default function Register({navigation}) {
                 }}></View>
             </View>
           }
+          name="phone"
+          value={data.phone}
+          onChangeText={onChangeEnterMobileNumber}
           placeholder={t('login.enterMobileNumber')}
         />
         <Spacing />
@@ -105,7 +215,12 @@ export default function Register({navigation}) {
           {t('common.emailId')} *
         </Text>
         <Spacing size={5} />
-        <WhiteTextBox placeholder={t('login.enterEmailId')} />
+        <WhiteTextBox
+          name="email"
+          value={data.email}
+          onChangeText={onChangeEmail}
+          placeholder={t('login.enterEmailId')}
+        />
         <Spacing />
         <View style={[commonStyles.rowAlignCenter]}>
           <Text
@@ -230,7 +345,13 @@ export default function Register({navigation}) {
           /> */}
         </View>
         <Spacing size={5} />
-        <WhiteTextBox action="password" actionStyles={{tintColor: '#ddd'}} />
+        <WhiteTextBox
+          action="password"
+          name="password"
+          value={data.password}
+          onChangeText={onChangePassword}
+          actionStyles={{tintColor: '#ddd'}}
+        />
         <Spacing />
 
         <Text
@@ -243,63 +364,86 @@ export default function Register({navigation}) {
         </Text>
         <Spacing size={5} />
         <View style={{flexDirection: 'row'}}>
-          <View
-            style={{
-              borderRadius: 8,
-              padding: 15,
-              backgroundColor: '#E6E6E6',
-              // flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: (SCREEN_WIDTH - 40) / 2,
-              height: 100,
-              // borderWidth: 1,
-              // borderColor: '#707070',
-            }}>
-            <VisitingCard width={36} height={31} />
-            <Spacing />
-            <Text
-              style={{
-                fontSize: 12,
-                fontFamily: typography.poppinsRegular,
-                color: '#707070',
-              }}>
-              Front
-            </Text>
-          </View>
+          <TouchableWithoutFeedback onPress={takeForntPhoto}>
+            {!forntImage ? (
+              <View
+                style={{
+                  borderRadius: 8,
+                  padding: 15,
+                  backgroundColor: '#E6E6E6',
+                  // flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: (SCREEN_WIDTH - 40) / 2,
+                  height: 100,
+                  // borderWidth: 1,
+                  // borderColor: '#707070',
+                }}>
+                <VisitingCard width={36} height={31} />
+                <Spacing />
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontFamily: typography.poppinsRegular,
+                    color: '#707070',
+                  }}>
+                  Front
+                </Text>
+              </View>
+            ) : (
+              <Image
+                style={{
+                  width: (SCREEN_WIDTH - 40) / 2,
+                  height: 100,
+                }}
+                source={{uri: forntImage}}
+              />
+            )}
+          </TouchableWithoutFeedback>
           <Spacing />
-          <View
-            style={{
-              borderRadius: 8,
-              padding: 15,
-              backgroundColor: '#E6E6E6',
-              width: '100%',
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: (SCREEN_WIDTH - 40) / 2,
-              height: 100,
-              // borderWidth: 1,
-              // borderColor: '#707070',
-            }}>
-            <VisitingCard width={36} height={31} />
-            <Spacing />
-            <Text
-              style={{
-                fontSize: 12,
-                fontFamily: typography.poppinsRegular,
-                color: '#707070',
-              }}>
-              Back
-            </Text>
-          </View>
+          <TouchableWithoutFeedback onPress={takeBackPhoto}>
+            {!backImage ? (
+              <View
+                style={{
+                  borderRadius: 8,
+                  padding: 15,
+                  backgroundColor: '#E6E6E6',
+                  // flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: (SCREEN_WIDTH - 40) / 2,
+                  height: 100,
+                  // borderWidth: 1,
+                  // borderColor: '#707070',
+                }}>
+                <VisitingCard width={36} height={31} />
+                <Spacing />
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontFamily: typography.poppinsRegular,
+                    color: '#707070',
+                  }}>
+                  Front
+                </Text>
+              </View>
+            ) : (
+              <Image
+                style={{
+                  width: (SCREEN_WIDTH - 40) / 2,
+                  height: 100,
+                }}
+                source={{uri: backImage}}
+              />
+            )}
+          </TouchableWithoutFeedback>
         </View>
 
         <Spacing />
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View>
-            <CheckBox />
+            <CheckBox onPress={() => {}} />
           </View>
           <Spacing size={5} />
           <Text style={{flex: 1, color: Colors.black, fontSize: 12}}>
@@ -313,12 +457,11 @@ export default function Register({navigation}) {
         <TakeSpace />
         <Button
           onPress={() => {
-            crashlytics().log('NAVIGATE TO VERIFY SCREEN...');
-            navigation.navigate('Verify');
+            goToVerify();
           }}
           title={t('common.proceed')}></Button>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

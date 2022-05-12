@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -6,32 +6,111 @@ import {
   Text,
   ScrollView,
   TouchableWithoutFeedback,
+  FlatList,
 } from 'react-native';
+import {connect} from 'react-redux';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import Search from '../../components/search';
-import Spacing from '../../components/spacing';
-import useLocalization from '../../hooks/useLocalization';
 import PlaceIcon from '../../svg/PlaceIcon';
 import QuationsIcon from '../../svg/QuationsIcon';
 import QuestionMark from '../../svg/QuestionMark';
 import UserIcon from '../../svg/user_icon';
 import ViewAll from '../../svg/ViewAll';
+import Search from '../../components/search';
+import Spacing from '../../components/spacing';
+import {
+  getBannerData,
+  getCategoryData,
+  getProductData,
+  getSubCategoryData,
+  getTreamentData,
+} from '../../reducers/homeData';
+import useLocalization from '../../hooks/useLocalization';
 import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import typography from '../../utility/typography';
+import api from '../../utility/api';
 
 const SLIDE_ITEM = SCREEN_WIDTH - 30;
 
-export default function HomeScreen({navigation}) {
+function HomeScreen({navigation, dispatch, homeData}) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeCategoryItem, setActiveCategoryItem] = useState(0);
+
   const t = useLocalization();
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    console.log('#### getdata...');
+    getBanner();
+    getCategory();
+    getTreament();
+    getProduct();
+    getSubCategory();
+  };
+
+  const getSubCategory = () => {
+    const subCategoryFormData = {
+      search: '',
+      sub_category_id: '',
+      page_no: '',
+      limit: '',
+      sub_category_name: '',
+    };
+    dispatch(getSubCategoryData({data: subCategoryFormData}));
+  };
+
+  const getTreament = () => {
+    console.log('get Treament Data ...');
+    const treamentFormData = {
+      search: '',
+      treatment_id: '',
+      treatment_name: '',
+    };
+
+    dispatch(getTreamentData({data: treamentFormData}));
+  };
+
+  const getBanner = async () => {
+    const bannerFormData = {
+      search: '',
+      banner_id: '',
+      banner_title: '',
+    };
+    dispatch(getBannerData({data: bannerFormData}));
+  };
+
+  const getCategory = () => {
+    const categoryFormData = {
+      search: '',
+      category_id: '',
+      page_no: '',
+      limit: '',
+      category_name: '',
+    };
+    dispatch(getCategoryData({data: categoryFormData}));
+  };
+
+  const getProduct = () => {
+    const productFromData = {
+      search: '',
+      product_id: '',
+      page_no: '',
+      limit: '',
+      product_name: '',
+    };
+
+    dispatch(getProductData({data: productFromData}));
+  };
 
   function _renderItem({item, index}) {
     return (
-      <View style={{width: '100%'}}>
+      <View style={{width: '100%', borderRadius: 10}}>
         <Image
           style={{width: SLIDE_ITEM, height: SLIDE_ITEM * (140 / 349)}}
-          source={require('../../../assests/images/carousal_grid.png')}
+          // source={require('../../../assests/images/carousal_grid.png')}
+          source={{uri: item.banner_image}}
         />
       </View>
     );
@@ -40,7 +119,7 @@ export default function HomeScreen({navigation}) {
   const pagination = () => {
     return (
       <Pagination
-        dotsLength={[1, 2].length}
+        dotsLength={homeData.bannerData.length}
         activeDotIndex={activeSlide}
         containerStyle={{
           alignSelf: 'center',
@@ -64,6 +143,7 @@ export default function HomeScreen({navigation}) {
     );
   };
 
+  console.log('### render response', homeData.subCategoryData);
   return (
     <View style={{flex: 1}}>
       <View style={{padding: 20, flexDirection: 'row', alignItems: 'center'}}>
@@ -81,7 +161,7 @@ export default function HomeScreen({navigation}) {
         <View style={{flex: 1}}>
           <View style={{padding: 10}}>
             <Carousel
-              data={[1, 2]}
+              data={homeData.bannerData}
               renderItem={_renderItem}
               sliderWidth={SCREEN_WIDTH}
               itemWidth={SCREEN_WIDTH - 20}
@@ -92,48 +172,85 @@ export default function HomeScreen({navigation}) {
           {pagination()}
           <Spacing size={10} />
           <View style={{padding: 10}}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingHorizontal: 10,
-              }}>
-              <View style={[{}]}>
-                <Text
-                  style={{
-                    color: Colors.black,
-                    fontFamily: typography.poppinsRegular,
-                    fontSize: 12,
-                  }}>
-                  Food
-                </Text>
-                <Spacing size={5} />
+            <ScrollView horizontal>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: 10,
+                }}>
+                {homeData.categoryData.map((item, ind) => {
+                  return (
+                    <TouchableWithoutFeedback>
+                      <View style={[{marginRight: 15}]}>
+                        <Text
+                          style={{
+                            color: Colors.black,
+                            fontFamily: typography.poppinsRegular,
+                            fontSize: 12,
+                          }}>
+                          {/* {item.category_name} */}
+                          Category
+                        </Text>
+                        <Spacing size={5} />
 
-                {activeItem === 0 ? (
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 5,
-                        backgroundColor: Colors.orangeColor,
-                        borderRadius: 8,
-                      }}
-                    />
-                  </View>
-                ) : (
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 5,
-                        borderRadius: 8,
-                      }}
-                    />
-                  </View>
-                )}
-              </View>
-              <View style={{}}>
+                        {ind === activeCategoryItem ? (
+                          <View style={[{marginRight: 15}]}>
+                            <View style={{alignItems: 'center'}}>
+                              <View
+                                style={{
+                                  width: 20,
+                                  height: 5,
+                                  backgroundColor: Colors.orangeColor,
+                                  borderRadius: 8,
+                                }}
+                              />
+                            </View>
+                            <Spacing size={5} />
+
+                            {/* {activeItem === 0 ? (
+                        <View style={{alignItems: 'center'}}>
+                          <View
+                            style={{
+                              width: 20,
+                              height: 5,
+                              backgroundColor: Colors.orangeColor,
+                              borderRadius: 8,
+                            }}
+                          />
+                        </View>
+                      ) : (
+                        <View style={{alignItems: 'center'}}>
+                          <View
+                            style={{
+                              width: 20,
+                              height: 5,
+                              borderRadius: 8,
+                            }}
+                          />
+                        </View>
+                      )} */}
+                          </View>
+                        ) : (
+                          <View style={[{marginRight: 15, width: '100%'}]}>
+                            <View style={{alignItems: 'center'}}>
+                              <View
+                                style={{
+                                  width: 20,
+                                  height: 5,
+                                  borderRadius: 8,
+                                }}
+                              />
+                            </View>
+                            <Spacing size={5} />
+                          </View>
+                        )}
+                      </View>
+                    </TouchableWithoutFeedback>
+                  );
+                })}
+                {/* <View style={{}}>
                 <Text
                   style={{
                     color: Colors.black,
@@ -228,151 +345,67 @@ export default function HomeScreen({navigation}) {
                     />
                   </View>
                 )}
+              </View> */}
               </View>
-            </View>
+            </ScrollView>
             {/*  */}
             <View>
-              <Spacing size={15} />
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-              </View>
+              {/* <Spacing size={15} /> */}
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                {/* {homeData.subCategoryData.map((item, ind) => {
+                  return (
+                    <View>
+                      <Image
+                        style={{
+                          width: (SCREEN_WIDTH - 75) / 4,
+                          height: (SCREEN_WIDTH - 75) / 4,
+                        }}
+                        source={require('../../../assests/images/dairy.png')}
+                      />
+                      <Spacing size={5} />
+                      <Text
+                        style={{
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontFamily: typography.poppinsRegular,
+                          textAlign: 'center',
+                        }}>
+                        {item.sub_category_name}
+                      </Text>
+                    </View>
+                  );
+                })} */}
 
-              <Spacing size={10} />
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
+                <FlatList
+                  data={homeData.subCategoryData}
+                  horizontal
+                  keyExtractor={(_, ind) => ind.toString()}
+                  renderItem={({item, index}) => {
+                    return (
+                      <View style={{margin: 10}}>
+                        <Image
+                          style={{
+                            width: (SCREEN_WIDTH - 75) / 4,
+                            height: (SCREEN_WIDTH - 75) / 4,
+                          }}
+                          // source={require('../../../assests/images/dairy.png')}
+                          source={{uri: item.sub_category_image}}
+                        />
+                        <Spacing size={5} />
+                        <Text
+                          style={{
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontFamily: typography.poppinsRegular,
+                            textAlign: 'center',
+                          }}>
+                          {item.sub_category_name}
+                        </Text>
+                      </View>
+                    );
+                  }}
+                />
+
                 <View>
                   <View
                     style={{
@@ -394,11 +427,146 @@ export default function HomeScreen({navigation}) {
                     }}>
                     View All
                   </Text>
-                  {/* <Image
-                    
-                    source={require('../../../assests/images/dairy.png')}
-                  /> */}
                 </View>
+
+                {/* <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
+                    source={require('../../../assests/images/dairy.png')}
+                  />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
+                    source={require('../../../assests/images/dairy.png')}
+                  />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
+                    source={require('../../../assests/images/dairy.png')}
+                  />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
+                    source={require('../../../assests/images/dairy.png')}
+                  />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View> */}
+              </View>
+
+              <Spacing size={10} />
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                {/* <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
+                    source={require('../../../assests/images/dairy.png')}
+                  />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
+                    source={require('../../../assests/images/dairy.png')}
+                  />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    style={{
+                      width: (SCREEN_WIDTH - 75) / 4,
+                      height: (SCREEN_WIDTH - 75) / 4,
+                    }}
+                    source={require('../../../assests/images/dairy.png')}
+                  />
+                  <Spacing size={5} />
+                  <Text
+                    style={{
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: typography.poppinsRegular,
+                      textAlign: 'center',
+                    }}>
+                    Dairy
+                  </Text>
+                </View> */}
               </View>
             </View>
 
@@ -482,7 +650,8 @@ export default function HomeScreen({navigation}) {
                   fontSize: 14,
                   color: Colors.black,
                 }}>
-                Packaging Treatments
+                {/* Packaging Treatments */}
+                {t('descriptions.packagingTreatments')}
               </Text>
               <Text
                 style={{
@@ -501,32 +670,38 @@ export default function HomeScreen({navigation}) {
                 backgroundColor: Colors.white,
                 paddingBottom: 15,
               }}>
-              <View style={{flex: 1, alignItems: 'center'}}>
-                <TouchableWithoutFeedback
-                  onPress={() => navigation.navigate('Treatment')}>
-                  <View>
-                    <Image
-                      style={{
-                        width: (SCREEN_WIDTH - 60) / 3,
-                        height: (SCREEN_WIDTH - 60) / 3,
-                        borderRadius: 10,
-                      }}
-                      source={require('../../../assests/images/glasses.png')}
-                    />
-                    <Spacing size={5} />
-                    <Text
-                      style={{
-                        fontSize: 14,
-                        fontFamily: typography.poppinsRegular,
-                        textAlign: 'center',
-                        color: Colors.black,
-                      }}>
-                      Aseptic Filling
-                    </Text>
+              {homeData.treamentData.map((item, ind) => {
+                return (
+                  <View style={{alignItems: 'center'}}>
+                    <TouchableWithoutFeedback
+                      onPress={() => navigation.navigate('Treatment')}>
+                      <View>
+                        <Image
+                          style={{
+                            width: (SCREEN_WIDTH - 60) / 3,
+                            height: (SCREEN_WIDTH - 60) / 3,
+                            borderRadius: 10,
+                          }}
+                          // source={require('../../../assests/images/glasses.png')}
+                          source={{uri: item.packaging_treatment_image}}
+                        />
+                        <Spacing size={5} />
+                        <Text
+                          style={{
+                            fontSize: 14,
+                            fontFamily: typography.poppinsRegular,
+                            textAlign: 'center',
+                            color: Colors.black,
+                          }}>
+                          {/* Aseptic Filling */}
+                          {item.packaging_treatment_name}
+                        </Text>
+                      </View>
+                    </TouchableWithoutFeedback>
                   </View>
-                </TouchableWithoutFeedback>
-              </View>
-              <View style={{flex: 1, alignItems: 'center'}}>
+                );
+              })}
+              {/* <View style={{flex: 1, alignItems: 'center'}}>
                 <TouchableWithoutFeedback
                   onPress={() => navigation.navigate('Treatment')}>
                   <View>
@@ -577,7 +752,7 @@ export default function HomeScreen({navigation}) {
                     </Text>
                   </View>
                 </TouchableWithoutFeedback>
-              </View>
+              </View> */}
             </View>
           </View>
 
@@ -655,3 +830,10 @@ export default function HomeScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({});
+
+const mapStateToProps = ({homeData, userLocalData}) => ({
+  homeData,
+  userLocalData,
+});
+
+export default connect(mapStateToProps)(HomeScreen);

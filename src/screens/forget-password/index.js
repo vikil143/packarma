@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import typography from '../../utility/typography';
@@ -10,9 +10,19 @@ import TakeSpace from '../../components/take_space';
 import Button from '../../components/button';
 import useLocalization from '../../hooks/useLocalization';
 import Label from '../../components/label';
+import useToast from '../../hooks/useToast';
 
 export default function ForgetPassword({navigation}) {
+  const [phone, setPhone] = useState('');
   const t = useLocalization();
+  const {showToast} = useToast();
+
+  const goToVerify = () => {
+    crashlytics().log('NAVIGATE TO VERIFY SCREEN....');
+    navigation.navigate('Verify', {phone});
+  };
+
+  const onChangeNumber = (_, value) => setPhone(value);
 
   return (
     <View style={{flex: 1}}>
@@ -49,15 +59,19 @@ export default function ForgetPassword({navigation}) {
                 }}></View>
             </View>
           }
+          name="phone"
+          value={phone}
+          onChangeText={onChangeNumber}
           placeholder={t('login.enterMobileNumber')}
         />
         <TakeSpace />
 
         <Button
-          onPress={() => {
-            navigation.navigate('Verify');
-            crashlytics().log('NAVIGATE TO VERIFY SCREEN....');
-          }}
+          // onPress={() => {
+          //   navigation.navigate('Verify');
+          //   crashlytics().log('NAVIGATE TO VERIFY SCREEN....');
+          // }}
+          onPress={goToVerify}
           title={t('common.proceed')}></Button>
       </View>
     </View>

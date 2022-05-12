@@ -1,21 +1,91 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import typography from '../../utility/typography';
-import {Colors} from '../../utility/constants';
+import {Colors, SUCCESS} from '../../utility/constants';
 import Spacing from '../../components/spacing';
 import Pins from '../../components/otp/Pin';
 import TakeSpace from '../../components/take_space';
 import Button from '../../components/button';
 import useLocalization from '../../hooks/useLocalization';
+import api from '../../utility/api';
+import Loader from '../../components/loader';
 
-export default function Verify({navigation}) {
+export default function Verify({navigation, route}) {
   const t = useLocalization();
+  const [pin, setPin] = React.useState('');
+  const [loader, setLoader] = React.useState(false);
+  // const [] = navigation.getParam("")
+  const phone = route.params?.phone;
+  const fromRegister = route.params?.fromRegister;
+  const onSubmit = async () => {
+    // crashlytics().log('NAVIGATE TO SET PASSWORD....');
+    // navigation.navigate('SetPassword');
 
+    setLoader(true);
+    try {
+      const formData = {
+        phone: phone,
+        workflow: 'register',
+        otp_code: pin,
+      };
+
+      const response = await api({
+        url: 'customerapi/verify_otp',
+        data: formData,
+      });
+
+      console.log('Response Data', response.data);
+      if (response.data.success === SUCCESS) {
+        if (fromRegister) {
+          setLoader(false);
+          crashlytics().log('NAVIGATE TO SUCCESS....');
+          navigation.navigate('Success', {
+            message: t('descriptions.successDescriptionRegister'),
+          });
+        } else {
+          setLoader(false);
+          crashlytics().log('NAVIGATE TO SET PASSWORD....');
+          navigation.navigate('SetPassword', {phone, pin});
+        }
+      } else {
+        setLoader(false);
+        console.log('Error thought api ', response.data);
+      }
+    } catch (error) {
+      setLoader(false);
+      console.log('Error ', error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const formData = {
+        phone,
+        workflow: 'register',
+      };
+
+      const response = await api({
+        url: 'customerapi/request_otp',
+        data: formData,
+      });
+
+      console.log('Verify API Data', response.data);
+    } catch (error) {
+      console.log('Error ', error);
+    }
+  };
+
+  console.log('#### Verify Render ', phone);
   return (
     <View style={[styles.container]}>
       <BackHeader title={t('descriptions.verifyMobileNumber')} />
+      <Loader loading={loader} />
       <View style={{flex: 1, padding: 15}}>
         <Text
           style={{
@@ -28,7 +98,7 @@ export default function Verify({navigation}) {
         </Text>
         <Spacing />
         <View style={{}}>
-          <Pins pin={4} />
+          <Pins pin={pin} setPin={setPin} />
           <Spacing />
           <Text
             style={{
@@ -54,12 +124,7 @@ export default function Verify({navigation}) {
           </Text>
         </View>
         <TakeSpace />
-        <Button
-          title={t('common.verify')}
-          onPress={() => {
-            crashlytics().log('NAVIGATE TO SET PASSWORD....');
-            navigation.navigate('SetPassword');
-          }}></Button>
+        <Button title={t('common.verify')} onPress={onSubmit}></Button>
       </View>
     </View>
   );

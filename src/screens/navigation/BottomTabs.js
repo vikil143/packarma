@@ -17,6 +17,7 @@ import {Colors} from '../../utility/constants';
 import OrdersIcon from '../../svg/OrdersIcon';
 import MyOrders from '../order/MyOrders';
 import MiddleTab from '../../svg/MiddleTab';
+import store from '../../store';
 
 const Tab = createBottomTabNavigator();
 

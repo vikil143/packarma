@@ -8,7 +8,8 @@ import TakeSpace from '../../components/take_space';
 import Button from '../../components/button';
 import useLocalization from '../../hooks/useLocalization';
 
-export default function Success({navigation}) {
+export default function Success({navigation, route}) {
+  const message = route.params?.message;
   const t = useLocalization();
 
   return (
@@ -35,8 +36,9 @@ export default function Success({navigation}) {
           color: Colors.black,
           paddingHorizontal: 20,
         }}>
+        {message}
         {/* You have reset your password successfully */}
-        {t('descriptions.successDescription')}
+        {/* {t('descriptions.successDescription')} */}
       </Text>
       <TakeSpace />
       <View style={{padding: 10}}>

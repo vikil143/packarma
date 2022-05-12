@@ -50,7 +50,10 @@ export default {
   descriptions: {
     adminApporval: 'Your onboarding has been completed successfully',
     successDescription: 'You have reset your password successfully',
+    successDescriptionRegister:
+      'Your onboarding has been completed successfully',
     verifyMobileNumber: 'Verify Mobile Number',
     successWhenAddedAddress: 'Your payments has been completed successfully.',
+    packagingTreatments: 'Packaging Treatments',
   },
 };
