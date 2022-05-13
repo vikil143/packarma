@@ -15,7 +15,7 @@ import QuationsIcon from '../../svg/QuationsIcon';
 import QuestionMark from '../../svg/QuestionMark';
 import UserIcon from '../../svg/user_icon';
 import ViewAll from '../../svg/ViewAll';
-import Search from '../../components/search';
+import Search from '../../components/search/SearchOnTap';
 import Spacing from '../../components/spacing';
 import {
   getBannerData,
@@ -182,7 +182,7 @@ function HomeScreen({navigation, dispatch, homeData}) {
                 }}>
                 {homeData.categoryData.map((item, ind) => {
                   return (
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback key={`category_${ind}`}>
                       <View style={[{marginRight: 15}]}>
                         <Text
                           style={{
@@ -250,117 +250,27 @@ function HomeScreen({navigation, dispatch, homeData}) {
                     </TouchableWithoutFeedback>
                   );
                 })}
-                {/* <View style={{}}>
-                <Text
-                  style={{
-                    color: Colors.black,
-                    fontFamily: typography.poppinsRegular,
-                    fontSize: 12,
-                  }}>
-                  Home Care
-                </Text>
-                <Spacing size={5} />
-                {activeItem === 1 ? (
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 5,
-                        backgroundColor: Colors.orangeColor,
-                        borderRadius: 8,
-                      }}
-                    />
-                  </View>
-                ) : (
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 5,
-                      }}
-                    />
-                  </View>
-                )}
-              </View>
-              <View style={{}}>
-                <Text
-                  style={{
-                    color: Colors.black,
-                    fontFamily: typography.poppinsRegular,
-                    fontSize: 12,
-                  }}>
-                  Personal Care
-                </Text>
-                <Spacing size={5} />
-                {activeItem === 2 ? (
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 5,
-                        backgroundColor: Colors.orangeColor,
-                        borderRadius: 8,
-                      }}
-                    />
-                  </View>
-                ) : (
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 5,
-                      }}
-                    />
-                  </View>
-                )}
-              </View>
-              <View style={{}}>
-                <Text
-                  style={{
-                    color: Colors.black,
-                    fontFamily: typography.poppinsRegular,
-                    fontSize: 12,
-                  }}>
-                  Stationery
-                </Text>
-                <Spacing size={5} />
-                {activeItem === 3 ? (
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 5,
-                        backgroundColor: Colors.orangeColor,
-                        borderRadius: 8,
-                      }}
-                    />
-                  </View>
-                ) : (
-                  <View style={{alignItems: 'center'}}>
-                    <View
-                      style={{
-                        width: 20,
-                        height: 5,
-                      }}
-                    />
-                  </View>
-                )}
-              </View> */}
               </View>
             </ScrollView>
             {/*  */}
             <View>
               {/* <Spacing size={15} /> */}
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                {/* {homeData.subCategoryData.map((item, ind) => {
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                }}>
+                {homeData.subCategoryData.map((item, index) => {
                   return (
-                    <View>
+                    <View style={{margin: 5}} key={`sub_${index}`}>
                       <Image
                         style={{
                           width: (SCREEN_WIDTH - 75) / 4,
                           height: (SCREEN_WIDTH - 75) / 4,
                         }}
-                        source={require('../../../assests/images/dairy.png')}
+                        // source={require('../../../assests/images/dairy.png')}
+                        source={{uri: item.sub_category_image}}
                       />
                       <Spacing size={5} />
                       <Text
@@ -370,43 +280,13 @@ function HomeScreen({navigation, dispatch, homeData}) {
                           fontFamily: typography.poppinsRegular,
                           textAlign: 'center',
                         }}>
+                        {/* Cat */}
                         {item.sub_category_name}
                       </Text>
                     </View>
                   );
-                })} */}
-
-                <FlatList
-                  data={homeData.subCategoryData}
-                  horizontal
-                  keyExtractor={(_, ind) => ind.toString()}
-                  renderItem={({item, index}) => {
-                    return (
-                      <View style={{margin: 10}}>
-                        <Image
-                          style={{
-                            width: (SCREEN_WIDTH - 75) / 4,
-                            height: (SCREEN_WIDTH - 75) / 4,
-                          }}
-                          // source={require('../../../assests/images/dairy.png')}
-                          source={{uri: item.sub_category_image}}
-                        />
-                        <Spacing size={5} />
-                        <Text
-                          style={{
-                            color: Colors.black,
-                            fontSize: 12,
-                            fontFamily: typography.poppinsRegular,
-                            textAlign: 'center',
-                          }}>
-                          {item.sub_category_name}
-                        </Text>
-                      </View>
-                    );
-                  }}
-                />
-
-                <View>
+                })}
+                <View style={{marginLeft: 5}}>
                   <View
                     style={{
                       width: (SCREEN_WIDTH - 75) / 4,
@@ -428,83 +308,6 @@ function HomeScreen({navigation, dispatch, homeData}) {
                     View All
                   </Text>
                 </View>
-
-                {/* <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View> */}
               </View>
 
               <Spacing size={10} />
@@ -672,7 +475,7 @@ function HomeScreen({navigation, dispatch, homeData}) {
               }}>
               {homeData.treamentData.map((item, ind) => {
                 return (
-                  <View style={{alignItems: 'center'}}>
+                  <View style={{alignItems: 'center'}} key={`treament_${ind}`}>
                     <TouchableWithoutFeedback
                       onPress={() => navigation.navigate('Treatment')}>
                       <View>

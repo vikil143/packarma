@@ -13,7 +13,7 @@ import BottomSheet from '../../components/bottomsheet/BottomSheet';
 import typography from '../../utility/typography';
 import {Colors, SCREEN_HEIGHT, SCREEN_WIDTH} from '../../utility/constants';
 import BackHeader from '../../components/back-header';
-import Search from '../../components/search';
+import Search from '../../components/search/SearchOnTap';
 import HomeCare from '../../svg/HomeCare';
 
 export default function Category({navigation}) {

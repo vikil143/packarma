@@ -5,23 +5,60 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   Image,
+  FlatList,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import BackHeader from '../../components/back-header';
 import Spacing from '../../components/spacing';
 import Search from '../../components/search';
-import {Colors} from '../../utility/constants';
+import {Colors, SUCCESS} from '../../utility/constants';
 import typography from '../../utility/typography';
 import BottomSheet from '../../components/bottomsheet/BottomSheet';
+import api from '../../utility/api';
+import useLocalization from '../../hooks/useLocalization';
 
 export default function SearchScreen() {
-  const [search, setSearch] = React.useState(false);
+  const [sheet, setSheet] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const [searchData, setSearchData] = useState([]);
+  const [data, setData] = useState({});
+  const t = useLocalization();
 
+  const onSearchCategory = () => {};
+
+  const onSearchValue = async text => {
+    setSearchValue(text);
+    setTimeout(async () => {
+      try {
+        const productFormData = {
+          search: searchValue,
+          product_id: '',
+          page_no: '',
+          limit: '',
+          product_name: '',
+        };
+
+        const response = await api({
+          url: 'products/listing',
+          data: productFormData,
+        });
+
+        console.log('### response data', response.data.data);
+        if (response.data.success === SUCCESS) {
+          setSearchData(response.data.data.result);
+        }
+      } catch (error) {
+        console.log('Error ', error);
+      }
+    }, 2000);
+  };
+
+  console.log('#### render search', data);
   return (
     <View style={[styles.container]}>
       <BottomSheet
-        show={search}
-        hide={() => setSearch(false)}
+        show={sheet}
+        hide={() => setSheet(false)}
         style={{
           borderTopStartRadius: 10,
           borderTopEndRadius: 10,
@@ -32,7 +69,8 @@ export default function SearchScreen() {
               <View style={{alignItems: 'center'}}>
                 <Image
                   style={{width: 60, height: 55}}
-                  source={require('../../../assests/images/products.png')}
+                  // source={require('../../../assests/images/products.png')}
+                  source={{uri: data.product_image}}
                 />
               </View>
               <Spacing size={10} />
@@ -43,11 +81,13 @@ export default function SearchScreen() {
                   color: Colors.black,
                   textAlign: 'center',
                 }}>
-                Dried & dehydrated food Products
+                {/* Dried & dehydrated food Products */}
+                {data?.product_name}
               </Text>
               <Spacing size={2} />
               <Text style={{textAlign: 'center', color: Colors.black}}>
-                Food
+                {data?.category?.category_name},{' '}
+                {data?.sub_category?.sub_category_name}
               </Text>
               <Spacing size={5} />
               <View
@@ -64,9 +104,10 @@ export default function SearchScreen() {
                   fontFamily: typography.poppinsRegular,
                   color: Colors.black,
                 }}>
-                We provide packaging solutions for all type of dried foods and
+                {data?.product_description}
+                {/* We provide packaging solutions for all type of dried foods and
                 dehydrated products like beans , Grains, dried vegetables, dried
-                fruits , processed foods, dried fish and seafood etc
+                fruits , processed foods, dried fish and seafood etc */}
               </Text>
               <Spacing size={5} />
               <Text
@@ -75,7 +116,7 @@ export default function SearchScreen() {
                   color: Colors.black,
                   fontFamily: typography.poppinsMedium,
                 }}>
-                Packaging Treatments
+                {t('titles.packagingTreatment')}
               </Text>
 
               <Text
@@ -84,7 +125,8 @@ export default function SearchScreen() {
                   fontSize: 14,
                   color: Colors.black,
                 }}>
-                Aseptic Filling, Gamma / E-beam Sterilisation, Deep freezing{' '}
+                {/* Aseptic Filling, Gamma / E-beam Sterilisation, Deep freezing{' '} */}
+                {data.packaging_treatment_data}
               </Text>
               <Spacing size={5} />
               <View style={{flexDirection: 'row', justifyContent: 'center'}}>
@@ -110,85 +152,37 @@ export default function SearchScreen() {
       </BottomSheet>
       <BackHeader title={'Product'} />
       <View style={{flex: 1, padding: 15}}>
-        <Search />
+        <Search value={searchValue} onChangeText={onSearchValue} />
         <Spacing size={5} />
-        <TouchableWithoutFeedback onPress={() => setSearch(true)}>
-          <View
-            style={{
-              backgroundColor: Colors.white,
-              padding: 15,
-              borderRadius: 5,
-            }}>
-            <Text
-              style={{
-                fontFamily: typography.poppinsRegular,
-                fontSize: 14,
-                color: Colors.black,
-              }}>
-              Milk
-            </Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <Spacing size={5} />
-        <View
-          style={{backgroundColor: Colors.white, padding: 15, borderRadius: 5}}>
-          <Text
-            style={{
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Cheese
-          </Text>
-        </View>
-        <Spacing size={5} />
-        <View
-          style={{backgroundColor: Colors.white, padding: 15, borderRadius: 5}}>
-          <Text
-            style={{
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Yogurt
-          </Text>
-        </View>
-        <Spacing size={5} />
-        <View
-          style={{backgroundColor: Colors.white, padding: 15, borderRadius: 5}}>
-          <Text
-            style={{
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Butter
-          </Text>
-        </View>
-        <Spacing size={5} />
-        <View
-          style={{backgroundColor: Colors.white, padding: 15, borderRadius: 5}}>
-          <Text
-            style={{
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Frozen Desserts
-          </Text>
-        </View>
-        <Spacing size={5} />
-        <View
-          style={{backgroundColor: Colors.white, padding: 15, borderRadius: 5}}>
-          <Text
-            style={{
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Whey, Milk Powder{' '}
-          </Text>
-        </View>
+        <FlatList
+          data={searchData}
+          keyExtractor={(_, ind) => ind.toString()}
+          renderItem={({item, index}) => {
+            return (
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  setSheet(true);
+                  setData(item);
+                }}>
+                <View
+                  style={{
+                    backgroundColor: Colors.white,
+                    padding: 15,
+                    borderRadius: 5,
+                  }}>
+                  <Text
+                    style={{
+                      fontFamily: typography.poppinsRegular,
+                      fontSize: 14,
+                      color: Colors.black,
+                    }}>
+                    {item.product_name}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+            );
+          }}
+        />
       </View>
     </View>
   );

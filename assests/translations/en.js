@@ -56,4 +56,8 @@ export default {
     successWhenAddedAddress: 'Your payments has been completed successfully.',
     packagingTreatments: 'Packaging Treatments',
   },
+  titles: {
+    searchForProduct: 'Search for Products',
+    packagingTreatment: 'Packaging Treatments',
+  },
 };
