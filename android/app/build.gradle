@@ -207,6 +207,13 @@ android {
 
 
 dependencies {
+
+// // =====================For axios error resolve i.e. Network Error ===================
+//     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+//     implementation("com.squareup.okhttp3:okhttp-urlconnection:4.9.1")
+//     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+//     // ========================================================================
+
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
     implementation 'com.google.firebase:firebase-analytics'
 

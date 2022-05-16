@@ -29,6 +29,7 @@ export default function PickerComp({
             label={item.label}
             value={item.value}
             style={{color: mode === 'dark' ? '#fff' : '#707070'}}
+            // style={{color: '#fff'}}
           />
         );
       })}

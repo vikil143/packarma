@@ -25,11 +25,7 @@ export default function Category({navigation}) {
     <View style={{}}>
       <BottomSheet
         show={open}
-        style={{
-          height: SCREEN_HEIGHT / 1.8,
-          borderTopStartRadius: 10,
-          borderTopEndRadius: 10,
-        }}
+        style={styles.bottomSheetContainer}
         hide={() => setOpen(false)}>
         <ScrollView>
           <View style={{padding: 20, paddingBottom: 10}}>
@@ -653,4 +649,10 @@ export default function Category({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  bottomSheetContainer: {
+    height: SCREEN_HEIGHT / 1.8,
+    borderTopStartRadius: 10,
+    borderTopEndRadius: 10,
+  },
+});

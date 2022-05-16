@@ -16,24 +16,12 @@ export default function AdminApproval() {
       <Spacing size={30} />
       <View>
         <Image
-          style={[
-            {
-              width: SCREEN_WIDTH / 1.7,
-              height: SCREEN_WIDTH / 1.7,
-              alignSelf: 'center',
-            },
-          ]}
+          style={[styles.successImage]}
           source={require('../../../assests/images/success.png')}
         />
       </View>
       <Spacing />
-      <Text
-        style={{
-          textAlign: 'center',
-          fontFamily: typography.poppinsRegular,
-          fontSize: 18,
-          color: Colors.black,
-        }}>
+      <Text style={[styles.adminApprovalText]}>
         {/* Your onboarding has been completed successfully */}
         {t('descriptions.adminApporval')}
       </Text>
@@ -52,6 +40,17 @@ export default function AdminApproval() {
 }
 
 const styles = StyleSheet.create({
+  adminApprovalText: {
+    textAlign: 'center',
+    fontFamily: typography.poppinsRegular,
+    fontSize: 18,
+    color: Colors.black,
+  },
+  successImage: {
+    width: SCREEN_WIDTH / 1.7,
+    height: SCREEN_WIDTH / 1.7,
+    alignSelf: 'center',
+  },
   container: {
     flex: 1,
   },

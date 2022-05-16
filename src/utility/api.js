@@ -25,6 +25,10 @@ const api = async ({
   //   restHeader,
   //   // whichHashKey,
   // });
+  console.log(
+    '### api render response....',
+    store.getState()?.userLocalData?.token,
+  );
   const headers = {
     Accept: 'application/json',
     Authorization: `Basic ${commonToken}`,
@@ -33,11 +37,6 @@ const api = async ({
     // 'Accept-Language': 'en',
     ...restHeader,
   };
-
-  // console.log(
-  //   '### api render response....',
-  //   store.getState()?.userLocalData.token,
-  // );
 
   const formData = new FormData();
   // formData.append('currency_code', currencyCode);
