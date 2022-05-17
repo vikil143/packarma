@@ -9,6 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 import {connect} from 'react-redux';
+import crashlytics from '@react-native-firebase/crashlytics';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import PlaceIcon from '../../svg/PlaceIcon';
 import QuationsIcon from '../../svg/QuationsIcon';
@@ -28,6 +29,7 @@ import useLocalization from '../../hooks/useLocalization';
 import {Colors, SCREEN_WIDTH} from '../../utility/constants';
 import typography from '../../utility/typography';
 import api from '../../utility/api';
+import commonStyles from '../../utility/commonStyles';
 
 const SLIDE_ITEM = SCREEN_WIDTH - 30;
 
@@ -145,21 +147,27 @@ function HomeScreen({navigation, dispatch, homeData}) {
 
   console.log('### render response', homeData.subCategoryData);
   return (
-    <View style={{flex: 1}}>
+    <View style={[commonStyles.flexOne]}>
       <View style={{padding: 20, flexDirection: 'row', alignItems: 'center'}}>
         <Search
-          containerStyle={{flex: 1}}
-          onPress={() => navigation.navigate('SearchScreen')}
+          containerStyle={[commonStyles.flexOne]}
+          onPress={() => {
+            crashlytics().log('Go to Search Screen..');
+            navigation.navigate('SearchScreen');
+          }}
         />
         <Spacing size={10} />
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate('MyProfile')}>
+          onPress={() => {
+            crashlytics().log('Go to My Profile Screen..');
+            navigation.navigate('MyProfile');
+          }}>
           <UserIcon />
         </TouchableWithoutFeedback>
       </View>
       <ScrollView>
-        <View style={{flex: 1}}>
-          <View style={{padding: 10}}>
+        <View style={[commonStyles.flexOne]}>
+          <View style={[styles.padding10]}>
             <Carousel
               data={homeData.bannerData}
               renderItem={_renderItem}
@@ -171,7 +179,7 @@ function HomeScreen({navigation, dispatch, homeData}) {
           <Spacing size={5} />
           {pagination()}
           <Spacing size={10} />
-          <View style={{padding: 10}}>
+          <View style={[styles.padding10]}>
             <ScrollView horizontal>
               <View
                 style={{
@@ -208,29 +216,6 @@ function HomeScreen({navigation, dispatch, homeData}) {
                               />
                             </View>
                             <Spacing size={5} />
-
-                            {/* {activeItem === 0 ? (
-                        <View style={{alignItems: 'center'}}>
-                          <View
-                            style={{
-                              width: 20,
-                              height: 5,
-                              backgroundColor: Colors.orangeColor,
-                              borderRadius: 8,
-                            }}
-                          />
-                        </View>
-                      ) : (
-                        <View style={{alignItems: 'center'}}>
-                          <View
-                            style={{
-                              width: 20,
-                              height: 5,
-                              borderRadius: 8,
-                            }}
-                          />
-                        </View>
-                      )} */}
                           </View>
                         ) : (
                           <View style={[{marginRight: 15, width: '100%'}]}>
@@ -311,66 +296,6 @@ function HomeScreen({navigation, dispatch, homeData}) {
               </View>
 
               <Spacing size={10} />
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                {/* <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View>
-                <View>
-                  <Image
-                    style={{
-                      width: (SCREEN_WIDTH - 75) / 4,
-                      height: (SCREEN_WIDTH - 75) / 4,
-                    }}
-                    source={require('../../../assests/images/dairy.png')}
-                  />
-                  <Spacing size={5} />
-                  <Text
-                    style={{
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: typography.poppinsRegular,
-                      textAlign: 'center',
-                    }}>
-                    Dairy
-                  </Text>
-                </View> */}
-              </View>
             </View>
 
             <Spacing size={10} />
@@ -477,7 +402,10 @@ function HomeScreen({navigation, dispatch, homeData}) {
                 return (
                   <View style={{alignItems: 'center'}} key={`treament_${ind}`}>
                     <TouchableWithoutFeedback
-                      onPress={() => navigation.navigate('Treatment')}>
+                      onPress={() => {
+                        crashlytics().log('Go To Treatment Screen...');
+                        navigation.navigate('Treatment');
+                      }}>
                       <View>
                         <Image
                           style={{
@@ -504,58 +432,6 @@ function HomeScreen({navigation, dispatch, homeData}) {
                   </View>
                 );
               })}
-              {/* <View style={{flex: 1, alignItems: 'center'}}>
-                <TouchableWithoutFeedback
-                  onPress={() => navigation.navigate('Treatment')}>
-                  <View>
-                    <Image
-                      style={{
-                        width: (SCREEN_WIDTH - 60) / 3,
-                        height: (SCREEN_WIDTH - 60) / 3,
-                        borderRadius: 10,
-                      }}
-                      source={require('../../../assests/images/glasses.png')}
-                    />
-                    <Spacing size={5} />
-
-                    <Text
-                      style={{
-                        fontSize: 14,
-                        fontFamily: typography.poppinsRegular,
-                        textAlign: 'center',
-                        color: Colors.black,
-                      }}>
-                      Gamma/E-beam Sterilisation
-                    </Text>
-                  </View>
-                </TouchableWithoutFeedback>
-              </View>
-              <View style={{flex: 1, alignItems: 'center'}}>
-                <TouchableWithoutFeedback
-                  onPress={() => navigation.navigate('Treatment')}>
-                  <View>
-                    <Image
-                      style={{
-                        width: (SCREEN_WIDTH - 60) / 3,
-                        height: (SCREEN_WIDTH - 60) / 3,
-                        borderRadius: 10,
-                      }}
-                      source={require('../../../assests/images/glasses.png')}
-                    />
-                    <Spacing size={5} />
-                    <Text
-                      style={{
-                        fontSize: 14,
-                        // flex: 1,
-                        fontFamily: typography.poppinsRegular,
-                        textAlign: 'center',
-                        color: Colors.black,
-                      }}>
-                      Hot Filling
-                    </Text>
-                  </View>
-                </TouchableWithoutFeedback>
-              </View> */}
             </View>
           </View>
 
@@ -632,7 +508,9 @@ function HomeScreen({navigation, dispatch, homeData}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  padding10: {padding: 10},
+});
 
 const mapStateToProps = ({homeData, userLocalData}) => ({
   homeData,

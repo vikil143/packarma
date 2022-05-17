@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
@@ -91,7 +92,10 @@ export default function MyProfile({navigation}) {
           <Item
             name="My Subscriptions"
             icon={<MySubscription />}
-            onPress={() => navigation.navigate('Subscription')}
+            onPress={() => {
+              crashlytics().log('Go To The Subscription Screen');
+              navigation.navigate('Subscription');
+            }}
           />
           <Item name="My Addresses" icon={<MapIcon />} />
           <Item

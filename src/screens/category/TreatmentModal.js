@@ -7,10 +7,12 @@ export default function TreatmentModal({show, hide}) {
   return (
     <BottomSheet {...{show, hide}}>
       <View>
-        <Text style={{color: Colors.black}}>TreatmentModal</Text>
+        <Text style={[styles.blackColor]}>TreatmentModal</Text>
       </View>
     </BottomSheet>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  blackColor: {color: Colors.black},
+});

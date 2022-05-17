@@ -86,14 +86,9 @@ export default function SetPassword({navigation, route}) {
     <View style={[styles.container]}>
       <BackHeader title={t('common.setPassword')} />
       <Loader loading={loader} />
-      <View style={{flex: 1, padding: 18}}>
+      <View style={[styles.containerPadd18]}>
         <View>
-          <Text
-            style={{
-              fontFamily: typography.poppinsSemiBold,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
+          <Text style={[styles.poppinsSemiBold]}>
             {/* New Password */}
             {t('common.newPassword')}
           </Text>
@@ -102,17 +97,12 @@ export default function SetPassword({navigation, route}) {
             value={newPassword}
             onChangeText={onChangeNewPassword}
             action="password"
-            actionStyles={{tintColor: '#ddd'}}
+            actionStyles={styles.tintColor}
           />
         </View>
         <Spacing size={15} />
         <View>
-          <Text
-            style={{
-              fontFamily: typography.poppinsSemiBold,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
+          <Text style={[styles.poppinsSemiBold]}>
             {t('common.confirmPassword')}
           </Text>
           <Spacing size={5} />
@@ -120,19 +110,13 @@ export default function SetPassword({navigation, route}) {
             value={confirmPassword}
             onChangeText={onChangeConfirmPassword}
             action="password"
-            actionStyles={{tintColor: '#ddd'}}
+            actionStyles={styles.tintColor}
           />
         </View>
         <Spacing size={5} />
         {!!errorMessage && (
-          <View
-            style={{padding: 15, backgroundColor: '#FFE3E0', borderRadius: 8}}>
-            <Text
-              style={{
-                fontSize: 12,
-                color: Colors.black,
-                fontFamily: typography.poppinsMedium,
-              }}>
+          <View style={[styles.errorMessageContainer]}>
+            <Text style={[styles.errorMessageText]}>
               {errorMessage}
               {/* New Password and Confirm Password should match */}
             </Text>
@@ -141,91 +125,40 @@ export default function SetPassword({navigation, route}) {
 
         <TakeSpace />
 
-        <View style={{padding: 10}}>
-          <Text
-            style={{
-              fontFamily: typography.poppinsMedium,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Password Policy :
-          </Text>
+        <View style={[styles.padd10]}>
+          <Text style={[styles.poppinsSemiBold]}>Password Policy :</Text>
           <Spacing size={5} />
-          <View
-            style={{
-              alignItems: 'center',
-              flexDirection: 'row',
-            }}>
-            <View
-              style={{
-                width: 8,
-                height: 8,
-                backgroundColor: Colors.black,
-                borderRadius: 8 / 2,
-              }}
-            />
+          <View style={[styles.rowAlignCenter]}>
+            <View style={[styles.dot]} />
             <Spacing size={5} />
-            <Text style={{fontSize: 12, color: Colors.black}}>
+            <Text style={[styles.blackText]}>
               Length of the password should be atleast 8 character.
             </Text>
           </View>
 
           <Spacing size={5} />
-          <View
-            style={{
-              alignItems: 'center',
-              flexDirection: 'row',
-            }}>
-            <View
-              style={{
-                width: 8,
-                height: 8,
-                backgroundColor: Colors.black,
-                borderRadius: 8 / 2,
-              }}
-            />
+          <View style={[styles.rowAlignCenter]}>
+            <View style={[styles.dot]} />
             <Spacing size={5} />
-            <Text style={{color: Colors.black, fontSize: 12}}>
+            <Text style={[styles.blackText]}>
               Password should contain atleast 1 Capital letter and 1 small
               letter.
             </Text>
           </View>
           <Spacing size={5} />
-          <View
-            style={{
-              alignItems: 'center',
-              flexDirection: 'row',
-            }}>
-            <View
-              style={{
-                width: 8,
-                height: 8,
-                backgroundColor: Colors.black,
-                borderRadius: 8 / 2,
-              }}
-            />
+          <View style={[styles.rowAlignCenter]}>
+            <View style={[styles.dot]} />
             <Spacing size={5} />
-            <Text style={{color: Colors.black, fontSize: 12}}>
+            <Text style={styles.blackText}>
               Password should contain a special character.
             </Text>
           </View>
           <Spacing size={5} />
 
-          <View
-            style={{
-              alignItems: 'center',
-              flexDirection: 'row',
-            }}>
-            <View
-              style={{
-                width: 8,
-                height: 8,
-                backgroundColor: Colors.black,
-                borderRadius: 8 / 2,
-              }}
-            />
+          <View style={[styles.rowAlignCenter]}>
+            <View style={[styles.dot]} />
             <Spacing size={5} />
-            <Text style={{color: Colors.black, fontSize: 12}}>
+            <Text style={[styles.blackText]}>
               Password should contain a number.
             </Text>
           </View>
@@ -239,6 +172,35 @@ export default function SetPassword({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
+  tintColor: {tintColor: '#ddd'},
+  errorMessageText: {
+    fontSize: 12,
+    color: Colors.black,
+    fontFamily: typography.poppinsMedium,
+  },
+  errorMessageContainer: {
+    fontFamily: typography.poppinsSemiBold,
+    fontSize: 14,
+    color: Colors.black,
+  },
+  poppinsSemiBold: {
+    fontFamily: typography.poppinsSemiBold,
+    fontSize: 14,
+    color: Colors.black,
+  },
+  padd10: {padding: 10},
+  rowAlignCenter: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    backgroundColor: Colors.black,
+    borderRadius: 8 / 2,
+  },
+  blackText: {color: Colors.black, fontSize: 12},
+  containerPadd18: {flex: 1, padding: 18},
   container: {
     flex: 1,
   },

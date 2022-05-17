@@ -26,7 +26,7 @@ export default function AdminApproval() {
         {t('descriptions.adminApporval')}
       </Text>
       <TakeSpace />
-      <View style={{padding: 10}}>
+      <View style={[styles.padding10]}>
         <Button
           title={t('common.login')}
           onPress={() => {
@@ -40,6 +40,7 @@ export default function AdminApproval() {
 }
 
 const styles = StyleSheet.create({
+  padding10: {padding: 10},
   adminApprovalText: {
     textAlign: 'center',
     fontFamily: typography.poppinsRegular,

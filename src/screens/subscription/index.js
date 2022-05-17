@@ -11,10 +11,10 @@ export default function Subscription() {
   const t = useLocalization();
 
   return (
-    <View style={{flex: 1}}>
-      <View style={{padding: 15}}>
+    <View style={[commonStyles.flexOne]}>
+      <View style={[styles.padd15]}>
         <Image
-          style={{width: 25, height: 25}}
+          style={[styles.width25]}
           source={require('../../../assests/images/back_arrow.png')}
         />
       </View>
@@ -50,7 +50,7 @@ export default function Subscription() {
         </Text>
         <View>
           <Image
-            style={{width: 30, height: 30}}
+            style={[styles.width30]}
             resizeMode="contain"
             source={require('../../../assests/images/subscription_logo.png')}
           />
@@ -69,7 +69,7 @@ export default function Subscription() {
           <Spacing size={10} />
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <View style={{flex: 1, alignItems: 'center'}}>
-              <Text style={{color: Colors.black}}>1 Month</Text>
+              <Text style={[styles.blackColor]}>1 Month</Text>
               <Spacing size={5} />
               <View
                 style={{
@@ -266,7 +266,7 @@ export default function Subscription() {
 
             <Spacing size={10} />
 
-            <View style={{paddingHorizontal: 10}}>
+            <View style={[styles.pH15]}>
               <View
                 style={{
                   padding: 10,
@@ -292,4 +292,10 @@ export default function Subscription() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  pH15: {paddingHorizontal: 10},
+  width30: {width: 30, height: 30},
+  blackColor: {color: Colors.black},
+  width25: {width: 25, height: 25},
+  padd15: {padding: 15},
+});

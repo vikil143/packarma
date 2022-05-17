@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
@@ -15,115 +16,44 @@ import commonStyles from '../../utility/commonStyles';
 function EnquireCard({onPress}) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
-      <View
-        style={{
-          backgroundColor: Colors.white,
-          borderRadius: 10,
-        }}>
-        <View style={{flexDirection: 'row', padding: 10}}>
-          <Text
-            style={{
-              color: Colors.black,
-              fontFamily: typography.poppinsMedium,
-              fontSize: 14,
-            }}>
-            Dried & dehydrated food Products
-          </Text>
+      <View style={[styles.cardContainer]}>
+        <View style={[styles.titleContainer]}>
+          <Text style={[styles.title]}>Dried & dehydrated food Products</Text>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 10,
-            paddingTop: 5,
-          }}>
-          <Text
-            style={{
-              color: Colors.black,
-              fontFamily: typography.poppinsRegular,
-              fontSize: 12,
-            }}>
-            Food
-          </Text>
-          <Text
-            style={{
-              color: Colors.black,
-              fontFamily: typography.poppinsRegular,
-              fontSize: 12,
-            }}>
-            15-03-22 10:12 AM
-          </Text>
+        <View style={[styles.subContainer]}>
+          <Text style={[styles.foodText]}>Food</Text>
+          <Text style={[styles.subText]}>15-03-22 10:12 AM</Text>
         </View>
-        <View
-          style={{width: '100%', height: 2, backgroundColor: Colors.greyColor}}
-        />
+        <View style={[styles.line]} />
 
-        <View style={[commonStyles.rowAlignCenter, {padding: 15}]}>
+        <View style={[commonStyles.rowAlignCenter, styles.padding15]}>
           <Image
-            style={{width: 30, height: 30}}
+            style={[styles.width30]}
             source={require('../../../assests/images/enquiry_icon.png')}
           />
           <Spacing />
-          <Text
-            style={{
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-              flex: 1,
-              color: '#4C4C4C',
-            }}>
+          <Text style={[styles.subTitleText]}>
             15 μ BOPP PLAIN PCT 1 /10μ MET PET / 4.5 GSM COLD SEAL
           </Text>
         </View>
 
-        <View style={{padding: 10, flexDirection: 'row'}}>
-          <Text
-            style={{
-              color: Colors.black,
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-            }}>
+        <View style={[styles.row10]}>
+          <Text style={[styles.productText]}>
             Product Wt. <Text>200 Kg</Text>
           </Text>
           {/* <View style={{flex: 1}} /> */}
-          <View style={{flex: 1}} />
+          <View style={[commonStyles.flexOne]} />
           <View style={{}}>
             <Image
-              style={{width: 20, height: 25}}
+              style={[styles.width20]}
               resizeMode="contain"
               source={require('../../../assests/icons/my_order.png')}
             />
 
-            <View
-              style={{
-                width: 15,
-                height: 15,
-                backgroundColor: '#B83332',
-                borderRadius: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-                position: 'absolute',
-                top: -5,
-                left: -5,
-              }}>
-              <Text
-                style={{
-                  fontFamily: typography.poppinsRegular,
-                  fontSize: 10,
-                  color: Colors.white,
-                }}>
-                3
-              </Text>
+            <View style={[styles.containerCard]}>
+              <Text style={[styles.numberText]}>3</Text>
             </View>
           </View>
-
-          {/* <Text
-            style={{
-              color: Colors.black,
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-            }}>
-            Shelf Life : <Text>180 Days</Text>
-          </Text> */}
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -132,17 +62,19 @@ function EnquireCard({onPress}) {
 
 export default function MyEnquiry({navigation}) {
   return (
-    <View style={{flex: 1}}>
+    <View style={[commonStyles.flexOne]}>
       <BackHeader title={'Help Requests'} />
-      <View style={{flex: 1, padding: 15, paddingBottom: 0}}>
+      <View style={[styles.container]}>
         <EnquireCard
           onPress={() => {
+            crashlytics().log('Go to Enquiry Description...');
             navigation.navigate('EnquiryDescription');
           }}
         />
         <Spacing />
         <EnquireCard
           onPress={() => {
+            crashlytics().log('Go to Enquiry Description...');
             navigation.navigate('EnquiryDescription');
           }}
         />
@@ -151,4 +83,64 @@ export default function MyEnquiry({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  width20: {width: 20, height: 25},
+  productText: {
+    color: Colors.black,
+    fontFamily: typography.poppinsRegular,
+    fontSize: 14,
+  },
+  row10: {padding: 10, flexDirection: 'row'},
+  subTitleText: {
+    fontFamily: typography.poppinsRegular,
+    fontSize: 14,
+    flex: 1,
+    color: '#4C4C4C',
+  },
+  subText: {
+    color: Colors.black,
+    fontFamily: typography.poppinsRegular,
+    fontSize: 12,
+  },
+  width30: {width: 30, height: 30},
+  numberText: {
+    fontFamily: typography.poppinsRegular,
+    fontSize: 10,
+    color: Colors.white,
+  },
+  containerCard: {
+    width: 15,
+    height: 15,
+    backgroundColor: '#B83332',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: -5,
+    left: -5,
+  },
+  padding15: {padding: 15},
+  line: {width: '100%', height: 2, backgroundColor: Colors.greyColor},
+  foodText: {
+    color: Colors.black,
+    fontFamily: typography.poppinsRegular,
+    fontSize: 12,
+  },
+  subContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+    paddingTop: 5,
+  },
+  title: {
+    color: Colors.black,
+    fontFamily: typography.poppinsMedium,
+    fontSize: 14,
+  },
+  titleContainer: {flexDirection: 'row', padding: 10},
+  cardContainer: {
+    backgroundColor: Colors.white,
+    borderRadius: 10,
+  },
+  container: {flex: 1, padding: 15, paddingBottom: 0},
+});

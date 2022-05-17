@@ -6,6 +6,7 @@ import {
   Image,
 } from 'react-native';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import Spacing from '../../components/spacing';
 import {Colors} from '../../utility/constants';
@@ -76,7 +77,10 @@ export default function MyOrders({navigation}) {
           {tabNumber == 0 && (
             <View style={{flex: 1, padding: 10}}>
               <TouchableWithoutFeedback
-                onPress={() => navigation.navigate('OrderDetails')}>
+                onPress={() => {
+                  crashlytics().log('Go To Order Details Screen....');
+                  navigation.navigate('OrderDetails');
+                }}>
                 <View
                   style={{
                     backgroundColor: Colors.white,
@@ -184,7 +188,10 @@ export default function MyOrders({navigation}) {
 
               <Spacing />
               <TouchableWithoutFeedback
-                onPress={() => navigation.navigate('OrderDetails')}>
+                onPress={() => {
+                  crashlytics().log('Go To Order Details Screen');
+                  navigation.navigate('OrderDetails');
+                }}>
                 <View
                   style={{
                     backgroundColor: Colors.white,

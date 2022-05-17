@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import React from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import commonStyles from '../../utility/commonStyles';
 import {Colors} from '../../utility/constants';
 import BackHeader from '../../components/back-header';
@@ -14,36 +15,28 @@ import typography from '../../utility/typography';
 
 export default function Treatment({navigation}) {
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: Colors.white,
-      }}>
+    <View style={[styles.container]}>
       <BackHeader title={'Treatments'} />
       <TouchableWithoutFeedback
-        onPress={() => navigation.navigate('TreatmentDetails')}>
-        <View style={{flexDirection: 'row', padding: 10}}>
+        onPress={() => {
+          crashlytics().log('Go To Treament Details...');
+          navigation.navigate('TreatmentDetails');
+        }}>
+        <View style={[styles.rowPad10]}>
           <View style={{}}>
             <Image
-              style={{width: 150, height: 150}}
+              style={[styles.glass]}
               resizeMode="contain"
               source={require('../../../assests/images/glasses.png')}
             />
           </View>
           <Spacing size={8} />
-          <View style={{flex: 1}}>
+          <View style={[commonStyles.flexOne]}>
             <Spacing size={8} />
-            <Text
-              style={{
-                fontFamily: typography.poppinsMedium,
-                fontSize: 14,
-                color: Colors.black,
-              }}>
-              Aseptic Filling
-            </Text>
+            <Text style={[styles.poppinsMedium]}>Aseptic Filling</Text>
             <Spacing size={5} />
             <View>
-              <Text style={{color: Colors.black}}>
+              <Text style={[styles.blackColor]}>
                 We provide packaging solutions for all type of dried foods and
                 dehydrated products like beans…
               </Text>
@@ -53,33 +46,24 @@ export default function Treatment({navigation}) {
         </View>
       </TouchableWithoutFeedback>
       {/* <Spacing size={5} /> */}
-      <View
-        style={{height: 1, backgroundColor: Colors.greyColor, width: '100%'}}
-      />
+      <View style={[styles.line]} />
       {/* <Spacing size={5} /> */}
 
-      <View style={{flexDirection: 'row', padding: 10}}>
+      <View style={[styles.rowPad10]}>
         <View style={{}}>
           <Image
-            style={{width: 150, height: 150}}
+            style={[styles.size150]}
             resizeMode="contain"
             source={require('../../../assests/images/glasses.png')}
           />
         </View>
         <Spacing size={8} />
-        <View style={{flex: 1}}>
+        <View style={[commonStyles.flexOne]}>
           <Spacing size={8} />
-          <Text
-            style={{
-              fontFamily: typography.poppinsMedium,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Aseptic Filling
-          </Text>
+          <Text style={[styles.poppinsMedium]}>Aseptic Filling</Text>
           <Spacing size={5} />
           <View>
-            <Text style={{color: Colors.black}}>
+            <Text style={[styles.blackColor]}>
               We provide packaging solutions for all type of dried foods and
               dehydrated products like beans…
             </Text>
@@ -89,33 +73,24 @@ export default function Treatment({navigation}) {
       </View>
 
       {/* <Spacing size={5} /> */}
-      <View
-        style={{height: 1, backgroundColor: Colors.greyColor, width: '100%'}}
-      />
+      <View style={[styles.line]} />
       {/* <Spacing size={5} /> */}
 
-      <View style={{flexDirection: 'row', padding: 10}}>
+      <View style={[styles.rowPad10]}>
         <View style={{}}>
           <Image
-            style={{width: 150, height: 150}}
+            style={[styles.size150]}
             resizeMode="contain"
             source={require('../../../assests/images/glasses.png')}
           />
         </View>
         <Spacing size={8} />
-        <View style={{flex: 1}}>
+        <View style={[commonStyles.flexOne]}>
           <Spacing size={8} />
-          <Text
-            style={{
-              fontFamily: typography.poppinsMedium,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Aseptic Filling
-          </Text>
+          <Text style={[styles.poppinsMedium]}>Aseptic Filling</Text>
           <Spacing size={5} />
           <View>
-            <Text style={{color: Colors.black}}>
+            <Text style={[styles.blackColor]}>
               We provide packaging solutions for all type of dried foods and
               dehydrated products like beans…
             </Text>
@@ -125,33 +100,24 @@ export default function Treatment({navigation}) {
       </View>
 
       {/* <Spacing size={5} /> */}
-      <View
-        style={{height: 1, backgroundColor: Colors.greyColor, width: '100%'}}
-      />
+      <View style={[styles.line]} />
       {/* <Spacing size={5} /> */}
 
-      <View style={{flexDirection: 'row', padding: 10}}>
+      <View style={[styles.rowPad10]}>
         <View style={{}}>
           <Image
-            style={{width: 150, height: 150}}
+            style={[styles.size150]}
             resizeMode="contain"
             source={require('../../../assests/images/glasses.png')}
           />
         </View>
         <Spacing size={8} />
-        <View style={{flex: 1}}>
+        <View style={[commonStyles.flexOne]}>
           <Spacing size={8} />
-          <Text
-            style={{
-              fontFamily: typography.poppinsMedium,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Aseptic Filling
-          </Text>
+          <Text style={[styles.poppinsMedium]}>Aseptic Filling</Text>
           <Spacing size={5} />
           <View>
-            <Text style={{color: Colors.black}}>
+            <Text style={[styles.blackColor]}>
               We provide packaging solutions for all type of dried foods and
               dehydrated products like beans…
             </Text>
@@ -163,4 +129,19 @@ export default function Treatment({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  poppinsMedium: {
+    fontFamily: typography.poppinsMedium,
+    fontSize: 14,
+    color: Colors.black,
+  },
+  size150: {width: 150, height: 150},
+  blackColor: {color: Colors.black},
+  line: {height: 1, backgroundColor: Colors.greyColor, width: '100%'},
+  glass: {width: 150, height: 150},
+  rowPad10: {flexDirection: 'row', padding: 10},
+  container: {
+    flex: 1,
+    backgroundColor: Colors.white,
+  },
+});

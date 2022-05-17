@@ -11,13 +11,19 @@ import Spacing from '../spacing';
 import {Colors} from '../../utility/constants';
 import typography from '../../utility/typography';
 
-export default function BackHeader({title}) {
+export default function BackHeader({title, onBackButtonPress}) {
   const navigation = useNavigation();
+
+  const goBack = () =>
+    typeof onBackButtonPress == 'function'
+      ? onBackButtonPress()
+      : navigation.goBack();
+
   return (
     <View>
       <View style={[styles.header]}>
         <View style={{flex: 1 / 45}}>
-          <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+          <TouchableWithoutFeedback onPress={goBack}>
             <Image
               style={[{width: 30, height: 30}]}
               source={require('../../../assests/images/back_arrow.png')}

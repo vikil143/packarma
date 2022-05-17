@@ -7,6 +7,9 @@ export default StyleSheet.create({
   alightRight: {
     alignItems: 'flex-end',
   },
+  alignCenter: {
+    alignItems: 'center',
+  },
   center: {
     alignItems: 'center',
     justifyContent: 'center',

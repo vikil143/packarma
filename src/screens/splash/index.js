@@ -10,25 +10,14 @@ export default function SplashScreen({navigation}) {
   }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+    <View style={[styles.container]}>
+      <View style={[styles.center]}>
         <Image
-          style={{
-            position: 'absolute',
-            width: 100,
-            height: 100,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          style={[styles.splashLogo]}
           source={require('../../../assests/images/splash_logo.png')}
         />
         <Image
-          style={{width: SCREEN_WIDTH - 10}}
+          style={[styles.outerImage]}
           resizeMode="contain"
           source={require('../../../assests/images/packarma_outer_logo.png')}
         />
@@ -37,4 +26,19 @@ export default function SplashScreen({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  splashLogo: {
+    position: 'absolute',
+    width: 100,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  outerImage: {width: SCREEN_WIDTH - 10},
+  center: {justifyContent: 'center', alignItems: 'center'},
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

@@ -8,6 +8,7 @@ import {
   FlatList,
 } from 'react-native';
 import React, {useState} from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import Spacing from '../../components/spacing';
 import Search from '../../components/search';
@@ -133,6 +134,7 @@ export default function SearchScreen() {
                 <TouchableWithoutFeedback
                   onPress={() => {
                     setOpen(false);
+                    crashlytics().log('Go To Place Enquiry Screen');
                     navigation.navigate('PlaceEnquiry');
                   }}>
                   <View

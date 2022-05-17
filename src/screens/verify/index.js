@@ -86,13 +86,8 @@ export default function Verify({navigation, route}) {
     <View style={[styles.container]}>
       <BackHeader title={t('descriptions.verifyMobileNumber')} />
       <Loader loading={loader} />
-      <View style={{flex: 1, padding: 15}}>
-        <Text
-          style={{
-            fontFamily: typography.poppinsRegular,
-            fontSize: 14,
-            color: Colors.black,
-          }}>
+      <View style={[styles.containerWithPadding]}>
+        <Text style={[styles.weSentOtp]}>
           {/* We have sent an OTP to the registered mobile Number +91 78XXXXXX45. */}
           {t('login.wehaveSentOTP')}
         </Text>
@@ -100,25 +95,13 @@ export default function Verify({navigation, route}) {
         <View style={{}}>
           <Pins pin={pin} setPin={setPin} />
           <Spacing />
-          <Text
-            style={{
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-              color: Colors.black,
-              textAlign: 'center',
-            }}>
+          <Text style={[styles.loginText]}>
             {/* Didn’t receive OTP?{' '} */}
             {t('login.didntReceiveOTP')}
-            <Text style={{color: '#52392F'}}> {t('common.resend')}</Text>
+            <Text style={[styles.resendText]}> {t('common.resend')}</Text>
           </Text>
           <Spacing size={2} />
-          <Text
-            style={{
-              color: Colors.brownColor,
-              textAlign: 'center',
-              fontFamily: typography.poppinsRegular,
-              fontSize: 12,
-            }}>
+          <Text style={[styles.requestOTPAgain]}>
             {/* Request OTP again in 25s */}
             {t('login.requestOTPagain')}
           </Text>
@@ -131,6 +114,25 @@ export default function Verify({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
+  loginText: {
+    fontFamily: typography.poppinsRegular,
+    fontSize: 14,
+    color: Colors.black,
+    textAlign: 'center',
+  },
+  requestOTPAgain: {
+    color: Colors.brownColor,
+    textAlign: 'center',
+    fontFamily: typography.poppinsRegular,
+    fontSize: 12,
+  },
+  resendText: {color: '#52392F'},
+  weSentOtp: {
+    fontFamily: typography.poppinsRegular,
+    fontSize: 14,
+    color: Colors.black,
+  },
+  containerWithPadding: {flex: 1, padding: 15},
   container: {
     flex: 1,
   },

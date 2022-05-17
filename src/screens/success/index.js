@@ -7,41 +7,29 @@ import typography from '../../utility/typography';
 import TakeSpace from '../../components/take_space';
 import Button from '../../components/button';
 import useLocalization from '../../hooks/useLocalization';
+import commonStyles from '../../utility/commonStyles';
 
 export default function Success({navigation, route}) {
   const message = route.params?.message;
   const t = useLocalization();
 
   return (
-    <View style={{flex: 1}}>
+    <View style={[commonStyles.flexOne]}>
       <TakeSpace />
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View style={[styles.justifyCenter]}>
         <Image
-          style={[
-            {
-              width: SCREEN_WIDTH / 1.7,
-              height: SCREEN_WIDTH / 1.7,
-              alignSelf: 'center',
-            },
-          ]}
+          style={[styles.successImage]}
           source={require('../../../assests/images/success.png')}
         />
       </View>
       <Spacing />
-      <Text
-        style={{
-          textAlign: 'center',
-          fontFamily: typography.poppinsRegular,
-          fontSize: 18,
-          color: Colors.black,
-          paddingHorizontal: 20,
-        }}>
+      <Text style={[styles.descriptionText]}>
         {message}
         {/* You have reset your password successfully */}
         {/* {t('descriptions.successDescription')} */}
       </Text>
       <TakeSpace />
-      <View style={{padding: 10}}>
+      <View style={[styles.padding10]}>
         <Button
           title={t('common.login')}
           onPress={() => {
@@ -54,4 +42,19 @@ export default function Success({navigation, route}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  descriptionText: {
+    textAlign: 'center',
+    fontFamily: typography.poppinsRegular,
+    fontSize: 18,
+    color: Colors.black,
+    paddingHorizontal: 20,
+  },
+  successImage: {
+    width: SCREEN_WIDTH / 1.7,
+    height: SCREEN_WIDTH / 1.7,
+    alignSelf: 'center',
+  },
+  justifyCenter: {justifyContent: 'center', alignItems: 'center'},
+  padding10: {padding: 10},
+});

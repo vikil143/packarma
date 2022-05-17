@@ -33,32 +33,16 @@ export default function EnquiryDescription({navigation}) {
         <ScrollView>
           {/* Collapuse View */}
           <TouchableWithoutFeedback onPress={() => setCollapuse(!collapuse)}>
-            <View
-              style={{
-                flexDirection: 'row',
-                backgroundColor: Colors.white,
-                padding: 15,
-                alignItems: 'center',
-                elevation: 5,
-              }}>
-              <Text
-                style={{
-                  fontFamily: typography.poppinsMedium,
-                  fontSize: 16,
-                  flex: 1,
-                  paddingHorizontal: 10,
-                  color: Colors.black,
-                }}>
-                Product Details
-              </Text>
+            <View style={[styles.cardContainer]}>
+              <Text style={[styles.cardText]}>Product Details</Text>
               {collapuse ? <UpArrow /> : <DownArrow />}
             </View>
           </TouchableWithoutFeedback>
           {/*  */}
           {collapuse ? (
-            <View style={{backgroundColor: Colors.white, padding: 15}}>
-              <View style={{flexDirection: 'row'}}>
-                <View style={{flex: 0.65}}>
+            <View style={[styles.collapuseContainer]}>
+              <View style={[commonStyles.row]}>
+                <View style={[styles.categoryView]}>
                   <Text
                     style={{
                       fontFamily: typography.poppinsRegular,
@@ -70,10 +54,10 @@ export default function EnquiryDescription({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text style={{color: Colors.black}}>:</Text>
+                  <Text style={[styles.blackColor]}>:</Text>
                 </View>
                 <Spacing size={5} />
-                <View style={{flex: 1}}>
+                <View style={[commonStyles.flexOne]}>
                   <Text
                     style={{
                       fontSize: 14,
@@ -85,8 +69,8 @@ export default function EnquiryDescription({navigation}) {
                 </View>
               </View>
               <Spacing size={10} />
-              <View style={{flexDirection: 'row'}}>
-                <View style={{flex: 0.65}}>
+              <View style={[commonStyles.row]}>
+                <View style={[styles.categoryView]}>
                   <Text
                     style={{
                       fontFamily: typography.poppinsRegular,
@@ -98,10 +82,10 @@ export default function EnquiryDescription({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text style={{color: Colors.black}}>:</Text>
+                  <Text style={[styles.blackColor]}>:</Text>
                 </View>
                 <Spacing size={5} />
-                <View style={{flex: 1}}>
+                <View style={[commonStyles.flexOne]}>
                   <Text
                     style={{
                       fontSize: 14,
@@ -113,8 +97,8 @@ export default function EnquiryDescription({navigation}) {
                 </View>
               </View>
               <Spacing size={10} />
-              <View style={{flexDirection: 'row'}}>
-                <View style={{flex: 0.65}}>
+              <View style={[commonStyles.row]}>
+                <View style={[styles.categoryView]}>
                   <Text
                     style={{
                       fontFamily: typography.poppinsRegular,
@@ -126,10 +110,10 @@ export default function EnquiryDescription({navigation}) {
                 </View>
                 <Spacing size={5} />
                 <View>
-                  <Text style={{color: Colors.black}}>:</Text>
+                  <Text style={[styles.blackColor]}>:</Text>
                 </View>
                 <Spacing size={5} />
-                <View style={{flex: 1}}>
+                <View style={[commonStyles.flexOne]}>
                   <Text
                     style={{
                       fontSize: 14,
@@ -873,4 +857,22 @@ export default function EnquiryDescription({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  categoryView: {flex: 0.65},
+  collapuseContainer: {backgroundColor: Colors.white, padding: 15},
+  cardText: {
+    fontFamily: typography.poppinsMedium,
+    fontSize: 16,
+    flex: 1,
+    paddingHorizontal: 10,
+    color: Colors.black,
+  },
+  blackColor: {color: Colors.black},
+  cardContainer: {
+    flexDirection: 'row',
+    backgroundColor: Colors.white,
+    padding: 15,
+    alignItems: 'center',
+    elevation: 5,
+  },
+});

@@ -11,6 +11,7 @@ import Button from '../../components/button';
 import useLocalization from '../../hooks/useLocalization';
 import Label from '../../components/label';
 import useToast from '../../hooks/useToast';
+import commonStyles from '../../utility/commonStyles';
 
 export default function ForgetPassword({navigation}) {
   const [phone, setPhone] = useState('');
@@ -25,38 +26,21 @@ export default function ForgetPassword({navigation}) {
   const onChangeNumber = (_, value) => setPhone(value);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={[commonStyles.flexOne]}>
       <BackHeader title={t('login.forgotPassword')} />
-      <View style={{flex: 1, padding: 20}}>
-        <Text
-          style={{
-            fontFamily: typography.poppinsRegular,
-            fontSize: 14,
-            color: Colors.black,
-          }}>
+      <View style={[styles.container]}>
+        <Text style={[styles.descriptionText]}>
           {t('login.forgetPasswordDescription')}
         </Text>
         <Spacing size={10} />
         <Label>{t('common.mobileNumber')}</Label>
         <WhiteTextBox
           prefix={
-            <View style={{flexDirection: 'row'}}>
+            <View style={[commonStyles.row]}>
               <Spacing size={8} />
-              <Text
-                style={{
-                  fontFamily: typography.poppinsRegular,
-                  fontSize: 14,
-                  color: Colors.black,
-                }}>
-                +91
-              </Text>
+              <Text style={[styles.prefixnumber]}>+91</Text>
               <Spacing size={8} />
-              <View
-                style={{
-                  backgroundColor: Colors.black,
-                  height: 20,
-                  width: 1,
-                }}></View>
+              <View style={styles.line}></View>
             </View>
           }
           name="phone"
@@ -78,4 +62,21 @@ export default function ForgetPassword({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {flex: 1, padding: 20},
+  line: {
+    backgroundColor: Colors.black,
+    height: 20,
+    width: 1,
+  },
+  prefixnumber: {
+    fontFamily: typography.poppinsRegular,
+    fontSize: 14,
+    color: Colors.black,
+  },
+  descriptionText: {
+    fontFamily: typography.poppinsRegular,
+    fontSize: 14,
+    color: Colors.black,
+  },
+});

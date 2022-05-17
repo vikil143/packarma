@@ -6,7 +6,9 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
+import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
+import ModalDropDown from '../../components/dropdown-model';
 import typography from '../../utility/typography';
 import {Colors} from '../../utility/constants';
 import Spacing from '../../components/spacing';
@@ -14,6 +16,8 @@ import Picker from '../../components/picker';
 import Label from '../../components/label';
 import useLocalization from '../../hooks/useLocalization';
 import api from '../../utility/api';
+import WhiteTextBox from '../../components/white_text_box';
+import commonStyles from '../../utility/commonStyles';
 
 export default function PlaceEnquiry({navigation}) {
   const [dropDownList, setDropDownList] = useState({
@@ -154,54 +158,49 @@ export default function PlaceEnquiry({navigation}) {
 
   const handlePickerChanges = (value, name) =>
     setFormState({...formState, [name]: value});
+
+  const onChangeText = (name, value) =>
+    setFormState({...formState, [name]: value});
   return (
     <View style={{flex: 1}}>
       <BackHeader title={'Help Request'} />
       <View style={{flex: 1}}>
         <ScrollView style={{padding: 15}}>
           <View style={{}}>
-            {/* <Text
-            style={{
-              fontFamily: typography.poppinsRegular,
-              fontSize: 14,
-              color: Colors.black,
-            }}>
-            Product Category*
-          </Text> */}
             <Label required>Product Category</Label>
             <Spacing size={5} />
-            <Picker
-              data={[
+            <ModalDropDown
+              list={[
                 {label: 'Python', value: 'python'},
                 {label: 'Java', value: 'java'},
               ]}
-              placeHolder="Select Product Category"
-              name={'productCategory'}
-              selectedValue={formState.productCategory}
+              selectedIndex={formState.productCategory}
+              name="productCategory"
               onValueChange={handlePickerChanges}
-            />
+              keyElement="label"
+              placeholder="Select Product Category"></ModalDropDown>
           </View>
           <Spacing size={10} />
           <View style={{}}>
             <Label required>Product</Label>
             <Spacing size={5} />
-            <Picker
-              containerStyle={{backgroundColor: '#ddd'}}
-              data={[
+
+            <ModalDropDown
+              list={[
                 {label: 'Python', value: 'python'},
                 {label: 'Java', value: 'java'},
               ]}
-              placeHolder="Select Products"
-              name={'products'}
-              selectedValue={formState.products}
+              selectedIndex={formState.products}
+              name="products"
               onValueChange={handlePickerChanges}
-            />
+              keyElement="label"
+              placeholder="Select Products"></ModalDropDown>
           </View>
           <Spacing size={10} />
           <View style={{}}>
             <Label required>Shelf Life</Label>
             <Spacing size={5} />
-            <View style={{flexDirection: 'row'}}>
+            <View style={[commonStyles.row]}>
               <View
                 style={{
                   backgroundColor: Colors.white,
@@ -215,6 +214,7 @@ export default function PlaceEnquiry({navigation}) {
               </View>
 
               <Spacing />
+
               <Picker
                 data={[{label: 'Days', value: 'days'}]}
                 containerStyle={{flex: 1 / 2}}
@@ -230,7 +230,7 @@ export default function PlaceEnquiry({navigation}) {
           <View style={{}}>
             <Label required>Product Weight</Label>
             <Spacing size={5} />
-            <View style={{flexDirection: 'row'}}>
+            <View style={[commonStyles.row]}>
               <View
                 style={{
                   backgroundColor: Colors.white,
@@ -260,14 +260,13 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Storage conditions</Label>
             <Spacing size={5} />
             <View>
-              <Picker
-                data={dropDownList.storageConditions}
-                containerStyle={{flex: 1 / 2}}
-                placeHolder="Select storage conditions"
-                name={'storageConditions'}
-                selectedValue={formState.storageConditions}
+              <ModalDropDown
+                list={dropDownList.storageConditions}
+                selectedIndex={formState.storageConditions}
+                name="storageConditions"
                 onValueChange={handlePickerChanges}
-              />
+                keyElement="storage_condition_title"
+                placeholder="Select storage conditions"></ModalDropDown>
             </View>
           </View>
           <Spacing size={10} />
@@ -275,13 +274,21 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Machine</Label>
             <Spacing size={5} />
             <View>
-              <Picker
+              <ModalDropDown
+                list={dropDownList.machine}
+                selectedIndex={formState.machine}
+                name="machine"
+                onValueChange={handlePickerChanges}
+                keyElement="packaging_machine_name"
+                placeholder="Select Machine"></ModalDropDown>
+
+              {/* <Picker
                 data={dropDownList.machine}
                 placeHolder="Select Machine"
                 name={'machine'}
                 selectedValue={formState.machine}
                 onValueChange={handlePickerChanges}
-              />
+              /> */}
             </View>
           </View>
 
@@ -291,13 +298,13 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Product form</Label>
             <Spacing size={5} />
             <View>
-              <Picker
-                data={dropDownList.productForm}
-                placeHolder="Select Product form"
-                name={'productForm'}
-                selectedValue={formState.productForm}
+              <ModalDropDown
+                list={dropDownList.productForm}
+                selectedIndex={formState.productForm}
+                name="productForm"
                 onValueChange={handlePickerChanges}
-              />
+                keyElement="product_form_name"
+                placeholder="Select Product form"></ModalDropDown>
             </View>
           </View>
           <Spacing size={10} />
@@ -306,13 +313,21 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Packaging Type </Label>
             <Spacing size={5} />
             <View>
-              <Picker
+              <WhiteTextBox
+                value={formState.packagingType}
+                name="packagingType"
+                onChangeText={onChangeText}
+                action={require('../../../assests/icons/drop_down_two.png')}
+                actionStyles={{width: 10, height: 6}}
+              />
+
+              {/* <Picker
                 data={[{label: 'Days', value: 'days'}]}
                 placeHolder="Enter PIN number"
                 name={'packagingType'}
                 selectedValue={formState.packagingType}
                 onValueChange={handlePickerChanges}
-              />
+              /> */}
             </View>
           </View>
           <Spacing size={10} />
@@ -336,34 +351,33 @@ export default function PlaceEnquiry({navigation}) {
             <Label required>Location</Label>
             <Spacing size={5} />
             <View>
-              <Picker
+              <WhiteTextBox
+                value={formState.location}
+                name="location"
+                onChangeText={onChangeText}
+                action={require('../../../assests/icons/drop_down_two.png')}
+                actionStyles={{width: 10, height: 6}}
+              />
+
+              {/* <Picker
                 data={[{label: 'Days', value: 'days'}]}
                 placeHolder="Enter PIN number"
                 name={'location'}
                 selectedValue={formState.location}
                 onValueChange={handlePickerChanges}
-              />
+              /> */}
             </View>
           </View>
           <Spacing size={10} />
 
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('EnquiryDescription')}>
-            <View
-              style={{
-                backgroundColor: Colors.brownColor,
-                padding: 15,
-                paddingHorizontal: 30,
-              }}>
-              <Text
-                style={{
-                  color: Colors.white,
-                  textAlign: 'center',
-                  fontSize: 16,
-                  fontStyle: typography.poppinsRegular,
-                }}>
+            onPress={() => {
+              crashlytics().log('Go to Enquiry Description');
+              navigation.navigate('EnquiryDescription');
+            }}>
+            <View style={[styles.proceedButton]}>
+              <Text style={[styles.proceedButtonText]}>
                 {t('common.proceed')}
-                {/* Proceed */}
               </Text>
             </View>
           </TouchableWithoutFeedback>
@@ -375,4 +389,16 @@ export default function PlaceEnquiry({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  proceedButton: {
+    backgroundColor: Colors.brownColor,
+    padding: 15,
+    paddingHorizontal: 30,
+  },
+  proceedButtonText: {
+    color: Colors.white,
+    textAlign: 'center',
+    fontSize: 16,
+    fontStyle: typography.poppinsRegular,
+  },
+});

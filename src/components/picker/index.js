@@ -14,7 +14,10 @@ export default function PickerComp({
   const mode = Appearance.getColorScheme();
   return (
     <Picker
-      style={[{backgroundColor: Colors.white}, containerStyle]}
+      style={[
+        {backgroundColor: Colors.white, color: Colors.black},
+        containerStyle,
+      ]}
       selectedValue={selectedValue}
       dropdownIconColor="#000"
       onValueChange={(itemValue, itemIndex) => onValueChange(itemValue, name)}>

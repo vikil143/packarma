@@ -27,6 +27,7 @@ export default {
     myOrders: 'My Orders',
     orderId: 'Order Id',
     uploadVisitingCard: 'Upload Visiting card',
+    noBelowOne: 'None of the below',
   },
   login: {
     loginInToAccount: 'Login to your Account',
