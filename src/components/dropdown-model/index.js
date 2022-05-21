@@ -155,7 +155,6 @@ export default function ModalDropDown({
                 );
               }}
               renderItem={({item, index}) => {
-                console.log('Flatlist item,', item, keyElement);
                 return (
                   <TouchableNativeFeedback onPress={() => onSelect(index)}>
                     <View

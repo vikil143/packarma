@@ -1,13 +1,25 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React, {useEffect} from 'react';
 import {SCREEN_WIDTH} from '../../utility/constants';
+import {getLocalData, getTokenData} from '../../utility/localStorage';
+import {connect} from 'react-redux';
+import {storeUserData} from '../../reducers/userLocalData';
 
-export default function SplashScreen({navigation}) {
+function SplashScreen({navigation}) {
   useEffect(() => {
-    setTimeout(() => {
-      navigation.replace('Login');
-    }, 3000);
+    setTimeout(getData, 3000);
   }, []);
+
+  const getData = async () => {
+    const id = await getLocalData();
+    const token = await getTokenData();
+    storeUserData({userId: id, token});
+    if (!!token) {
+      navigation.navigate('BottomTabs');
+    } else {
+      navigation.navigate('Login');
+    }
+  };
 
   return (
     <View style={[styles.container]}>
@@ -42,3 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+const mapStateToProps = ({}) => ({});
+
+export default connect()(SplashScreen);

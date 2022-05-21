@@ -5,13 +5,17 @@ import {
   Image,
   TouchableWithoutFeedback,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useIsFocused} from '@react-navigation/native';
+import {connect} from 'react-redux';
 import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
-import {Colors} from '../../utility/constants';
+import {Colors, SUCCESS} from '../../utility/constants';
 import typography from '../../utility/typography';
 import Spacing from '../../components/spacing';
 import commonStyles from '../../utility/commonStyles';
+import api from '../../utility/api';
+import useToast from '../../hooks/useToast';
 
 function EnquireCard({onPress}) {
   return (
@@ -60,7 +64,40 @@ function EnquireCard({onPress}) {
   );
 }
 
-export default function MyEnquiry({navigation}) {
+function MyEnquiry({navigation}) {
+  const {showToast} = useToast();
+
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (isFocused) getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const formData = {
+        search: '',
+        limit: '',
+        page_no: '',
+        enquiry_id: '',
+        product_id: '',
+      };
+
+      const response = await api({
+        url: 'customer_enquiry/my_enquiry_listing',
+        data: formData,
+      });
+
+      console.log('RESPONSE API', response.data);
+      if (response.data.success === SUCCESS) {
+      } else {
+        showToast(response.data.message, 3000, Colors.danger);
+      }
+    } catch (error) {
+      showToast(error.message, 3000, Colors.danger);
+    }
+  };
+
   return (
     <View style={[commonStyles.flexOne]}>
       <BackHeader title={'Help Requests'} />
@@ -144,3 +181,7 @@ const styles = StyleSheet.create({
   },
   container: {flex: 1, padding: 15, paddingBottom: 0},
 });
+
+const mapStateToProps = ({}) => ({});
+
+export default connect(mapStateToProps)(MyEnquiry);

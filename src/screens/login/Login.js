@@ -20,15 +20,15 @@ import {Colors, SUCCESS} from '../../utility/constants';
 import typography from '../../utility/typography';
 import useLocalization from '../../hooks/useLocalization';
 import useToast from '../../hooks/useToast';
-import {ToastContext} from '../../context/Toast';
 import api from '../../utility/api';
+import {setLocalData, setTokenData} from '../../utility/localStorage';
 
 function Login({navigation, dispatch}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loader, setLoader] = useState(false);
   const t = useLocalization();
-  const {showToast} = useToast(ToastContext);
+  const {showToast} = useToast();
 
   const onChangeEmailText = (_, value) => setEmail(value);
 
@@ -65,7 +65,14 @@ function Login({navigation, dispatch}) {
 
         console.log('response data', response.data);
         if (response.data.success === SUCCESS) {
-          dispatch(storeUserData({token: response.data.data.remember_token}));
+          await setTokenData(response.data.data.remember_token);
+          await setLocalData(response.data.data.id);
+          dispatch(
+            storeUserData({
+              token: response.data.data.remember_token,
+              userId: response.data.data.id,
+            }),
+          );
           setLoader(false);
           crashlytics().log('GO TO DASHBOARD....');
           navigation.replace('BottomTabs');
@@ -75,6 +82,7 @@ function Login({navigation, dispatch}) {
         }
       } catch (error) {
         setLoader(false);
+        showToast(error.message, 3000, Colors.danger);
         console.log('Error ', error);
       }
     }

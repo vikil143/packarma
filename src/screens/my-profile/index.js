@@ -1,4 +1,11 @@
-import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import React from 'react';
 import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
@@ -16,9 +23,16 @@ import Terms from '../../svg/my-profile-icons/Terms';
 import Privacy from '../../svg/my-profile-icons/Privacy';
 import commonStyles from '../../utility/commonStyles';
 import useLocalization from '../../hooks/useLocalization';
+import {removeLocalData, removeTokenData} from '../../utility/localStorage';
 
 export default function MyProfile({navigation}) {
   const t = useLocalization();
+
+  const onLogout = async () => {
+    await removeLocalData();
+    await removeTokenData();
+    navigation.navigate('Login');
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: '#F4F4F4'}}>
@@ -97,7 +111,14 @@ export default function MyProfile({navigation}) {
               navigation.navigate('Subscription');
             }}
           />
-          <Item name="My Addresses" icon={<MapIcon />} />
+          <Item
+            name="My Addresses"
+            icon={<MapIcon />}
+            onPress={() => {
+              crashlytics().log('Go To The My Address Screen');
+              navigation.navigate('ManageAddress');
+            }}
+          />
           <Item
             name="Change Password"
             icon={
@@ -114,25 +135,27 @@ export default function MyProfile({navigation}) {
           <Item name="Terms and Conditions" icon={<Terms />} />
           <Item name="Privacy Policy" icon={<Privacy />} />
           <Spacing size={10} />
-          <View
-            style={{
-              borderWidth: 1,
-              borderColor: Colors.black,
-              padding: 15,
-              borderRadius: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Text
+          <TouchableWithoutFeedback onPress={onLogout}>
+            <View
               style={{
-                fontFamily: typography.poppinsRegular,
-                fontSize: 16,
-                color: Colors.black,
+                borderWidth: 1,
+                borderColor: Colors.black,
+                padding: 15,
+                borderRadius: 5,
+                justifyContent: 'center',
+                alignItems: 'center',
               }}>
-              {t('common.logout')}
-              {/* Logout */}
-            </Text>
-          </View>
+              <Text
+                style={{
+                  fontFamily: typography.poppinsRegular,
+                  fontSize: 16,
+                  color: Colors.black,
+                }}>
+                {t('common.logout')}
+                {/* Logout */}
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
           <Spacing size={10} />
           <View
             style={[commonStyles.rowAlignCenter, {justifyContent: 'center'}]}>

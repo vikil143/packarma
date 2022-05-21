@@ -10,6 +10,8 @@ export default function PickerComp({
   containerStyle,
   placeHolder = 'None of below',
   name,
+  keyElement = 'label',
+  valueElement = 'value',
 }) {
   const mode = Appearance.getColorScheme();
   return (
@@ -29,8 +31,9 @@ export default function PickerComp({
       {data.map((item, ind) => {
         return (
           <Picker.Item
-            label={item.label}
-            value={item.value}
+            key={ind}
+            label={item[keyElement]}
+            value={item[valueElement]}
             style={{color: mode === 'dark' ? '#fff' : '#707070'}}
             // style={{color: '#fff'}}
           />

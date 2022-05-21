@@ -6,11 +6,19 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
 import crashlytics from '@react-native-firebase/crashlytics';
 import BackHeader from '../../components/back-header';
 import ModalDropDown from '../../components/dropdown-model';
+import {
+  getMachine as getMachineData,
+  getMeasureUnits as getMeasureUnitsData,
+  getPackagingType as getPackagingTypeData,
+  getProductForm as getProductFormData,
+  getStorageCondition as getStorageConditionData,
+} from '../../reducers/masterData';
 import typography from '../../utility/typography';
-import {Colors} from '../../utility/constants';
+import {Colors, SUCCESS} from '../../utility/constants';
 import Spacing from '../../components/spacing';
 import Picker from '../../components/picker';
 import Label from '../../components/label';
@@ -18,15 +26,15 @@ import useLocalization from '../../hooks/useLocalization';
 import api from '../../utility/api';
 import WhiteTextBox from '../../components/white_text_box';
 import commonStyles from '../../utility/commonStyles';
+import useToast from '../../hooks/useToast';
 
-export default function PlaceEnquiry({navigation}) {
-  const [dropDownList, setDropDownList] = useState({
-    measureUnits: [],
-    storageConditions: [],
-    machine: [],
-    productForm: [],
-    machine: [],
-  });
+function PlaceEnquiry({navigation, homeData, dispatch, masterData}) {
+  // const [dropDownList, setDropDownList] = useState({
+  //   measureUnits: [],
+  //   storageConditions: [],
+  //   machine: [],
+  //   productForm: [],
+  // });
   const [formState, setFormState] = useState({
     productCategory: '',
     products: '',
@@ -42,7 +50,11 @@ export default function PlaceEnquiry({navigation}) {
     units: '',
     days: '',
   });
+  const {productData, categoryData, treamentData} = homeData;
+  const {measureUnits, storageConditions, machine, productForm, packagingType} =
+    masterData;
   const t = useLocalization();
+  const {showToast} = useToast();
 
   useEffect(() => {
     getData();
@@ -53,6 +65,18 @@ export default function PlaceEnquiry({navigation}) {
     getStorageCondition();
     getMachine();
     getProductForm();
+    getPackagingType();
+  };
+
+  const getPackagingType = () => {
+    const formData = {
+      search: '',
+      packaging_type_id: '',
+      packaging_type_name: '',
+      page_no: '',
+      limit: '',
+    };
+    dispatch(getPackagingTypeData({data: formData}));
   };
 
   const getMeasureUnits = async () => {
@@ -65,17 +89,8 @@ export default function PlaceEnquiry({navigation}) {
         page_no: '',
         limit: '',
       };
-      const response = await api({
-        url: 'measurement_unit/listing',
-        data: formData,
-      });
 
-      setDropDownList({
-        ...dropDownList,
-        measureUnits: response.data.data.result,
-      });
-
-      console.log('response data', response.data.data);
+      dispatch(getMeasureUnitsData({data: formData}));
     } catch (error) {
       console.log('Error ', error);
     }
@@ -90,17 +105,8 @@ export default function PlaceEnquiry({navigation}) {
         page_no: '',
         limit: '',
       };
-      const response = await api({
-        url: 'storage_condition/listing',
-        data: formData,
-      });
 
-      setDropDownList({
-        ...dropDownList,
-        storageConditions: response.data.data.result,
-      });
-
-      console.log('response data storage', response.data.data);
+      dispatch(getStorageConditionData({data: formData}));
     } catch (error) {
       console.log('Error ', error);
     }
@@ -115,15 +121,18 @@ export default function PlaceEnquiry({navigation}) {
         page_no: '',
         limit: '',
       };
-      const response = await api({
-        url: 'packaging_machine/listing',
-        data: formData,
-      });
 
-      setDropDownList({
-        ...dropDownList,
-        machine: response.data.data.result,
-      });
+      dispatch(getMachineData({data: formData}));
+
+      // const response = await api({
+      //   url: 'packaging_machine/listing',
+      //   data: formData,
+      // });
+
+      // setDropDownList({
+      //   ...dropDownList,
+      //   machine: response.data.data.result,
+      // });
 
       console.log('response data', response.data.data);
     } catch (error) {
@@ -140,15 +149,8 @@ export default function PlaceEnquiry({navigation}) {
         page_no: '',
         limit: '',
       };
-      const response = await api({
-        url: 'product_form/listing',
-        data: formData,
-      });
 
-      setDropDownList({
-        ...dropDownList,
-        productForm: response.data.data.result,
-      });
+      dispatch(getProductFormData({data: formData}));
 
       console.log('response data', response.data.data);
     } catch (error) {
@@ -161,47 +163,156 @@ export default function PlaceEnquiry({navigation}) {
 
   const onChangeText = (name, value) =>
     setFormState({...formState, [name]: value});
+
+  const handleValidation = () => {
+    if (!formState.location) {
+      showToast(t('errorMessage.required.location'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.treatment) {
+      showToast(t('errorMessage.required.treament'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.packagingType) {
+      showToast(t('errorMessage.required.packingType'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.productForm) {
+      showToast(t('errorMessage.required.productForm'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.machine) {
+      showToast(t('errorMessage.required.machine'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.storageConditions) {
+      showToast(
+        t('errorMessage.required.storageCondition'),
+        2000,
+        Colors.danger,
+      );
+      return false;
+    }
+
+    if (!formState.units) {
+      showToast(t('errorMessage.required.units'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.productWeight) {
+      showToast(t('errorMessage.required.productWeight'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.days) {
+      showToast(t('errorMessage.required.days'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.shelfLife) {
+      showToast(t('errorMessage.required.shelfLife'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.products) {
+      showToast(t('errorMessage.required.products'), 2000, Colors.danger);
+      return false;
+    }
+
+    if (!formState.productCategory) {
+      showToast(
+        t('errorMessage.required.productCategory'),
+        2000,
+        Colors.danger,
+      );
+      return false;
+    }
+
+    return true;
+  };
+
+  const onProceed = async () => {
+    const validate = handleValidation();
+
+    if (validate) {
+      try {
+        /*
+          Product 
+        */
+        const formData = {
+          category_id: categoryData[Number(formState.productCategory) - 1].id,
+          product_id: productData[Number(formState.products) - 1].id,
+          storage_condition_id:
+            storageConditions[Number(formState.storageConditions) - 1].id,
+          product_form_id: productForm[Number(formState.productForm) - 1].id,
+          packing_type_id:
+            packagingType[Number(formState.packagingType) - 1].id,
+        };
+
+        const response = await api({
+          url: 'packaging_solution/get_packaging_solution',
+          data: formData,
+        });
+
+        console.log('packaging solution...', response.data);
+
+        if (response.data.success === SUCCESS) {
+          crashlytics().log('Go to Enquiry Description');
+          navigation.navigate('EnquiryDescription', {
+            formState,
+            packagingSolution: response.data.data.result,
+          });
+        } else {
+          showToast(response.data.message, 2000, Colors.danger);
+        }
+      } catch (error) {
+        showToast(error.message, 2000, Colors.danger);
+        console.log('Error ', error);
+      }
+    }
+  };
+
   return (
-    <View style={{flex: 1}}>
-      <BackHeader title={'Help Request'} />
-      <View style={{flex: 1}}>
+    <View style={[commonStyles.flexOne]}>
+      <BackHeader title={t('common.helpRequest')} />
+      <View style={[commonStyles.flexOne]}>
         <ScrollView style={{padding: 15}}>
           <View style={{}}>
-            <Label required>Product Category</Label>
+            <Label required>{t('labels.productCategory')}</Label>
             <Spacing size={5} />
             <ModalDropDown
-              list={[
-                {label: 'Python', value: 'python'},
-                {label: 'Java', value: 'java'},
-              ]}
+              list={categoryData}
               selectedIndex={formState.productCategory}
               name="productCategory"
               onValueChange={handlePickerChanges}
-              keyElement="label"
+              keyElement="category_name"
               placeholder="Select Product Category"></ModalDropDown>
           </View>
           <Spacing size={10} />
           <View style={{}}>
-            <Label required>Product</Label>
+            <Label required>{t('labels.products')}</Label>
             <Spacing size={5} />
 
             <ModalDropDown
-              list={[
-                {label: 'Python', value: 'python'},
-                {label: 'Java', value: 'java'},
-              ]}
+              list={productData}
+              containerStyle={{backgroundColor: '#E4E4E4'}}
               selectedIndex={formState.products}
               name="products"
               onValueChange={handlePickerChanges}
-              keyElement="label"
+              keyElement="product_name"
               placeholder="Select Products"></ModalDropDown>
           </View>
           <Spacing size={10} />
           <View style={{}}>
-            <Label required>Shelf Life</Label>
+            <Label required>{t('labels.shelfLife')}</Label>
             <Spacing size={5} />
             <View style={[commonStyles.row]}>
-              <View
+              {/* <View
                 style={{
                   backgroundColor: Colors.white,
                   padding: 10,
@@ -211,14 +322,22 @@ export default function PlaceEnquiry({navigation}) {
                 <Text style={{color: '#707070', fontSize: 16}}>
                   Days/Months
                 </Text>
-              </View>
+              </View> */}
+              <WhiteTextBox
+                containerStyle={[commonStyles.flexOne]}
+                placeholder="Days/Months"
+                keyboardType="numeric"
+                value={formState.shelfLife}
+                name="shelfLife"
+                onChangeText={onChangeText}
+              />
 
               <Spacing />
 
               <Picker
                 data={[{label: 'Days', value: 'days'}]}
                 containerStyle={{flex: 1 / 2}}
-                placeHolder="Days"
+                placeHolder="Select"
                 name={'days'}
                 selectedValue={formState.days}
                 onValueChange={handlePickerChanges}
@@ -228,10 +347,10 @@ export default function PlaceEnquiry({navigation}) {
 
           <Spacing size={10} />
           <View style={{}}>
-            <Label required>Product Weight</Label>
+            <Label required>{t('labels.productWeight')}</Label>
             <Spacing size={5} />
             <View style={[commonStyles.row]}>
-              <View
+              {/* <View
                 style={{
                   backgroundColor: Colors.white,
                   padding: 10,
@@ -241,14 +360,25 @@ export default function PlaceEnquiry({navigation}) {
                 <Text style={{color: '#707070', fontSize: 16}}>
                   Days/Months
                 </Text>
-              </View>
+              </View> */}
+
+              <WhiteTextBox
+                containerStyle={[commonStyles.flexOne]}
+                placeholder="kg/g"
+                keyboardType="numeric"
+                value={formState.productWeight}
+                name="productWeight"
+                onChangeText={onChangeText}
+              />
 
               <Spacing />
               <Picker
-                data={dropDownList.measureUnits}
+                data={measureUnits}
                 containerStyle={{flex: 1 / 2}}
-                placeHolder={'Kg'}
+                placeHolder={'Select'}
                 name={'units'}
+                keyElement="unit_name"
+                valueElement="unit_symbol"
                 selectedValue={formState.units}
                 onValueChange={handlePickerChanges}
               />
@@ -257,11 +387,11 @@ export default function PlaceEnquiry({navigation}) {
 
           <Spacing size={10} />
           <View style={{}}>
-            <Label required>Storage conditions</Label>
+            <Label required>{t('labels.storageCondition')}</Label>
             <Spacing size={5} />
             <View>
               <ModalDropDown
-                list={dropDownList.storageConditions}
+                list={storageConditions}
                 selectedIndex={formState.storageConditions}
                 name="storageConditions"
                 onValueChange={handlePickerChanges}
@@ -271,11 +401,11 @@ export default function PlaceEnquiry({navigation}) {
           </View>
           <Spacing size={10} />
           <View style={{}}>
-            <Label required>Machine</Label>
+            <Label required>{t('labels.machine')}</Label>
             <Spacing size={5} />
             <View>
               <ModalDropDown
-                list={dropDownList.machine}
+                list={machine}
                 selectedIndex={formState.machine}
                 name="machine"
                 onValueChange={handlePickerChanges}
@@ -295,11 +425,11 @@ export default function PlaceEnquiry({navigation}) {
           <Spacing size={10} />
 
           <View style={{}}>
-            <Label required>Product form</Label>
+            <Label required>{t('labels.productForm')}</Label>
             <Spacing size={5} />
             <View>
               <ModalDropDown
-                list={dropDownList.productForm}
+                list={productForm}
                 selectedIndex={formState.productForm}
                 name="productForm"
                 onValueChange={handlePickerChanges}
@@ -310,16 +440,16 @@ export default function PlaceEnquiry({navigation}) {
           <Spacing size={10} />
 
           <View style={{}}>
-            <Label required>Packaging Type </Label>
+            <Label required>{t('labels.packagingType')} </Label>
             <Spacing size={5} />
             <View>
-              <WhiteTextBox
-                value={formState.packagingType}
+              <ModalDropDown
+                list={packagingType}
+                selectedIndex={formState.packagingType}
                 name="packagingType"
-                onChangeText={onChangeText}
-                action={require('../../../assests/icons/drop_down_two.png')}
-                actionStyles={{width: 10, height: 6}}
-              />
+                onValueChange={handlePickerChanges}
+                keyElement="packing_name"
+                placeholder="Select Machine"></ModalDropDown>
 
               {/* <Picker
                 data={[{label: 'Days', value: 'days'}]}
@@ -333,30 +463,29 @@ export default function PlaceEnquiry({navigation}) {
           <Spacing size={10} />
 
           <View style={{}}>
-            <Label required>Treatments</Label>
+            <Label required>{t('labels.treatment')}</Label>
             <Spacing size={5} />
             <View>
-              <Picker
-                data={[{label: 'Days', value: 'days'}]}
-                placeHolder="Select Machine"
-                name={'treatment'}
-                selectedValue={formState.treatment}
+              <ModalDropDown
+                list={treamentData}
+                selectedIndex={formState.treatment}
+                name="treatment"
                 onValueChange={handlePickerChanges}
-              />
+                keyElement="packaging_treatment_name"
+                placeholder="Select Machine"></ModalDropDown>
             </View>
           </View>
           <Spacing size={10} />
 
           <View style={{}}>
-            <Label required>Location</Label>
+            <Label required>{t('labels.location')}</Label>
             <Spacing size={5} />
             <View>
               <WhiteTextBox
                 value={formState.location}
                 name="location"
                 onChangeText={onChangeText}
-                action={require('../../../assests/icons/drop_down_two.png')}
-                actionStyles={{width: 10, height: 6}}
+                keyboardType="numeric"
               />
 
               {/* <Picker
@@ -370,14 +499,10 @@ export default function PlaceEnquiry({navigation}) {
           </View>
           <Spacing size={10} />
 
-          <TouchableWithoutFeedback
-            onPress={() => {
-              crashlytics().log('Go to Enquiry Description');
-              navigation.navigate('EnquiryDescription');
-            }}>
+          <TouchableWithoutFeedback onPress={onProceed}>
             <View style={[styles.proceedButton]}>
               <Text style={[styles.proceedButtonText]}>
-                {t('common.proceed')}
+                {t('common.placeRequest')}
               </Text>
             </View>
           </TouchableWithoutFeedback>
@@ -399,6 +524,10 @@ const styles = StyleSheet.create({
     color: Colors.white,
     textAlign: 'center',
     fontSize: 16,
-    fontStyle: typography.poppinsRegular,
+    fontFamily: typography.poppinsRegular,
   },
 });
+
+const mapStateToProps = ({homeData, masterData}) => ({homeData, masterData});
+
+export default connect(mapStateToProps)(PlaceEnquiry);

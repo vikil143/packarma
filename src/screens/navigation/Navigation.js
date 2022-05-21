@@ -23,6 +23,8 @@ import SelectAddress from '../quatation/SelectAddress';
 import SplashScreen from '../splash';
 import {Treatment, TreatmentDetails} from '../treatment';
 import SearchScreen from '../search';
+import ManageAddress from '../address/ManageAddress';
+import AddAddress from '../address/AddAddress';
 
 const Stack = createStackNavigator();
 
@@ -47,6 +49,9 @@ export default function Navigation() {
           component={EnquiryDescription}
         />
         <Stack.Screen name="MyProfile" component={MyProfile} />
+        <Stack.Screen name="ManageAddress" component={ManageAddress} />
+        <Stack.Screen name="AddAddress" component={AddAddress} />
+
         <Stack.Screen name="OrderDetails" component={OrderDetails} />
         <Stack.Screen name="MyOrders" component={MyOrders} />
         <Stack.Screen name="AcceptQuataion" component={AcceptQuatation} />
