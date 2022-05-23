@@ -14,7 +14,7 @@ export default function Product({}) {
 
   return (
     <View style={{flex: 1}}>
-      <BackHeader title={'Products'} />
+      <BackHeader title={t('labels.products')} />
       <View style={{padding: 10, flex: 1}}>
         <Search />
         <Spacing size={5} />

@@ -68,11 +68,16 @@ const masterData = createSlice({
     packagingType: [],
   },
   extraReducers: {
-    [getMeasureUnits.pending]: (state, action) => {},
+    [getMeasureUnits.pending]: (state, action) => {
+      console.log('Master data pending');
+    },
     [getMeasureUnits.fulfilled]: (state, action) => {
       state.measureUnits = action.payload.data.result;
+      console.log('Master data fullfilled');
     },
-    [getMeasureUnits.rejected]: (state, action) => {},
+    [getMeasureUnits.rejected]: (state, action) => {
+      console.log('Master data rejected');
+    },
 
     [getStorageCondition.pending]: (state, action) => {},
     [getStorageCondition.fulfilled]: (state, action) => {

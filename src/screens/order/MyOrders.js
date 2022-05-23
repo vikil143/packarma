@@ -34,7 +34,7 @@ export default function MyOrders({navigation}) {
                   fontSize: 14,
                   color: Colors.black,
                 }}>
-                Ongoing Orders
+                {t('labels.ongoingOrders')}
               </Text>
               <Spacing size={8} />
               {tabNumber == 0 && (
@@ -56,7 +56,8 @@ export default function MyOrders({navigation}) {
                   fontSize: 14,
                   color: Colors.black,
                 }}>
-                Completed Orders
+                {/* Completed Orders */}
+                {t('labels.completedOrders')}
               </Text>
               <Spacing size={8} />
 

@@ -108,5 +108,8 @@ export default {
     buildCompany: 'Building, Company, Apartment',
     areaStreet: 'Area, Street, Sector',
     gstin: 'GSTIN',
+    ongoingOrders: 'Ongoing Orders',
+    completedOrders: 'Completed Orders',
+    productDetails: 'Product Details',
   },
 };
